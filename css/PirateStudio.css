@@ -1,0 +1,616 @@
+[class*=" icon-"],[class^=icon-] {
+	font-family: 微软雅黑,'microsoft yahei',宋体,新宋体;
+	speak: none;
+	font-style: normal;
+	font-weight: 400;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale
+}
+
+* {
+	-webkit-tap-highlight-color: rgba(255,255,255,0);
+	-webkit-touch-callout: none;
+	margin: 0
+}
+
+::-webkit-scrollbar {
+	width: 4px;
+	height: 4px
+}
+
+::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,.2);
+	border-radius: 0;
+	background: rgba(0,0,0,.1)
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 5px;
+	-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,.2);
+	background: rgba(0,0,0,.2)
+}
+
+::-webkit-scrollbar-thumb:hover {
+	border-radius: 5px;
+	-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,.2);
+	background: rgba(0,0,0,.4)
+}
+
+html {
+	height: 100%
+}
+
+input,textarea {
+	-webkit-user-select: text
+}
+
+a {
+	color: #000;
+	padding: 0;
+	text-decoration: none;
+	cursor: pointer;
+	font-family: Helvetica,"黑体",Arial,Tahoma
+}
+
+video {
+	width: 100%
+}
+
+img {
+	border: 0;
+	max-width: 100%;
+	vertical-align: top
+}
+
+input[type=radio],input[type=checkbox] {
+	vertical-align: -2px
+}
+
+#myWebBody {
+	overflow-x: hidden;
+	overflow-y: auto;
+	color: #000;
+	font-size: .7rem;
+	font-family: Helvetica,"黑体",Arial,Tahoma;
+	height: 100%
+}
+
+@media only screen and (min-width:640px) {
+	.myWebLeft,.myWebRight {
+		position: fixed;
+		display: block;
+		width: calc(50% - 8rem);
+		height: 100%;
+		top: 0;
+		z-index: 999;
+		background: #282828
+	}
+
+	.myWebLeft {
+		left: 0
+	}
+
+	.myWebRight {
+		right: 0
+	}
+}
+
+.myWebLeft,.myWebRight {
+	display: none
+}
+
+.myGWeb {
+	margin: 0 auto;
+	max-width: 640px;
+	left: 0;
+	top: 0;
+	overflow-x: hidden;
+	width: 100%;
+	min-height: 100%;
+	background: #171717;
+}
+
+.myWebContainerBox {
+	z-index: 0;
+	display: block;
+	position: relative;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	background: #171717;
+	top: 0rem;
+	-webkit-backface-visibility: hidden;
+	-ms-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	-o-backface-visibility: hidden;
+	backface-visibility: hidden
+}
+
+.myWebModuleContainer {
+	position: relative;
+	-webkit-transform: translate3d(0,0,0);
+	-ms-transform: translate3d(0,0,0);
+	-moz-transform: translate3d(0,0,0);
+	-o-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0)
+}
+
+.myForm {
+	position: relative;
+	overflow: hidden;
+	padding: .6rem .25rem;
+	margin-top: 0rem
+}
+
+.myForm:nth-child(1) {
+	margin-top: 0;
+	box-shadow: none
+}
+
+.myForm .myFormBannerTitle {
+	width: 100%;
+	font-weight: 500;
+	font-size: .8rem;
+	line-height: 1.75rem
+}
+
+.myFormBannerTitle {
+	width: 100%
+}
+
+.myFormMiddle {
+	width: 100%;
+	overflow: hidden;
+	padding-bottom: .25rem;
+	table-layout: fixed;
+	border-spacing: 0
+}
+
+.myForm .myFormBannerTitle .titleText {
+	text-indent: 0rem;
+	width: 78%;
+	white-space: nowrap;
+	overflow: hidden;
+	float: left;
+	color: #fff
+}
+
+.myFormBannerTitle .titleTextIcon {
+	float: left;
+	line-height: inherit;
+	width: 2rem;
+	height: 2rem;
+	display: inline-block;
+	background: url(../images/Header.ico) no-repeat;
+	margin-right: 0rem;
+	background-size: 1.3rem;
+	background-position: .25rem 50%;
+	position: relative;
+	top: 16%;
+	left: 0rem
+}
+
+.myForm .myFormBannerTitle .textContent {
+	white-space: nowrap;
+	float: left;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 80%
+}
+
+.myForm .titleCenter {
+	height: 2rem;
+	line-height: 2rem;
+	background: #171717;
+	-webkit-border-radius: .2rem .2rem 0 0;
+	-ms-border-radius: .2rem .2rem 0 0;
+	-moz-border-radius: .2rem .2rem 0 0;
+	-o-border-radius: .2rem .2rem 0 0;
+	border-radius: .2rem .2rem 0 0;
+	background-image: gradient(linear,left bottom,left top,color-stop(1.0,#333),color-stop(0.0,#262626));
+	position: relative;
+	padding: 0;
+	-webkit-box-shadow: 0 3px 0 #0f0f0f;
+	-ms-box-shadow: 0 3px 0 #0f0f0f;
+	-moz-box-shadow: 0 3px 0 #0f0f0f;
+	-o-box-shadow: 0 3px 0 #0f0f0f;
+	box-shadow: 0 3px 0 #0f0f0f
+}
+
+.myForm .myFormBannerTitle .titleTextIcon {
+	width: 2rem;
+	height: 2rem;
+	display: inline-block;
+	background: url(../images/Header.ico) no-repeat;
+	margin-right: 0rem;
+	background-size: 1.3rem;
+	background-position: .25rem 50%;
+	position: relative;
+	top: 16%;
+	left: 0rem
+}
+
+.myForm .myFormMiddle {
+	overflow: hidden;
+	background: #171717
+}
+
+.myFormMiddle .middleLeft,.myFormMiddle .middleRight {
+	display: none
+}
+
+.myForm .moduleContent {
+	color: #fff
+}
+
+.myVoteBtn {
+	width: 90%
+}
+
+.myVote {
+	margin: .5rem;
+	padding: 0 .8rem .7rem .8rem
+}
+
+.myVote .voteSubject {
+	text-align: center;
+	line-height: 1.75rem
+}
+
+.myVote .voteSubject .voteSubjectText {
+	display: inline-block;
+	padding-left: 1rem;
+	background: url(../images/toupiaoicon.png) no-repeat;
+	background-size: 1rem;
+	background-position: 0 50%
+}
+
+.myVote .voteItems {
+	align-items: center;
+	margin-top: .75rem
+}
+
+.myVote .voteItemImgPanel {
+	width: 90%;
+	height: 10rem;
+	border: 1px solid #eee;
+	padding: .5rem;
+	display: inline-block;
+	text-align: center;
+	margin-bottom: 1rem
+}
+
+.myVote .voteItemNamePanel {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis
+}
+
+.myVote .voteItems .voteLab {
+	margin-left: .25rem
+}
+
+.myVote .voteItems .voteItemName {
+	display: inline-block;
+	margin-left: .25rem
+}
+
+.myVote .voteOperate {
+	text-align: center;
+	margin-top: .5rem
+}
+
+.myVote .voteItemCount {
+	width: 4rem;
+	display: inline-block;
+	text-align: center;
+	font-size: .4rem
+}
+
+.myVote .voteItemShow {
+	align-items: center
+}
+
+.myDashed {
+	border-bottom: 1px dashed #e1e1e1
+}
+
+.myFlex1 {
+	-webkit-box-flex: 1;
+	-moz-box-flex: 1;
+	-webkit-flex: 1;
+	-ms-flex: 1;
+	flex: 1
+}
+
+.myWekitBox {
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: box;
+	display: flexbox;
+	display: flex
+}
+
+.myGButton {
+	background-repeat: no-repeat;
+	border: 0;
+	color: #fff;
+	height: 2rem;
+	line-height: 2rem;
+	font-size: .8rem;
+	font-family: Helvetica,"黑体",Arial,Tahoma;
+	text-align: center;
+	margin: .5rem auto;
+	padding: 0;
+	width: 90%;
+	display: block;
+	border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-ms-border-radius: 2px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-o-appearance: none;
+	outline: 0;
+	background: gradient(linear,left bottom,left top,color-stop(0.0,#9b2413),color-stop(1.0,#c94323));
+	background-color: #d84124;
+	-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3),0px 1px 0 rgba(0,0,0,0.3),1px 0 0 rgba(0,0,0,0.3),-1px 0 0 rgba(0,0,0,0.3),0px -1px 0 rgba(0,0,0,0.3);
+	-ms-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3),0px 1px 0 rgba(0,0,0,0.3),1px 0 0 rgba(0,0,0,0.3),-1px 0 0 rgba(0,0,0,0.3),0px -1px 0 rgba(0,0,0,0.3);
+	-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3),0px 1px 0 rgba(0,0,0,0.3),1px 0 0 rgba(0,0,0,0.3),-1px 0 0 rgba(0,0,0,0.3),0px -1px 0 rgba(0,0,0,0.3);
+	-o-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3),0px 1px 0 rgba(0,0,0,0.3),1px 0 0 rgba(0,0,0,0.3),-1px 0 0 rgba(0,0,0,0.3),0px -1px 0 rgba(0,0,0,0.3);
+	box-shadow: inset 0 1px 0 rgba(255,255,255,0.3),0px 1px 0 rgba(0,0,0,0.3),1px 0 0 rgba(0,0,0,0.3),-1px 0 0 rgba(0,0,0,0.3),0px -1px 0 rgba(0,0,0,0.3)
+	background-position: 32% 40%
+}
+
+.myWebFooterBox {
+	margin: 0 auto
+}
+
+.myWebFooter {
+	margin: 0 auto;
+	background: #171717
+}
+
+.myFooter {
+	padding: .5rem 0;
+	position: relative;
+	background: #171717
+}
+
+.myTechnical {
+	margin-bottom: 1rem
+}
+
+.myTechnicalSupport {
+	clear: both;
+	text-align: center;
+	color: #666;
+	margin: 0;
+	padding: .1rem 0;
+	position: relative;
+	overflow: hidden;
+	font-size: .6rem
+}
+
+.myTechnicalSupport ol {
+	padding-left: 2rem
+}
+
+.myTechnicalSupport ul {
+	padding-left: 1.35rem
+}
+
+.myFooter a {
+	text-decoration: none
+}
+
+.myTechnicalSupport a {
+	color: #666;
+	text-decoration: none
+}
+
+.siteForm {
+	padding: .5rem 0 .5rem 0
+}
+
+.siteFormItemTable {
+	width: 100%;
+	height: 1.25rem;
+	table-layout: fixed;
+	display: table
+}
+
+.siteFormItem {
+	height: 1.75rem;
+	display: table-row
+}
+
+.siteFormItem label {
+	margin-left: .15rem
+}
+
+.siteFormItem input::-webkit-input-placeholder {
+	color: #8c8c8c
+}
+
+.siteFormItem input:-moz-placeholder {
+	color: #8c8c8c
+}
+
+.siteFormItem input::-moz-placeholder {
+	color: #8c8c8c
+}
+
+.siteFormItem input:-ms-input-placeholder {
+	color: #8c8c8c
+}
+
+.siteFormItem td {
+	padding: .2rem 0
+}
+
+.siteFormItem select {
+	border: 1px solid #dadada;
+	height: 1.75rem;
+	margin: auto;
+	font-size: .6rem;
+	font-weight: 400;
+	width: 86%;
+	border-radius: 4px
+}
+
+.siteFormItem .g_itext,.siteFormItem .g_textarea {
+	border: 1px solid #dadada;
+	background-color: #f7f7f7;
+	-webkit-appearance: none;
+	border-radius: 4px;
+	font-size: .7rem;
+	font-family: Helvetica,"黑体",Arial,Tahoma
+}
+
+.siteFormItem .g_itext[type=text] {
+	height: 1.6rem;
+	width: 85%;
+	font-size: .6rem;
+	font-family: 微软雅黑;
+	text-indent: 8px
+}
+
+.siteFormItemShowName {
+	padding-right: .25rem;
+	text-align: left
+}
+
+.siteFormItemShowName font {
+	float: left;
+	margin-left: .5rem;
+	font-size: .9rem;
+	padding-right: .25rem
+}
+
+.siteFormAddButton {
+	line-height: 1.75rem;
+	text-align: center;
+	width: 90%;
+	margin: auto;
+	margin: .5rem auto
+}
+
+.siteFormAddButton input {
+	font-size: .8rem;
+	font-weight: 700;
+	color: #fff
+}
+
+.placeTextWithIcon{
+	background: url(../images/location-white.png) no-repeat;
+	display: inline-block;
+	white-space: nowrap;
+	background-size: 0.6rem 0.6rem;
+	width: 90%;
+	height: 1rem;
+	margin-left: 1.4rem;
+	padding-left: 1rem;
+	font-size: 0.6rem;
+	display: none
+}
+
+.TimeTextWithIcon{
+	background: url(../images/clock-white.png) no-repeat;
+	display: inline-block;
+	white-space: nowrap;
+	background-size: 0.6rem 0.6rem;
+	width: 90%;
+	height: 1rem;
+	margin-left: 1.4rem;
+	padding-left: 1rem;
+	font-size: 0.6rem;
+	display: none
+}
+
+.smallButton {
+	float: left;
+	background-repeat: no-repeat;
+	border: 0;
+	color: #fff;
+	height: 1.6rem;
+	line-height: 1.2rem;
+	font-size: .6rem;
+	font-family: Helvetica,"黑体",Arial,Tahoma;
+	text-align: center;
+	margin: .5rem auto;
+	padding: 0;
+	width: 6rem;
+	display: block;
+	border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-ms-border-radius: 2px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-o-appearance: none;
+	outline: 0;
+	background: gradient(linear,left bottom,left top,color-stop(0.0,#9b2413),color-stop(1.0,#c94323));
+	background-color: #d84124;
+	-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3),0px 1px 0 rgba(0,0,0,0.3),1px 0 0 rgba(0,0,0,0.3),-1px 0 0 rgba(0,0,0,0.3),0px -1px 0 rgba(0,0,0,0.3);
+	-ms-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3),0px 1px 0 rgba(0,0,0,0.3),1px 0 0 rgba(0,0,0,0.3),-1px 0 0 rgba(0,0,0,0.3),0px -1px 0 rgba(0,0,0,0.3);
+	-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3),0px 1px 0 rgba(0,0,0,0.3),1px 0 0 rgba(0,0,0,0.3),-1px 0 0 rgba(0,0,0,0.3),0px -1px 0 rgba(0,0,0,0.3);
+	-o-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3),0px 1px 0 rgba(0,0,0,0.3),1px 0 0 rgba(0,0,0,0.3),-1px 0 0 rgba(0,0,0,0.3),0px -1px 0 rgba(0,0,0,0.3);
+	box-shadow: inset 0 1px 0 rgba(255,255,255,0.3),0px 1px 0 rgba(0,0,0,0.3),1px 0 0 rgba(0,0,0,0.3),-1px 0 0 rgba(0,0,0,0.3),0px -1px 0 rgba(0,0,0,0.3)
+	background-position: 32% 40%
+}
+
+.mobiIng,.mobiIngTigs {
+	position: fixed;
+	top: 25%;
+	margin: 0 auto;
+	height: auto;
+	width: 100%;
+	z-index: 9999;
+	transition: all .5s linear;
+	-webkit-transition: all .5s linear;
+	-ms-transition: all .5s linear;
+	-moz-transition: all .5s linear;
+	-o-transition: all .5s linear;
+	display: none;
+}
+
+.mobiIng .mobiTips,.mobiIngTigs .mobiTips {
+	height: 1.75rem;
+	width: 15rem;
+	margin: auto;
+	line-height: 1.75rem;
+	color: #fff;
+	z-index: 9999
+}
+
+.mobiIngTigs .mobiTips {
+	height: 5.25rem;
+	min-width: 7.15rem;
+	max-width: 15rem;
+	display: table
+}
+
+.mobiIngTigs .mobiTips .mobiMsg {
+	text-align: center;
+	width: auto;
+	height: inherit;
+	background: rgba(0,0,0,.7);
+	border-radius: .25rem;
+	padding: 1.1rem 0;
+	box-sizing: border-box;
+	display: table-cell;
+	vertical-align: middle
+}
+
+.mobiIngTigs .mobiTips .mobiMsg p {
+	font-size: .9rem;
+	line-height: 1.2rem;
+	margin-bottom: .2rem
+}

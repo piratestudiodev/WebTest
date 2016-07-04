@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html style="font-size: 40px;">
+<head>
+<title>PirateStudio2</title>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="layoutmode" content="standard">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="renderer" content="webkit">
+<!-- 禁止字体放大 -->
+<meta name="wap-font-scale" content="no">
+<!-- 禁止数字自动转电话号码 -->
+<meta name="format-detection" content="telephone=no">
+<!-- 计算字体大小 -->
+<script type="text/javascript">
+var _htmlFontSize = (function(){
+    var clientWidth = document.documentElement ? document.documentElement.clientWidth : document.body.clientWidth;
+    if(clientWidth > 640) clientWidth = 640;
+    document.documentElement.style.fontSize = clientWidth * 1/16+"px";
+  	return clientWidth * 1/16;
+})();
+</script>
+
+<link rel="icon" href="favicon.ico">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="stylesheet" id="mobiStyleTemplateCss" type="text/css" href="css/PirateStudio.css">
+
+</head>
+
+<!-- 布局body -->
+<body id="myWebBody">
+<!-- 1级 左侧留白 -->
+<section class = "myWebLeft"></section>
+<!-- 1级 中间区域 -->
+<section id="myGWeb" class="myGWeb">
+	<!-- 2级 webContainerBox -->
+	<section id="myWebContainerBox" class="myWebContainerBox">
+	<section style="overflow: hidden;" id="myWebModuleContainer" class="myWebModuleContainer">
+	<section id="module001" class="myForm" _autoheight="1" _height="0">
+		<section class="myFormBannerTitle" style="height: 2rem;" >
+			<div class="titleLeft"></div>
+			<div class="titleCenter">
+				<div class="titleText">
+					<div class="titleTextIcon icon-titleText">
+						&nbsp;
+					</div>
+					<div class="textContent">
+						聚会投票（可复选）2222
+					</div>
+				</div>
+				<div class="formBannerMore">
+				</div>
+			</div>
+			<div class="titleRight"></div>
+		</section>
+		<section class="myFormMiddle">
+			<div class="middleLeft">
+			</div>
+			<div class="middleCenter">
+				<div class="moduleContent">
+					<div class="myVote" id="vote001">
+						<div class="voteSubject">
+							<div class="voteSubjectText">
+								时间
+							</div>
+						</div>
+						<div class="myDashed">
+						</div>
+						<div id="partyTimeItems">
+							<div class="voteItems myWekitBox" data-name="周六">
+								<input type="checkbox" class="myCheckBox" checked>
+								<label class="myFlex1 voteLab">周六</label>
+							</div>
+							<div class="voteItems myWekitBox" data-name="周日">
+								<input type="checkbox" class="myCheckBox">
+								<label class="myFlex1 voteLab">周日</label>
+							</div>
+						</div>
+						<div id="voteMsg1" class="voteMsg g_tip"></div>
+						<div class="voteSubject">
+							<div class="voteSubjectText">
+								地点
+							</div>
+						</div>
+						<div class="myDashed">
+						</div>
+						<div id="partyPlaceItems">
+							<div class="voteItems myWekitBox" data-name="海底捞">
+								<input type="checkbox" class="myCheckBox" checked>
+								<label class="myFlex1 voteLab">海底捞</label>
+							</div>
+							<div class="voteItems myWekitBox" data-name="烤鱼">
+								<input type="checkbox" class="myCheckBox">
+								<label class="myFlex1 voteLab">烤鱼</label>
+							</div>
+						</div>
+						<div id="voteMsg1" class="voteMsg g_tip"></div>
+						
+						<div class="voteOperate myWekitBox">
+							<div class="myFlex1">
+								<input value="投票" id="OnVote" class="myGButton myVoteBtn" type="button">
+							</div>
+							<div class="myFlex1">
+								<input value="查看结果" id="OnResult" class="myGButton myResultBtn" type="button">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="middleRight">
+			</div>
+		</section>
+	</section>
+	</section>
+	</section>
+	<!-- 2级 webFooterBox -->
+	<section id="myWebFooterBox" class="myWebFooterBox ">
+		<!--图片详情Div -->
+		<div id="myWebFooter" class="myWebFooter">
+			<div id="myFooter" class="myFooter">
+				<div class="myTechnical">
+					<div class="myTechnicalSupport">
+						<p>
+							<font face="Arial">©</font>2016 PirateStudio 版权所有
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--设置网站的背景颜色  start-->
+	<div class="webBackgroundBox ">
+		<div id="webBodyBackground" class="webBackground ">
+		</div>
+		<div id="navExistOffPanel" class="navExistOffPanel">
+		</div>
+	</div>
+	<!--设置网站的背景颜色  end-->
+</section>
+<!-- 1级 右侧留白 -->
+<section class = "myWebRight"></section>
+<!-- js -->
+<script src="js/jquery-3.0.0.min.js"></script>
+<script src="js/myjq.js"></script>
+</body>
+
+<script type="text/javascript" language="javascript">
+//管理态下的预览页面提前作处理 之前这里的g_viewMode先去掉
+if( !false && window.top !== window.self){
+    var g_className = document.getElementById("g_body").className;
+    document.getElementById("g_body").className = g_className + " ";
+} 
+//用于iframe显示手机样板的时候 给g_web加上width
+var g_webWidth = 0;
+if(g_webWidth == 0){
+	g_webWidth = window.localStorage? localStorage.getItem("g_webWidth"): Cookie.read("g_webWidth");
+	if(g_webWidth != null){
+		document.getElementById("myGWeb").style.width = g_webWidth + "px";
+	}
+} else{
+	document.getElementById("myGWeb").style.width = g_webWidth + "px";
+	if (window.localStorage) {
+		localStorage.setItem("g_webWidth", g_webWidth);	
+	} else {
+		Cookie.write("g_webWidth", g_webWidth);	
+	}
+}	
+</script>
