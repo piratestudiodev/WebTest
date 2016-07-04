@@ -26,7 +26,7 @@ class RandChar
 // 随机字符串
 $randCharObj = new RandChar();
 $strRandChar = $randCharObj->getRandChar(6);
-$strRandChar = date("[YmdHis]").$strRandChar;
+$strRandChar = date("YmdHis").$strRandChar;
 diskLog("strRandChar:".$strRandChar) ;
 
 // 主流程
@@ -41,7 +41,7 @@ diskLog("strPartyTimeJoin:".$strPartyTimeJoin) ;
 diskLog("strPartyPlaceJoin:".$strPartyPlaceJoin) ;
 
 // 导入模板
-$strTempletFileName = 'voteTemplate.html' ;
+$strTempletFileName = 'templateVote.html' ;
 $strContent = file_get_contents($strTempletFileName);
 
 // 替换聚会名字
@@ -61,7 +61,7 @@ diskLog("Templet:\r\n".$strContent);
 // 创建html
 $strNewHTLMName = "vote".$strRandChar.".html" ;
 // 替换html名字
-$strContent = str_replace("!replaceHTMLName!", $strNewHTLMName, $strContent) ;
+$strContent = str_replace("!replaceStrRandChar!", $strRandChar, $strContent) ;
 diskLog("strNewHTLMName:".$strNewHTLMName) ;
 $hNewHTLMName = fopen($strNewHTLMName, "w") or diskLog("Can not create new html!");
 if ($hNewHTLMName) 

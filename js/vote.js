@@ -1,4 +1,18 @@
 function onVote(){
+
+	// 获取投票人昵称
+	var strVoteUserName = $('#strVoteUserName').val() ;
+	console.log("strVoteUserName:", strVoteUserName);
+	if ('' == strVoteUserName) 
+	{
+		notifyMsg("请填写投票人昵称");
+		return;
+	}
+
+	// 获取html名称
+	var StrRandChar = $('#StrRandChar').attr('name') ;
+	console.log("StrRandChar:", StrRandChar);
+
 	// 获取聚会时间选项
 	var arrayPartyTimeName = new Array() ;
 	var arrayPartyTimeCheck = new Array() ;
@@ -59,16 +73,15 @@ function onVote(){
 	console.log("strPartyPlaceNameJoin:", strPartyPlaceNameJoin);
 	console.log("strPartyPlaceCheckJoin:", strPartyPlaceCheckJoin);
 
-	// 获取html名称
-	var strHTMLName = $('#strHTMLName').attr('name') ;
-	console.log("strHTMLName:", strHTMLName);
-
 	$.ajax({
 		url: 'vote.php',
 		type: 'post',
-		data: {	"HTMLName" : strHTMLName,
-				"partyTimeJoin" : "strPartyTimeJoin",
-				"PartyPlaceJoin" : "strPartyPlaceJoin"},
+		data: {	"strVoteUserName" : strVoteUserName,
+				"StrRandChar" : StrRandChar,
+				"strPartyTimeNameJoin" : strPartyTimeNameJoin,
+				"strPartyTimeCheckJoin" : strPartyTimeCheckJoin,
+				"strPartyPlaceNameJoin" : strPartyPlaceNameJoin,
+				"strPartyPlaceCheckJoin" : strPartyPlaceCheckJoin},
 		success: function(response) { 
 			notifyMsg('投票成功'); 
 		},

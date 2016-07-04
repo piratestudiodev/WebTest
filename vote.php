@@ -1,27 +1,26 @@
 <?php
-$param01 = "聚会001";
-$pageContents = <<< EOPAGE
-		<!DOCTYPE html>
+PHP:header('Content-Type:text/html;charset=GB2312'); 
 
-		<meta charset="UTF-8">
-		<style type="text/css">
-				article { display:block }
-				article p { font-size:16px }
-				header {font-size:18px}
-				.a_read { font-size:16px }
-		</style>
+function diskLog($strLog)
+{
+	error_log(date("[Y-m-d H:i:s]").$strLog."\r\n", 3, "diskLog.log");
+}
 
-		<title>$param01</title>
+// 主流程
+$strVoteUserName = $_POST["strVoteUserName"];  
+$StrRandChar = $_POST["StrRandChar"];
+$strPartyTimeNameJoin = $_POST["strPartyTimeNameJoin"];
+$strPartyTimeCheckJoin = $_POST["strPartyTimeCheckJoin"];
+$strPartyPlaceNameJoin = $_POST["strPartyPlaceNameJoin"];
+$strPartyPlaceCheckJoin = $_POST["strPartyPlaceCheckJoin"];
 
-EOPAGE;
+diskLog("strVoteUserName:".$strVoteUserName) ;
+diskLog("StrRandChar:".$StrRandChar) ;
+diskLog("strPartyTimeNameJoin:".$strPartyTimeNameJoin) ;
+diskLog("strPartyTimeCheckJoin:".$strPartyTimeCheckJoin) ;
+diskLog("strPartyPlaceNameJoin:".$strPartyPlaceNameJoin) ;
+diskLog("strPartyPlaceCheckJoin:".$strPartyPlaceCheckJoin) ;
 
-$pageContents .= <<< EOPAGE
-		<header>
-			<p>用户输入标题</p>
-		</header>
-EOPAGE;
-	$myfile = fopen('show01.html', "wb");
-	fwrite($myfile, $pageContents);
-	fclose($myfile);
-	echo "show01.html";
+error_log("message", 3, "result".$StrRandChar."sv");
+
 ?>
