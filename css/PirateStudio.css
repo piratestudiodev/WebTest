@@ -271,7 +271,8 @@ input[type=radio],input[type=checkbox] {
 
 .myVote .voteItems {
 	align-items: center;
-	margin-top: .75rem
+	margin-top: .75rem;
+	display: none;
 }
 
 .myVote .voteItemImgPanel {

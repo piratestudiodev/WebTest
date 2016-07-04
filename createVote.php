@@ -1,27 +1,74 @@
 <?php
-$param01 = "聚会001";
-$pageContents = <<< EOPAGE
-		<!DOCTYPE html>
+PHP:header('Content-Type:text/html;charset=GB2312'); 
 
-		<meta charset="UTF-8">
-		<style type="text/css">
-				article { display:block }
-				article p { font-size:16px }
-				header {font-size:18px}
-				.a_read { font-size:16px }
-		</style>
+function diskLog($strLog)
+{
+	error_log(date("[Y-m-d H:i:s]").$strLog."\r\n", 3, "diskLog.log");
+}
 
-		<title>$param01</title>
+class RandChar
+{
+	function getRandChar($length)
+	{
+		$str = null;
+		$strPol = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz";
+		$max = strlen($strPol)-1;
 
-EOPAGE;
+		for($i=0;$i<$length;$i++)
+		{
+			$str.=$strPol[rand(0,$max)];//rand($min,$max)生成介于min和max两个数之间的一个随机整数
+		}
 
-$pageContents .= <<< EOPAGE
-		<header>
-			<p>用户输入标题</p>
-		</header>
-EOPAGE;
-	$myfile = fopen('show01.html', "wb");
-	fwrite($myfile, $pageContents);
-	fclose($myfile);
-	echo "show01.html";
+	   return $str;
+	}
+}
+
+// 随机字符串
+$randCharObj = new RandChar();
+$strRandChar = $randCharObj->getRandChar(6);
+$strRandChar = date("[YmdHis]").$strRandChar;
+diskLog("strRandChar:".$strRandChar) ;
+
+// 主流程
+$strPartyName = $_GET["partyName"];  
+$strPartyTimeJoin = $_GET["partyTimeJoin"];  
+$strPartyPlaceJoin = $_GET["PartyPlaceJoin"];  
+$arrayPartyTime = explode("&", $strPartyTimeJoin);
+$arrayPartyPlace = explode("&", $strPartyPlaceJoin);
+
+diskLog("strPartyName:".$strPartyName) ;
+diskLog("strPartyTimeJoin:".$strPartyTimeJoin) ;
+diskLog("strPartyPlaceJoin:".$strPartyPlaceJoin) ;
+
+// 导入模板
+$strTempletFileName = 'voteTemplate.html' ;
+$strContent = file_get_contents($strTempletFileName);
+
+// 替换聚会名字
+$strContent = str_replace("!replacePartyName!", $strPartyName, $strContent) ;
+// 替换聚会时间
+foreach ($arrayPartyTime as $strPratyTime)
+{ 
+    $strContent = preg_replace("/!replacePartyTime!/", $strPratyTime, $strContent, 1) ;
+} 
+// 替换聚会地点
+foreach ($arrayPartyPlace as $strPartyPlace)
+{ 
+    $strContent = preg_replace("/!replacePartyPlace!/", $strPartyPlace, $strContent, 1) ;
+} 
+diskLog("Templet:\r\n".$strContent);
+
+// 创建html
+$strNewHTLMName = "vote".$strRandChar.".html" ;
+// 替换html名字
+$strContent = str_replace("!replaceHTMLName!", $strNewHTLMName, $strContent) ;
+diskLog("strNewHTLMName:".$strNewHTLMName) ;
+$hNewHTLMName = fopen($strNewHTLMName, "w") or diskLog("Can not create new html!");
+if ($hNewHTLMName) 
+{
+	fwrite($hNewHTLMName, $strContent);
+	fclose($hNewHTLMName);
+}
+
+echo $strNewHTLMName;
 ?>

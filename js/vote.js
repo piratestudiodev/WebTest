@@ -1,64 +1,115 @@
-function isCheckBoxChecked(pElements){
-	var bFlag = 0;
-	pElements.find('.myCheckBox').each(function(){
-		if($(this).prop("checked")){
-			bFlag = 1;
-		}
-	});
-	if (0 == bFlag)
-		return false;
-	else
-		return true;
-}
-
 function onVote(){
-	// 判断是否选择聚会时间
-	var pElementsTime = $('#partyTimeItems');
-	var bRet = isCheckBoxChecked(pElementsTime);
-	if(false == bRet){
-		alert("请选择聚会时间");
-		return;
-	}
-	// 判断是否选择聚会地点
-	var pElementsPlace = $('#partyPlaceItems');
-	bRet = isCheckBoxChecked(pElementsPlace);
-	if(false == bRet){
-		alert("请选择聚会地点");
+	// 获取聚会时间选项
+	var arrayPartyTimeName = new Array() ;
+	var arrayPartyTimeCheck = new Array() ;
+	var bHaveTimeCheck = 0;
+	$('#partyTimeItems').find('.voteLab').each(function() {
+		if ('' != $(this).text()) 
+		{
+			arrayPartyTimeName.push($(this).text());
+			if ($(this).closest('.myWekitBox').children('.myCheckBox').prop("checked")) 
+			{
+				bHaveTimeCheck = 1;
+				arrayPartyTimeCheck.push(1) ;
+			}
+			else
+			{
+				arrayPartyTimeCheck.push(0) ;
+			}
+		}
+		
+	});
+	if(0 == bHaveTimeCheck){
+		notifyMsg("请选择聚会时间");
 		return;
 	}
 
-/* 	$.ajax('https://www.baidu.com/index.html', {
-		timeout: 3000,
-		type:'get',
-		success: function(response) { alert(success); },
-		error: function(request, errorType, errorMessage) {
-			alert('Error: ' + errorType + ' with message: ' + errorMessage);
-		},
-		beforeSend: function() {},
-		complete: function() {}
-	}) */
+	// 获取聚会地点选项
+	var arrayPartyPlaceName = new Array() ;
+	var arrayPartyPlaceCheck = new Array() ;
+	var bHavePlaceCheck = 0;
+	$('#partyPlaceItems').find('.voteLab').each(function() {
+		if ('' != $(this).text()) 
+		{
+			arrayPartyPlaceName.push($(this).text());
+			if ($(this).closest('.myWekitBox').children('.myCheckBox').prop("checked")) 
+			{
+				bHavePlaceCheck = 1;
+				arrayPartyPlaceCheck.push(1) ;
+			}
+			else
+			{
+				arrayPartyPlaceCheck.push(0) ;
+			}
+		}
+		
+	});
+	if(0 == bHavePlaceCheck){
+		notifyMsg("请选择聚会地点");
+		return;
+	}
+
+	// 数组转成字符串
+	var strPartyTimeNameJoin = arrayPartyTimeName.join('\&');
+	var strPartyTimeCheckJoin = arrayPartyTimeCheck.join('\&');
+	var strPartyPlaceNameJoin = arrayPartyPlaceName.join('\&');
+	var strPartyPlaceCheckJoin = arrayPartyPlaceCheck.join('\&');
+	console.log("strPartyTimeNameJoin:", strPartyTimeNameJoin);
+	console.log("strPartyTimeCheckJoin:", strPartyTimeCheckJoin);
+	console.log("strPartyPlaceNameJoin:", strPartyPlaceNameJoin);
+	console.log("strPartyPlaceCheckJoin:", strPartyPlaceCheckJoin);
+
+	// 获取html名称
+	var strHTMLName = $('#strHTMLName').attr('name') ;
+	console.log("strHTMLName:", strHTMLName);
 
 	$.ajax({
 		url: 'vote.php',
-		type: 'get',
+		type: 'post',
+		data: {	"HTMLName" : strHTMLName,
+				"partyTimeJoin" : "strPartyTimeJoin",
+				"PartyPlaceJoin" : "strPartyPlaceJoin"},
 		success: function(response) { 
-			alert('success'); 
-			alert(response); 
-			window.open(response);
+			notifyMsg('投票成功'); 
 		},
 		error: function(request, errorType, errorMessage) {
-			alert('Error: ' + errorType + ' with message: ' + errorMessage);
+			notifyMsg('Error: ' + errorType + ' with message: ' + errorMessage);
 		}
 	})
-	
-	alert('onVote end');
 }
 
 function onResult(){
-	alert('onResult!');
+	console.log("onResult:");
+}
+
+function onInit()
+{
+	$('.voteLab').each(function(index, el) {
+		if ('' != $(this).text()) 
+		{
+			$(this).closest('.myWekitBox').show('fast');
+		}
+	});
+}
+
+function notifyMsg(showMsg, showTime){
+	if (!arguments[1]) {
+		showTime = 1200;
+	}
+	if (null == showMsg || '' == showMsg) {
+		return false ;
+	}
+
+	var pMsg = $('#notifyMsg');
+	pMsg.show();
+	pMsg.find('p').text(showMsg);
+	window.setTimeout(function() {
+		pMsg.hide('fast');
+	}, showTime)
 }
 
 $(document).ready(function() {
 	$('#OnVote').on('click', onVote);
 	$('#OnResult').on('click', onResult);
+	onInit();
 });

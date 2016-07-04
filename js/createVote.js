@@ -107,8 +107,9 @@ function onSubmit(){
 	}
 	var strPartyPlaceJoin = arrayPartyPlace.join('\&');
 
-	alert(strPartyTimeJoin);
-	alert(strPartyPlaceJoin);
+	console.log("strPartyName:", strPartyName);
+	console.log("strPartyTimeJoin:", strPartyTimeJoin);
+	console.log("strPartyPlaceJoin:", strPartyPlaceJoin);
 
 	// 调用服务器创建vote用的php，展示创建的vote页面
 	$.ajax({
@@ -118,15 +119,32 @@ function onSubmit(){
 				"partyTimeJoin" : strPartyTimeJoin,
 				"PartyPlaceJoin" : strPartyPlaceJoin},
 		success: function(response) { 
-			alert('success'); 
-			alert(response); 
+			notifyMsg('success'); 
+			console.log("response:", response);
 			window.open(response);
 		},
 		error: function(request, errorType, errorMessage) {
-			alert('Error: ' + errorType + ' with message: ' + errorMessage);
+			notifyMsg('Error: ' + errorType + ' with message: ' + errorMessage);
 		}
 	})
 }
+
+function onSubmitTest(){
+		$.ajax({
+		url: 'createVote.php',
+		type: 'get',
+		data: {	"partyName" : "testName",
+				"partyTimeJoin" : "time1&time2&time3&",
+				"PartyPlaceJoin" : "place1&place2&place3&place4"},
+		success: function(response) { 
+			console.log("response:", response); 
+			window.open(response);
+		},
+		error: function(request, errorType, errorMessage) {
+			notifyMsg('Error: ' + errorType + ' with message: ' + errorMessage);
+		}
+	})
+	}
 
 function notifyMsg(showMsg, showTime){
 	if (!arguments[1]) {
@@ -148,5 +166,5 @@ $(document).ready(function() {
 	$('#onAddPartyTime').on('click', onAddPartyTime);
 	$('#onAddPartyPlace').on('click', onAddPartyPlace);
 	$('#onReset').on('click', onReset);
-	$('#onSubmit').on('click', onSubmit);
+	$('#onSubmit').on('click', onSubmitTest);
 });

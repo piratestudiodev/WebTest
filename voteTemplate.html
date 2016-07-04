@@ -15,6 +15,7 @@
 <meta name="wap-font-scale" content="no">
 <!-- 禁止数字自动转电话号码 -->
 <meta name="format-detection" content="telephone=no">
+<output id='strHTMLName' name="!replaceHTMLName!"></output>
 <!-- 计算字体大小 -->
 <script type="text/javascript">
 var _htmlFontSize = (function(){
@@ -49,7 +50,7 @@ var _htmlFontSize = (function(){
 						&nbsp;
 					</div>
 					<div class="textContent">
-						聚会投票（可复选）
+						!replacePartyName!
 					</div>
 				</div>
 				<div class="formBannerMore">
@@ -65,37 +66,53 @@ var _htmlFontSize = (function(){
 					<div class="myVote" id="vote001">
 						<div class="voteSubject">
 							<div class="voteSubjectText">
-								时间
+								时间（可复选）
 							</div>
 						</div>
 						<div class="myDashed">
 						</div>
 						<div id="partyTimeItems">
-							<div class="voteItems myWekitBox" data-name="周六">
+							<div class="voteItems myWekitBox">
 								<input type="checkbox" class="myCheckBox" checked>
-								<label class="myFlex1 voteLab">周六</label>
+								<label class="myFlex1 voteLab">!replacePartyTime!</label>
 							</div>
-							<div class="voteItems myWekitBox" data-name="周日">
+							<div class="voteItems myWekitBox">
 								<input type="checkbox" class="myCheckBox">
-								<label class="myFlex1 voteLab">周日</label>
+								<label class="myFlex1 voteLab">!replacePartyTime!</label>
+							</div>
+							<div class="voteItems myWekitBox">
+								<input type="checkbox" class="myCheckBox">
+								<label class="myFlex1 voteLab">!replacePartyTime!</label>
+							</div>
+							<div class="voteItems myWekitBox">
+								<input type="checkbox" class="myCheckBox">
+								<label class="myFlex1 voteLab">!replacePartyTime!</label>
 							</div>
 						</div>
 						<div id="voteMsg1" class="voteMsg g_tip"></div>
 						<div class="voteSubject">
 							<div class="voteSubjectText">
-								地点
+								地点（可复选）
 							</div>
 						</div>
 						<div class="myDashed">
 						</div>
 						<div id="partyPlaceItems">
-							<div class="voteItems myWekitBox" data-name="海底捞">
+							<div class="voteItems myWekitBox">
 								<input type="checkbox" class="myCheckBox" checked>
-								<label class="myFlex1 voteLab">海底捞</label>
+								<label class="myFlex1 voteLab">!replacePartyPlace!</label>
 							</div>
-							<div class="voteItems myWekitBox" data-name="烤鱼">
+							<div class="voteItems myWekitBox">
 								<input type="checkbox" class="myCheckBox">
-								<label class="myFlex1 voteLab">烤鱼</label>
+								<label class="myFlex1 voteLab">!replacePartyPlace!</label>
+							</div>
+							<div class="voteItems myWekitBox">
+								<input type="checkbox" class="myCheckBox">
+								<label class="myFlex1 voteLab">!replacePartyPlace!</label>
+							</div>
+							<div class="voteItems myWekitBox">
+								<input type="checkbox" class="myCheckBox">
+								<label class="myFlex1 voteLab">!replacePartyPlace!</label>
 							</div>
 						</div>
 						<div id="voteMsg1" class="voteMsg g_tip"></div>
@@ -143,9 +160,18 @@ var _htmlFontSize = (function(){
 </section>
 <!-- 1级 右侧留白 -->
 <section class = "myWebRight"></section>
+
+<div id="notifyMsg" class="mobiIngTigs">
+	<div class="mobiTips" style="width:10rem; ">
+		<div class="mobiMsg">
+			<p class="showMsg"></p>
+		</div>
+	</div>
+</div>
+
 <!-- js -->
 <script src="js/jquery-3.0.0.min.js"></script>
-<script src="js/myjq.js"></script>
+<script src="js/vote.js"></script>
 </body>
 
 <script type="text/javascript" language="javascript">
