@@ -1,4 +1,25 @@
-function onAddPartyTime(){
+function checkInvalidChar(strInput)
+{
+	alert("strInput");
+	alert(strInput);
+	console.log("strInput:", strInput);
+	alert(typeof(strInput));
+	notifyMsg("strInput");
+	notifyMsg(strInput);
+	if (strInput.indexOf("\&") > 0) 
+	{
+		notifyMsg("输入内容含有非法字符“&”！");
+		return false ;
+	}
+	if (strInput.indexOf("\@") > 0) 
+	{
+		notifyMsg("输入内容含有非法字符“@”！");
+		return false ;
+	}
+}
+
+function onAddPartyTime()
+{
 	var varPartyTimeText = $('#partyTimeText').val() ;
 	if ('' == varPartyTimeText) 
 	{
@@ -6,9 +27,8 @@ function onAddPartyTime(){
 		return false ;
 	}
 
-	if (varPartyTimeText.indexOf("\&") > 0) 
+	if (false == checkInvalidChar(varPartyTimeText)) 
 	{
-		notifyMsg("聚会时间含有非法字符“&”！");
 		return false ;
 	}
 	var isHaveEmptyItem = 0 ;
@@ -28,16 +48,16 @@ function onAddPartyTime(){
 	}
 }
 
-function onAddPartyPlace(){
+function onAddPartyPlace()
+{
 	var varPartyTimeText = $('#partyPlaceText').val() ;
 	if ('' == varPartyTimeText) 
 	{
 		notifyMsg("聚会地点未填写！");
 		return false ;
 	}
-	if (varPartyTimeText.indexOf("\&") > 0) 
+	if (false == checkInvalidChar(varPartyTimeText)) 
 	{
-		notifyMsg("聚会地点含有非法字符“&”！");
 		return false ;
 	}
 	var isHaveEmptyItem = 0 ;
@@ -57,19 +77,25 @@ function onAddPartyPlace(){
 	}
 }
 
-function onReset(){
+function onReset()
+{
 	$('.partyTimeAddItem').slideUp();
 	$('.partyTimeAddItem').text('');
 	$('.partyPlaceAddItem').slideUp();
 	$('.partyPlaceAddItem').text('');
 }
 
-function onSubmit(){
+function onSubmit()
+{
 	// 聚会名称
 	var strPartyName = $('#partyName').val();
 	if ('' == strPartyName) 
 	{
 		notifyMsg("请填写聚会名称", 1500);
+		return false ;
+	}
+	if (false == checkInvalidChar(strPartyName)) 
+	{
 		return false ;
 	}
 
@@ -119,7 +145,7 @@ function onSubmit(){
 				"partyTimeJoin" : strPartyTimeJoin,
 				"PartyPlaceJoin" : strPartyPlaceJoin},
 		success: function(response) { 
-			notifyMsg('success'); 
+			notifyMsg('成功创建投票页面'); 
 			console.log("response:", response);
 			window.open(response);
 		},
@@ -129,7 +155,8 @@ function onSubmit(){
 	})
 }
 
-function onSubmitTest(){
+function onSubmitTest()
+{
 		$.ajax({
 		url: 'createVote.php',
 		type: 'get',
@@ -146,7 +173,8 @@ function onSubmitTest(){
 	})
 	}
 
-function notifyMsg(showMsg, showTime){
+function notifyMsg(showMsg, showTime)
+{
 	if (!arguments[1]) {
 		showTime = 1200;
 	}
@@ -162,9 +190,10 @@ function notifyMsg(showMsg, showTime){
 	}, showTime)
 }
 
-$(document).ready(function() {
+$(document).ready(function() 
+{
 	$('#onAddPartyTime').on('click', onAddPartyTime);
 	$('#onAddPartyPlace').on('click', onAddPartyPlace);
 	$('#onReset').on('click', onReset);
-	$('#onSubmit').on('click', onSubmitTest);
+	$('#onSubmit').on('click', onSubmit);
 });

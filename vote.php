@@ -21,6 +21,8 @@ diskLog("strPartyTimeCheckJoin:".$strPartyTimeCheckJoin) ;
 diskLog("strPartyPlaceNameJoin:".$strPartyPlaceNameJoin) ;
 diskLog("strPartyPlaceCheckJoin:".$strPartyPlaceCheckJoin) ;
 
-error_log("message", 3, "result".$StrRandChar."sv");
+$strRecord = $strVoteUserName."\@".$strPartyTimeNameJoin."\@".$strPartyTimeCheckJoin."\@".$strPartyPlaceNameJoin."\@".$strPartyPlaceCheckJoin;
+
+error_log($strRecord, 3, "result".$StrRandChar.".sv");
 
 ?>
