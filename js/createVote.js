@@ -1,17 +1,13 @@
 function checkInvalidChar(strInput)
 {
-	alert("strInput");
-	alert(strInput);
 	console.log("strInput:", strInput);
-	alert(typeof(strInput));
-	notifyMsg("strInput");
 	notifyMsg(strInput);
-	if (strInput.indexOf("\&") > 0) 
+	if (strInput.indexOf("\&") >= 0) 
 	{
 		notifyMsg("输入内容含有非法字符“&”！");
 		return false ;
 	}
-	if (strInput.indexOf("\@") > 0) 
+	if (strInput.indexOf("\@") >= 0) 
 	{
 		notifyMsg("输入内容含有非法字符“@”！");
 		return false ;
@@ -195,5 +191,5 @@ $(document).ready(function()
 	$('#onAddPartyTime').on('click', onAddPartyTime);
 	$('#onAddPartyPlace').on('click', onAddPartyPlace);
 	$('#onReset').on('click', onReset);
-	$('#onSubmit').on('click', onSubmit);
+	$('#onSubmit').on('click', onSubmitTest);
 });

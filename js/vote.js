@@ -1,3 +1,19 @@
+function checkInvalidChar(strInput)
+{
+	console.log("strInput:", strInput);
+	notifyMsg(strInput);
+	if (strInput.indexOf("\&") >= 0) 
+	{
+		notifyMsg("输入内容含有非法字符“&”！");
+		return false ;
+	}
+	if (strInput.indexOf("\@") >= 0) 
+	{
+		notifyMsg("输入内容含有非法字符“@”！");
+		return false ;
+	}
+}
+
 function onVote(){
 
 	// 获取投票人昵称
@@ -6,7 +22,12 @@ function onVote(){
 	if ('' == strVoteUserName) 
 	{
 		notifyMsg("请填写投票人昵称");
-		return;
+		return false;
+	}
+
+	if (false == checkInvalidChar(strVoteUserName)) 
+	{
+		return false ;
 	}
 
 	// 获取html名称

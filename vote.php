@@ -21,8 +21,8 @@ diskLog("strPartyTimeCheckJoin:".$strPartyTimeCheckJoin) ;
 diskLog("strPartyPlaceNameJoin:".$strPartyPlaceNameJoin) ;
 diskLog("strPartyPlaceCheckJoin:".$strPartyPlaceCheckJoin) ;
 
-$strRecord = $strVoteUserName."\@".$strPartyTimeNameJoin."\@".$strPartyTimeCheckJoin."\@".$strPartyPlaceNameJoin."\@".$strPartyPlaceCheckJoin;
+$strRecord = $strVoteUserName."@".$strPartyTimeNameJoin."@".$strPartyTimeCheckJoin."@".$strPartyPlaceNameJoin."@".$strPartyPlaceCheckJoin;
 
-error_log($strRecord, 3, "result".$StrRandChar.".sv");
+error_log($strRecord."\r\n", 3, "result".$StrRandChar.".sv");
 
 ?>
