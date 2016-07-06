@@ -74,12 +74,16 @@ table {
 	font-family: Helvetica,"黑体",Arial,Tahoma;
 	border:solid #add9c0;
 	border-width:1px 0px 0px 1px;
+	table-layout:fixed;
+	margin: 5%;
+	width: 90%;
 }
 
 td {
 	border:solid #add9c0;
 	border-width:0px 1px 1px 0px; 
 	padding:0.25rem 0rem;
+	font-size: .8rem;
 	text-align: center;
 }
 

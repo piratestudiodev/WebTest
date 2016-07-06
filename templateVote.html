@@ -63,6 +63,7 @@ var _htmlFontSize = (function(){
 			</div>
 			<div class="middleCenter">
 				<div class="moduleContent">
+					<article style="display:none;">
 					<div class="siteForm">
 					<!-- 输入框 -->
 					<div class="siteFormItemTable"> 
@@ -149,6 +150,59 @@ var _htmlFontSize = (function(){
 							</div>
 						</div>
 					</div>
+					</article>
+
+					<article>
+					<div class="siteForm" style="height: 1rem; padding-bottom:0;">
+						<!-- 输入框 -->
+						<div class="siteFormItemTable"> 
+							<!-- 输入框子项1 -->
+							<div class="siteFormItem"> 
+							 	<div style="padding-left:30px; height: 100%;" class="siteFormItemShowName">
+							  		投票结果:
+							 	</div>
+							</div> 
+						</div>
+					</div>
+
+					<table id="siteStatShowTableTime" class="siteStatShowTable">
+						<thead>
+						<tr>
+							<th style="width: 3rem;">姓名</th>
+							<th>百度爬虫</th>
+							<th>Google爬虫</th>
+							<th>其他爬虫</th>
+							<th>时段统计</th>
+						</tr>
+						</thead>
+
+						<tbody>
+						<tr id="trMapId5">
+							<td>×</td>
+							<td>×</td>
+							<td>√</td>
+							<td>√</td>
+							<td>√</td>
+						</tr>
+						<tr id="trMapId4">
+							<td>×</td>
+							<td>×</td>
+							<td>√</td>
+							<td>√</td>
+							<td>√</td>
+						</tr>
+						</tbody>
+					</table>
+
+					<div class="siteForm">
+					<!-- 输入框 -->
+						<div class="siteFormAddButton myWekitBox"> 
+							<div class="myFlex1">
+								<input id="onShowVotePage" type="button" class="myGButton" value="显示投票界面" /> 
+							</div>
+						</div>
+					</div>
+					</article>
 				</div>
 			</div>
 			<div class="middleRight">
