@@ -1,5 +1,5 @@
 <?php
-PHP:header('Content-Type:text/html;charset=GB2312'); 
+//PHP:header('Content-Type:text/html;charset=GB2312'); 
 
 function diskLog($strLog)
 {

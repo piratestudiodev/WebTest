@@ -70,7 +70,6 @@ input[type=radio],input[type=checkbox] {
 }
 
 table {
-	font-size: .5rem;
 	font-family: Helvetica,"黑体",Arial,Tahoma;
 	border:solid #add9c0;
 	border-width:1px 0px 0px 1px;
@@ -83,7 +82,6 @@ td {
 	border:solid #add9c0;
 	border-width:0px 1px 1px 0px; 
 	padding:0.25rem 0rem;
-	font-size: .8rem;
 	text-align: center;
 }
 

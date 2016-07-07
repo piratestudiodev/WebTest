@@ -142,7 +142,10 @@ function dealResult(response)
 		{
 			return false;
 		}
+		// 拆分一条记录为姓名、时间结果、地点结果
 		var szParams = value.split('@') ;
+
+		// 拼接并append表格内容到表格body里
 		var strTimeChoice = szParams[1].replace(/&/g, '</td><td>');
 		strTimeChoice = strTimeChoice.replace(/0/g, '×');
 		strTimeChoice = strTimeChoice.replace(/1/g, '√');
@@ -157,6 +160,14 @@ function dealResult(response)
 
 		$('#tBodyTime').append($.parseHTML(strTimeTabItem));
 		$('#tBodyPlace').append($.parseHTML(strPlaceTabItem));
+
+		// 隐藏没有内容的表头
+		$('th').each(function(index, el) {
+		if ('' == $(this).text()) 
+		{
+			$(this).hide();
+		}
+	});
 	})
 
 	$('#voteArticle').slideUp();
