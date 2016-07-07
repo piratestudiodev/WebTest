@@ -1,5 +1,6 @@
 function checkInvalidChar(strInput)
 {
+	console.log("checkInvalidChar:start");
 	console.log("strInput:", strInput);
 	notifyMsg(strInput);
 	if (strInput.indexOf("\&") >= 0) 
@@ -12,10 +13,17 @@ function checkInvalidChar(strInput)
 		notifyMsg("输入内容含有非法字符“@”！");
 		return false ;
 	}
+	if (strInput.indexOf("\%") >= 0) 
+	{
+		notifyMsg("输入内容含有非法字符“%”！");
+		return false ;
+	}
+	console.log("checkInvalidChar:end");
 }
 
 function onAddPartyTime()
 {
+	console.log("onAddPartyTime:start");
 	var varPartyTimeText = $('#partyTimeText').val() ;
 	if ('' == varPartyTimeText) 
 	{
@@ -42,10 +50,12 @@ function onAddPartyTime()
 	{
 		notifyMsg("无法添加4个以上的聚会时间选项", 1500);
 	}
+	console.log("onAddPartyTime:end");
 }
 
 function onAddPartyPlace()
 {
+	console.log("onAddPartyPlace:start");
 	var varPartyTimeText = $('#partyPlaceText').val() ;
 	if ('' == varPartyTimeText) 
 	{
@@ -71,18 +81,22 @@ function onAddPartyPlace()
 	{
 		notifyMsg("无法添加4个以上的聚会地点选项", 1500);
 	}
+	console.log("onAddPartyPlace:end");
 }
 
 function onReset()
 {
+	console.log("onReset:start");
 	$('.partyTimeAddItem').slideUp();
 	$('.partyTimeAddItem').text('');
 	$('.partyPlaceAddItem').slideUp();
 	$('.partyPlaceAddItem').text('');
+	console.log("onReset:start");
 }
 
 function onSubmit()
 {
+	console.log("onSubmit:start");
 	// 聚会名称
 	var strPartyName = $('#partyName').val();
 	if ('' == strPartyName) 
@@ -141,33 +155,40 @@ function onSubmit()
 				"partyTimeJoin" : strPartyTimeJoin,
 				"PartyPlaceJoin" : strPartyPlaceJoin},
 		success: function(response) { 
-			notifyMsg('成功创建投票页面'); 
+			console.log("onSubmit:ajax:success");
 			console.log("response:", response);
+			notifyMsg('成功创建投票页面'); 
 			window.open(response);
 		},
 		error: function(request, errorType, errorMessage) {
+			console.log("onSubmit:ajax:success");
 			notifyMsg('Error: ' + errorType + ' with message: ' + errorMessage);
 		}
 	})
+	console.log("onSubmit:end");
 }
 
 function onSubmitTest()
 {
-		$.ajax({
+	console.log("onSubmitTest:start");
+	$.ajax({
 		url: 'createVote.php',
 		type: 'get',
 		data: {	"partyName" : "testName",
 				"partyTimeJoin" : "time1&time2&time3&",
 				"PartyPlaceJoin" : "place1&place2&place3&place4"},
 		success: function(response) { 
+			console.log("onSubmitTest:ajax:success");
 			console.log("response:", response); 
 			window.open(response);
 		},
 		error: function(request, errorType, errorMessage) {
+			console.log("onSubmitTest:ajax:error");
 			notifyMsg('Error: ' + errorType + ' with message: ' + errorMessage);
 		}
 	})
-	}
+	console.log("onSubmitTest:end");
+}
 
 function notifyMsg(showMsg, showTime)
 {

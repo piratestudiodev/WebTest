@@ -63,7 +63,7 @@ var _htmlFontSize = (function(){
 			</div>
 			<div class="middleCenter">
 				<div class="moduleContent">
-					<article style="display:none;">
+					<article id="voteArticle">
 					<div class="siteForm">
 					<!-- 输入框 -->
 					<div class="siteFormItemTable"> 
@@ -152,7 +152,7 @@ var _htmlFontSize = (function(){
 					</div>
 					</article>
 
-					<article>
+					<article id="resultArticle" style="display:none;">
 					<div class="siteForm" style="height: 1rem; padding-bottom:0;">
 						<!-- 输入框 -->
 						<div class="siteFormItemTable"> 
@@ -165,32 +165,33 @@ var _htmlFontSize = (function(){
 						</div>
 					</div>
 
-					<table id="siteStatShowTableTime" class="siteStatShowTable">
+					<table>
 						<thead>
 						<tr>
 							<th style="width: 3rem;">姓名</th>
-							<th>百度爬虫</th>
-							<th>Google爬虫</th>
-							<th>其他爬虫</th>
-							<th>时段统计</th>
+							<th>!replacePartyTimeTable!</th>
+							<th>!replacePartyTimeTable!</th>
+							<th>!replacePartyTimeTable!</th>
+							<th>!replacePartyTimeTable!</th>
 						</tr>
 						</thead>
 
-						<tbody>
-						<tr id="trMapId5">
-							<td>×</td>
-							<td>×</td>
-							<td>√</td>
-							<td>√</td>
-							<td>√</td>
+						<tbody id="tBodyTime">
+						</tbody>
+					</table>
+
+					<table>
+						<thead>
+						<tr>
+							<th style="width: 3rem;">姓名</th>
+							<th>!replacePartyPlaceTable!</th>
+							<th>!replacePartyPlaceTable!</th>
+							<th>!replacePartyPlaceTable!</th>
+							<th>!replacePartyPlaceTable!</th>
 						</tr>
-						<tr id="trMapId4">
-							<td>×</td>
-							<td>×</td>
-							<td>√</td>
-							<td>√</td>
-							<td>√</td>
-						</tr>
+						</thead>
+
+						<tbody id="tBodyPlace">
 						</tbody>
 					</table>
 

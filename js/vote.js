@@ -1,21 +1,31 @@
 function checkInvalidChar(strInput)
 {
+	console.log("checkInvalidChar:start");
 	console.log("strInput:", strInput);
-	notifyMsg(strInput);
+	// 参数内组合用
 	if (strInput.indexOf("\&") >= 0) 
 	{
 		notifyMsg("输入内容含有非法字符“&”！");
 		return false ;
 	}
+	// 所有参数拼接用
 	if (strInput.indexOf("\@") >= 0) 
 	{
 		notifyMsg("输入内容含有非法字符“@”！");
 		return false ;
 	}
+	// 多个投票记录拼接用
+	if (strInput.indexOf("\%") >= 0) 
+	{
+		notifyMsg("输入内容含有非法字符“%”！");
+		return false ;
+	}
+	console.log("checkInvalidChar:end");
 }
 
 function onVote(){
 
+	console.log("onVote:start");
 	// 获取投票人昵称
 	var strVoteUserName = $('#strVoteUserName').val() ;
 	console.log("strVoteUserName:", strVoteUserName);
@@ -85,13 +95,13 @@ function onVote(){
 	}
 
 	// 数组转成字符串
-	var strPartyTimeNameJoin = arrayPartyTimeName.join('\&');
+	//var strPartyTimeNameJoin = arrayPartyTimeName.join('\&');
 	var strPartyTimeCheckJoin = arrayPartyTimeCheck.join('\&');
-	var strPartyPlaceNameJoin = arrayPartyPlaceName.join('\&');
+	//var strPartyPlaceNameJoin = arrayPartyPlaceName.join('\&');
 	var strPartyPlaceCheckJoin = arrayPartyPlaceCheck.join('\&');
-	console.log("strPartyTimeNameJoin:", strPartyTimeNameJoin);
+	//console.log("strPartyTimeNameJoin:", strPartyTimeNameJoin);
 	console.log("strPartyTimeCheckJoin:", strPartyTimeCheckJoin);
-	console.log("strPartyPlaceNameJoin:", strPartyPlaceNameJoin);
+	//console.log("strPartyPlaceNameJoin:", strPartyPlaceNameJoin);
 	console.log("strPartyPlaceCheckJoin:", strPartyPlaceCheckJoin);
 
 	$.ajax({
@@ -99,34 +109,106 @@ function onVote(){
 		type: 'post',
 		data: {	"strVoteUserName" : strVoteUserName,
 				"StrRandChar" : StrRandChar,
-				"strPartyTimeNameJoin" : strPartyTimeNameJoin,
+				//"strPartyTimeNameJoin" : strPartyTimeNameJoin,
 				"strPartyTimeCheckJoin" : strPartyTimeCheckJoin,
-				"strPartyPlaceNameJoin" : strPartyPlaceNameJoin,
+				//"strPartyPlaceNameJoin" : strPartyPlaceNameJoin,
 				"strPartyPlaceCheckJoin" : strPartyPlaceCheckJoin},
 		success: function(response) { 
+			console.log("onVote:ajax:success");
 			notifyMsg('投票成功'); 
 		},
 		error: function(request, errorType, errorMessage) {
+			console.log("onVote:ajax:error");
 			notifyMsg('Error: ' + errorType + ' with message: ' + errorMessage);
 		}
 	})
+	console.log("onVote:end");
 }
 
-function onResult(){
-	console.log("onResult:");
+function dealResult(response)
+{
+	console.log("onResult:ajax:success");
+	console.log("dealResult:start");
+	console.log("response:", response);
+
+	// 将每条结果转化成数组存放，数组最后一个元素为空，使用时要过滤掉
+	var szRecord = response.split('\n');
+	console.log("szRecord:", szRecord);
+
+	// 填充tr、td
+	$.each(szRecord,function(n,value)
+	{
+		if ('' == value) 
+		{
+			return false;
+		}
+		var szParams = value.split('@') ;
+		var strTimeChoice = szParams[1].replace(/&/g, '</td><td>');
+		strTimeChoice = strTimeChoice.replace(/0/g, '×');
+		strTimeChoice = strTimeChoice.replace(/1/g, '√');
+		var strPlaceChoice = szParams[2].replace(/&/g, '</td><td>');
+		strPlaceChoice = strPlaceChoice.replace(/0/g, '×');
+		strPlaceChoice = strPlaceChoice.replace(/1/g, '√');
+
+		var strTimeTabItem = '<tr><td>'+ szParams[0] + '</td><td>' + strTimeChoice + '</td></tr>';
+		var strPlaceTabItem = '<tr><td>'+ szParams[0] + '</td><td>' + strPlaceChoice+ '</td></tr>';
+		console.log("strTimeTabItem:", strTimeTabItem);
+		console.log("strPlaceTabItem:", strPlaceTabItem);
+
+		$('#tBodyTime').append($.parseHTML(strTimeTabItem));
+		$('#tBodyPlace').append($.parseHTML(strPlaceTabItem));
+	})
+
+	$('#voteArticle').slideUp();
+	$('#resultArticle').slideDown();
+	scroll(0,0);
+	console.log("dealResult:end");
+}
+
+function onResult()
+{
+	console.log("onResult:start");
+	// 获取html名称
+	var StrRandChar = $('#StrRandChar').attr('name') ;
+	console.log("StrRandChar:", StrRandChar);
+	$.ajax({
+		url: 'result.php',
+		type: 'get',
+		data: {"StrRandChar" : StrRandChar},
+		success: dealResult,
+		error: function(request, errorType, errorMessage) {
+			console.log("onResult:ajax:error");
+			notifyMsg('Error: ' + errorType + ' with message: ' + errorMessage);
+		}
+	})
+	console.log("onResult:end");
+}
+
+function onShowVotePage()
+{
+	console.log("onShowVotePage:start");
+	$('#resultArticle').slideUp();
+	$('#tBodyTime').empty();
+	$('#tBodyPlace').empty();
+	$('#voteArticle').slideDown();
+	scroll(0,0);
+	console.log("onShowVotePage:end");
 }
 
 function onInit()
 {
+	console.log("onInit:start");
 	$('.voteLab').each(function(index, el) {
 		if ('' != $(this).text()) 
 		{
 			$(this).closest('.myWekitBox').show('fast');
 		}
 	});
+	console.log("onInit:end");
 }
 
-function notifyMsg(showMsg, showTime){
+function notifyMsg(showMsg, showTime)
+{
 	if (!arguments[1]) {
 		showTime = 1200;
 	}
@@ -142,8 +224,10 @@ function notifyMsg(showMsg, showTime){
 	}, showTime)
 }
 
-$(document).ready(function() {
+$(document).ready(function() 
+{
 	$('#OnVote').on('click', onVote);
 	$('#OnResult').on('click', onResult);
+	$('#onShowVotePage').on('click', onShowVotePage);
 	onInit();
 });

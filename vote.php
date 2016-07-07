@@ -9,20 +9,20 @@ function diskLog($strLog)
 // 主流程
 $strVoteUserName = $_POST["strVoteUserName"];  
 $StrRandChar = $_POST["StrRandChar"];
-$strPartyTimeNameJoin = $_POST["strPartyTimeNameJoin"];
+//$strPartyTimeNameJoin = $_POST["strPartyTimeNameJoin"];
 $strPartyTimeCheckJoin = $_POST["strPartyTimeCheckJoin"];
-$strPartyPlaceNameJoin = $_POST["strPartyPlaceNameJoin"];
+//$strPartyPlaceNameJoin = $_POST["strPartyPlaceNameJoin"];
 $strPartyPlaceCheckJoin = $_POST["strPartyPlaceCheckJoin"];
 
 diskLog("strVoteUserName:".$strVoteUserName) ;
 diskLog("StrRandChar:".$StrRandChar) ;
-diskLog("strPartyTimeNameJoin:".$strPartyTimeNameJoin) ;
+//diskLog("strPartyTimeNameJoin:".$strPartyTimeNameJoin) ;
 diskLog("strPartyTimeCheckJoin:".$strPartyTimeCheckJoin) ;
-diskLog("strPartyPlaceNameJoin:".$strPartyPlaceNameJoin) ;
+//diskLog("strPartyPlaceNameJoin:".$strPartyPlaceNameJoin) ;
 diskLog("strPartyPlaceCheckJoin:".$strPartyPlaceCheckJoin) ;
 
-$strRecord = $strVoteUserName."@".$strPartyTimeNameJoin."@".$strPartyTimeCheckJoin."@".$strPartyPlaceNameJoin."@".$strPartyPlaceCheckJoin;
-
-error_log($strRecord."\r\n", 3, "result".$StrRandChar.".sv");
+//$strRecord = $strVoteUserName."@".$strPartyTimeNameJoin."@".$strPartyTimeCheckJoin."@".$strPartyPlaceNameJoin."@".$strPartyPlaceCheckJoin;
+$strRecord = $strVoteUserName."@".$strPartyTimeCheckJoin."@".$strPartyPlaceCheckJoin;
+error_log($strRecord."\n", 3, "result".$StrRandChar.".sv");
 
 ?>

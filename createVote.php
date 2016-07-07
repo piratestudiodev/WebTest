@@ -50,11 +50,13 @@ $strContent = str_replace("!replacePartyName!", $strPartyName, $strContent) ;
 foreach ($arrayPartyTime as $strPratyTime)
 { 
     $strContent = preg_replace("/!replacePartyTime!/", $strPratyTime, $strContent, 1) ;
+    $strContent = preg_replace("/!replacePartyTimeTable!/", $strPratyTime, $strContent, 1) ;
 } 
 // 替换聚会地点
 foreach ($arrayPartyPlace as $strPartyPlace)
 { 
     $strContent = preg_replace("/!replacePartyPlace!/", $strPartyPlace, $strContent, 1) ;
+    $strContent = preg_replace("/!replacePartyPlaceTable!/", $strPartyPlace, $strContent, 1) ;
 } 
 diskLog("Templet:\r\n".$strContent);
 
