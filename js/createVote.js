@@ -2,7 +2,7 @@ function checkInvalidChar(strInput)
 {
 	console.log("checkInvalidChar:start");
 	console.log("strInput:", strInput);
-	notifyMsg(strInput);
+	//notifyMsg(strInput);
 	if (strInput.indexOf("\&") >= 0) 
 	{
 		notifyMsg("输入内容含有非法字符“&”！");
@@ -159,8 +159,9 @@ function onSubmit()
 			console.log("response:", response);
 			notifyMsg('成功创建投票页面');
 
-			$('#srcVotePage').closest('a').attr("href", response);
-			$('#srcVotePage').click();
+			window.location.href = response;
+			//$('#srcVotePage').closest('a').attr("href", response);
+			//$('#srcVotePage').click();
 			//window.open(response);
 		},
 		error: function(request, errorType, errorMessage) {
@@ -183,9 +184,10 @@ function onSubmitTest()
 		success: function(response) { 
 			console.log("onSubmitTest:ajax:success");
 			console.log("response:", response); 
-						
-			$('#srcVotePage').closest('a').attr("href", response);
-			$('#srcVotePage').click();
+
+			window.location.href = response;
+			//$('#srcVotePage').closest('a').attr("href", response);
+			//$('#srcVotePage').click();
 		},
 		error: function(request, errorType, errorMessage) {
 			console.log("onSubmitTest:ajax:error");
@@ -217,5 +219,5 @@ $(document).ready(function()
 	$('#onAddPartyTime').on('click', onAddPartyTime);
 	$('#onAddPartyPlace').on('click', onAddPartyPlace);
 	$('#onReset').on('click', onReset);
-	$('#onSubmit').on('click', onSubmitTest);
+	$('#onSubmit').on('click', onSubmit);
 });
