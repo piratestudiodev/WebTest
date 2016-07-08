@@ -157,8 +157,11 @@ function onSubmit()
 		success: function(response) { 
 			console.log("onSubmit:ajax:success");
 			console.log("response:", response);
-			notifyMsg('成功创建投票页面'); 
-			window.open(response);
+			notifyMsg('成功创建投票页面');
+
+			$('#srcVotePage').closest('a').attr("href", response);
+			$('#srcVotePage').click();
+			//window.open(response);
 		},
 		error: function(request, errorType, errorMessage) {
 			console.log("onSubmit:ajax:success");
@@ -180,7 +183,9 @@ function onSubmitTest()
 		success: function(response) { 
 			console.log("onSubmitTest:ajax:success");
 			console.log("response:", response); 
-			window.open(response);
+						
+			$('#srcVotePage').closest('a').attr("href", response);
+			$('#srcVotePage').click();
 		},
 		error: function(request, errorType, errorMessage) {
 			console.log("onSubmitTest:ajax:error");
