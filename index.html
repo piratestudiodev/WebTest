@@ -13,8 +13,12 @@
 <meta name="renderer" content="webkit">
 <!-- 禁止字体放大 -->
 <meta name="wap-font-scale" content="no">
-<!-- 禁止数字自动转电话号码 -->
+<!-- 禁止数字自动转电话号码、邮件 -->
 <meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <!-- 计算字体大小 -->
 <script type="text/javascript">
 var _htmlFontSize = (function(){
@@ -27,7 +31,7 @@ var _htmlFontSize = (function(){
 
 <link rel="icon" href="favicon.ico">
 <link rel="shortcut icon" href="favicon.ico">
-<link rel="stylesheet" id="mobiStyleTemplateCss" type="text/css" href="css/PirateStudio.css">
+<link rel="stylesheet" id="pagestyle" type="text/css" href="css/PirateStudio.css">
 
 </head>
 
@@ -44,13 +48,14 @@ var _htmlFontSize = (function(){
 		<section class="myFormBannerTitle" style="height: 2rem;" >
 			<div class="titleLeft"></div>
 			<div class="titleCenter">
-				<div class="titleText">
+				<div class="myWekitBox titleText">
 					<div class="titleTextIcon icon-titleText">
 						&nbsp;
 					</div>
 					<div class="textContent">
 						发起聚会
 					</div>
+					<input id="changeStyle" value="风格切换" class="smallButton" type="button" style="float:right; width:3rem; height:1.2rem; ">
 				</div>
 				<div class="formBannerMore">
 				</div>
@@ -96,7 +101,7 @@ var _htmlFontSize = (function(){
 						<div class="siteFormItem partyTimeItem"> 
 							<div class="siteFormItemTd" width="100%" style="padding:0 0 0.45rem 0;">
 							 	<div class="F2siteFormItemShowVal" style="padding-left:30px;">
-							  	<input id="partyTimeText" type="text" class="g_itext" placeholder="填写可选的聚会时间" maxlength="100" /> 
+							  	<input id="partyTimeText" type="text" class="g_itext" placeholder="添加可选的聚会时间" maxlength="100" /> 
 							  	<font style="line-height:1.8rem;width:0.8rem;float:right;" color="red">*</font>
 							 	</div>
 							</div>
@@ -120,7 +125,7 @@ var _htmlFontSize = (function(){
 						<div class="siteFormItem partyPlaceItem"> 
 							<div class="siteFormItemTd" width="100%" style="padding:0 0 0.45rem 0;">
 							 	<div class="F2siteFormItemShowVal" style="padding-left:30px;">
-							  	<input id="partyPlaceText" type="text" class="g_itext" placeholder="填写可选的聚会地点" maxlength="100" /> 
+							  	<input id="partyPlaceText" type="text" class="g_itext" placeholder="添加可选的聚会地点" maxlength="100" /> 
 							  	<font style="line-height:1.8rem;width:0.8rem;float:right;" color="red">*</font>
 							 	</div>
 							</div> 
