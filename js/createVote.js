@@ -27,7 +27,7 @@ function onAddPartyTime()
 	var varPartyTimeText = $('#partyTimeText').val() ;
 	if ('' == varPartyTimeText) 
 	{
-		notifyMsg("聚会时间未填写！");
+		notifyMsg("活动时间未填写！");
 		return false ;
 	}
 
@@ -48,7 +48,7 @@ function onAddPartyTime()
 
 	if (0 == isHaveEmptyItem) 
 	{
-		notifyMsg("无法添加4个以上的聚会时间选项", 1500);
+		notifyMsg("无法添加4个以上的活动时间选项", 1500);
 	}
 	console.log("onAddPartyTime:end");
 }
@@ -59,7 +59,7 @@ function onAddPartyPlace()
 	var varPartyTimeText = $('#partyPlaceText').val() ;
 	if ('' == varPartyTimeText) 
 	{
-		notifyMsg("聚会地点未填写！");
+		notifyMsg("活动地点未填写！");
 		return false ;
 	}
 	if (false == checkInvalidChar(varPartyTimeText)) 
@@ -79,7 +79,7 @@ function onAddPartyPlace()
 
 	if (0 == isHaveEmptyItem) 
 	{
-		notifyMsg("无法添加4个以上的聚会地点选项", 1500);
+		notifyMsg("无法添加4个以上的活动地点选项", 1500);
 	}
 	console.log("onAddPartyPlace:end");
 }
@@ -97,11 +97,11 @@ function onReset()
 function onSubmit()
 {
 	console.log("onSubmit:start");
-	// 聚会名称
+	// 活动名称
 	var strPartyName = $('#partyName').val();
 	if ('' == strPartyName) 
 	{
-		notifyMsg("请填写聚会名称", 1500);
+		notifyMsg("请填写活动名称", 1500);
 		return false ;
 	}
 	if (false == checkInvalidChar(strPartyName)) 
@@ -109,7 +109,7 @@ function onSubmit()
 		return false ;
 	}
 
-	// 聚会时间
+	// 活动时间
 	var isHavePartyTime = 0;
 	var arrayPartyTime = new Array('','','','') ;
 	$('.partyTimeAddItem').each(function(index, el) {
@@ -121,12 +121,12 @@ function onSubmit()
 	});
 	if (0 == isHavePartyTime) 
 	{
-		notifyMsg("请至少增加一个聚会时间选项", 1500);
+		notifyMsg("请至少增加一个活动时间选项", 1500);
 		return false ;
 	}
 	var strPartyTimeJoin = arrayPartyTime.join('\&');
 
-	// 聚会地点
+	// 活动地点
 	var isHavePartyPlace = 0;
 	var arrayPartyPlace = new Array('','','','') ;
 	$('.partyPlaceAddItem').each(function(index, el) {
@@ -138,7 +138,7 @@ function onSubmit()
 	});
 	if (0 == isHavePartyPlace) 
 	{
-		notifyMsg("请至少增加一个聚会地点选项", 1500);
+		notifyMsg("请至少增加一个活动地点选项", 1500);
 		return false ;
 	}
 	var strPartyPlaceJoin = arrayPartyPlace.join('\&');

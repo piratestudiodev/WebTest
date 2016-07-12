@@ -44,15 +44,15 @@ diskLog("strPartyPlaceJoin:".$strPartyPlaceJoin) ;
 $strTempletFileName = 'templateVote.html' ;
 $strContent = file_get_contents($strTempletFileName);
 
-// 替换聚会名字
+// 替换活动名字
 $strContent = str_replace("!replacePartyName!", $strPartyName, $strContent) ;
-// 替换聚会时间
+// 替换活动时间
 foreach ($arrayPartyTime as $strPratyTime)
 { 
     $strContent = preg_replace("/!replacePartyTime!/", $strPratyTime, $strContent, 1) ;
     $strContent = preg_replace("/!replacePartyTimeTable!/", $strPratyTime, $strContent, 1) ;
 } 
-// 替换聚会地点
+// 替换活动地点
 foreach ($arrayPartyPlace as $strPartyPlace)
 { 
     $strContent = preg_replace("/!replacePartyPlace!/", $strPartyPlace, $strContent, 1) ;

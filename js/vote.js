@@ -44,7 +44,7 @@ function onVote(){
 	var StrRandChar = $('#StrRandChar').attr('name') ;
 	console.log("StrRandChar:", StrRandChar);
 
-	// 获取聚会时间选项
+	// 获取活动时间选项
 	var arrayPartyTimeName = new Array() ;
 	var arrayPartyTimeCheck = new Array() ;
 	var bHaveTimeCheck = 0;
@@ -65,11 +65,11 @@ function onVote(){
 		
 	});
 	if(0 == bHaveTimeCheck){
-		notifyMsg("请选择聚会时间");
+		notifyMsg("请选择活动时间");
 		return;
 	}
 
-	// 获取聚会地点选项
+	// 获取活动地点选项
 	var arrayPartyPlaceName = new Array() ;
 	var arrayPartyPlaceCheck = new Array() ;
 	var bHavePlaceCheck = 0;
@@ -90,7 +90,7 @@ function onVote(){
 		
 	});
 	if(0 == bHavePlaceCheck){
-		notifyMsg("请选择聚会地点");
+		notifyMsg("请选择活动地点");
 		return;
 	}
 
