@@ -214,10 +214,25 @@ function notifyMsg(showMsg, showTime)
 	}, showTime)
 }
 
+function changeStyle()
+{
+	if ('css/PirateStudio.css' == $('#pagestyle').attr("href"))
+	{
+		$('#pagestyle').attr("href", 'css/PirateStudio_bg.css');
+		return;
+	}
+	if ('css/PirateStudio_bg.css' == $('#pagestyle').attr("href"))
+	{
+		$('#pagestyle').attr("href", 'css/PirateStudio.css');
+		return;
+	}
+}
+
 $(document).ready(function() 
 {
 	$('#onAddPartyTime').on('click', onAddPartyTime);
 	$('#onAddPartyPlace').on('click', onAddPartyPlace);
 	$('#onReset').on('click', onReset);
 	$('#onSubmit').on('click', onSubmit);
+	$('#changeStyle').on('click', changeStyle);
 });

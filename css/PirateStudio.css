@@ -257,7 +257,6 @@ th {
 	-moz-border-radius: .2rem .2rem 0 0;
 	-o-border-radius: .2rem .2rem 0 0;
 	border-radius: .2rem .2rem 0 0;
-	background-image: gradient(linear,left bottom,left top,color-stop(1.0,#333),color-stop(0.0,#262626));
 	position: relative;
 	padding: 0;
 	-webkit-box-shadow: 0 3px 0 #0f0f0f;
@@ -620,17 +619,17 @@ th {
 	height: auto;
 	width: 100%;
 	z-index: 9999;
-	transition: all .5s linear;
+/*	transition: all .5s linear;
 	-webkit-transition: all .5s linear;
 	-ms-transition: all .5s linear;
 	-moz-transition: all .5s linear;
-	-o-transition: all .5s linear;
+	-o-transition: all .5s linear;*/
 	display: none;
 }
 
 .mobiIng .mobiTips,.mobiIngTigs .mobiTips {
 	height: 1.75rem;
-	width: 15rem;
+	width: 10rem;
 	margin: auto;
 	line-height: 1.75rem;
 	color: #fff;

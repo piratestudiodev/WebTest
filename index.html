@@ -31,7 +31,7 @@ var _htmlFontSize = (function(){
 
 <link rel="icon" href="favicon.ico">
 <link rel="shortcut icon" href="favicon.ico">
-<link rel="stylesheet" id="pagestyle" type="text/css" href="css/PirateStudio.css">
+<link rel="stylesheet" id="pagestyle" type="text/css" href="css/PirateStudio_bg.css">
 
 </head>
 
@@ -53,7 +53,7 @@ var _htmlFontSize = (function(){
 						&nbsp;
 					</div>
 					<div class="textContent">
-						发起聚会
+						活动邀请函
 					</div>
 					<input id="changeStyle" value="风格切换" class="smallButton" type="button" style="float:right; width:3rem; height:1.2rem; ">
 				</div>
@@ -71,10 +71,10 @@ var _htmlFontSize = (function(){
 					<!-- 输入框 -->
 					<div class="siteFormItemTable"> 
 						<!-- 输入框子项1 -->
-						<div style="height:1.45rem;" class="siteFormItem"> 
+						<div class="siteFormItem"> 
 							<div class="siteFormItemTd" width="100%" style="padding:0;">
 						 	<div style="padding-left:30px;" class="siteFormItemShowName">
-						  		聚会名称
+						  		活动名称
 						 	</div>
 							</div> 
 						</div> 
@@ -82,18 +82,18 @@ var _htmlFontSize = (function(){
 						<div class="siteFormItem"> 
 							<div class="siteFormItemTd" width="100%" style="padding:0 0 0.45rem 0;">
 							 	<div class="F2siteFormItemShowVal" style="padding-left:30px;">
-							  	<input id="partyName" type="text" class="g_itext" placeholder="填写聚会名称" maxlength="100" /> 
+							  	<input id="partyName" type="text" class="g_itext" placeholder="填写活动名称" maxlength="100" /> 
 							  	<font style="line-height:1.8rem;width:0.8rem;float:right;" color="red">*</font>
 							 	</div>
 							</div> 
 					   	</div> 
-					   	<div style="padding-top:10px;visibility:hidden;" class="myDashed separatorLine"></div> 
+					   	<div style="padding-top:10px;visibility:hidden;" class="myDashed separatorLine"></div>
 
 					   	<!-- 输入框子项2 -->
-						<div style="height:1.45rem;" class="siteFormItem"> 
+						<div class="siteFormItem"> 
 							<div class="siteFormItemTd" width="100%" style="padding:0;">
 						 	<div style="padding-left:30px;" class="siteFormItemShowName">
-						  		<input id="onAddPartyTime" value="添加聚会时间选项" class="smallButton" type="button">
+						  		活动时间
 						 	</div>
 							</div> 
 						</div> 
@@ -101,7 +101,7 @@ var _htmlFontSize = (function(){
 						<div class="siteFormItem partyTimeItem"> 
 							<div class="siteFormItemTd" width="100%" style="padding:0 0 0.45rem 0;">
 							 	<div class="F2siteFormItemShowVal" style="padding-left:30px;">
-							  	<input id="partyTimeText" type="text" class="g_itext" placeholder="添加可选的聚会时间" maxlength="100" /> 
+							  	<input id="partyTimeText" type="text" class="g_itext" placeholder="填写活动时间" maxlength="100" /> 
 							  	<font style="line-height:1.8rem;width:0.8rem;float:right;" color="red">*</font>
 							 	</div>
 							</div>
@@ -111,21 +111,30 @@ var _htmlFontSize = (function(){
 							<p class='TimeTextWithIcon partyTimeAddItem'></p>
 					   	</div> 
 
-					   	<div style="padding-top:10px;visibility:hidden;" class="myDashed separatorLine"></div> 
+					   	<div style="height:1.45rem;" class="siteFormItem"> 
+							<div class="siteFormItemTd" width="100%" style="padding:0;">
+						 	<div style="padding-left:30px;" class="siteFormItemShowName">
+						  		<input id="onAddPartyTime" value="添加更多活动时间" class="smallButton" type="button">
+						 	</div>
+							</div> 
+						</div> 
+
+					   	<div style="padding-top:10px;visibility:hidden;" class="myDashed separatorLine"></div>
 
 					   	<!-- 输入框子项3 -->
-						<div style="height:1.45rem;" class="siteFormItem"> 
+
+					   	<div class="siteFormItem"> 
 							<div class="siteFormItemTd" width="100%" style="padding:0;">
-							 	<div style="padding-left:30px;" class="siteFormItemShowName siteFormItemShowNameUp">
-							  		<input id="onAddPartyPlace" value="添加聚会地点选项" class="smallButton" type="button">
-							 	</div>
+						 	<div style="padding-left:30px;" class="siteFormItemShowName">
+						  		活动地点
+						 	</div>
 							</div> 
 						</div> 
 
 						<div class="siteFormItem partyPlaceItem"> 
 							<div class="siteFormItemTd" width="100%" style="padding:0 0 0.45rem 0;">
 							 	<div class="F2siteFormItemShowVal" style="padding-left:30px;">
-							  	<input id="partyPlaceText" type="text" class="g_itext" placeholder="添加可选的聚会地点" maxlength="100" /> 
+							  	<input id="partyPlaceText" type="text" class="g_itext" placeholder="填写活动地点" maxlength="100" /> 
 							  	<font style="line-height:1.8rem;width:0.8rem;float:right;" color="red">*</font>
 							 	</div>
 							</div> 
@@ -133,20 +142,29 @@ var _htmlFontSize = (function(){
 							<p class='placeTextWithIcon partyPlaceAddItem'></p>
 							<p class='placeTextWithIcon partyPlaceAddItem'></p>
 							<p class='placeTextWithIcon partyPlaceAddItem'></p>
-					   	</div> 
+					   	</div>
+
+					   	<div style="height:1.45rem;" class="siteFormItem"> 
+							<div class="siteFormItemTd" width="100%" style="padding:0;">
+							 	<div style="padding-left:30px;" class="siteFormItemShowName siteFormItemShowNameUp">
+							  		<input id="onAddPartyPlace" value="添加更多活动地点" class="smallButton" type="button">
+							 	</div>
+							</div> 
+						</div> 
+
 					   	<div style="padding-top:10px;visibility:hidden;" class="myDashed separatorLine"></div> 
-					   	<div style="padding-top:10px;" class="myDashed separatorLine"></div> 
+					   	<!-- <div style="padding-top:10px;" class="myDashed separatorLine"></div>  -->
+					   	<hr></hr>
 					</div>
 					<!-- 提交按钮 -->
 					<div class="siteFormAddButton myWekitBox"> 
 						<div class="myFlex1">
-							<input id="onReset" type="button" class="myGButton" value="重置" /> 
+							<input id="onSubmit" type="button" class="myGButton" value="发起活动" /> 
 						</div>
+					</div>
+					<div class="siteFormAddButton myWekitBox"> 
 						<div class="myFlex1">
-							<input id="onSubmit" type="button" class="myGButton" value="提交" /> 
-						</div>
-						<a href="www.baidu.com" target='_blank' style="display:none"><span id="srcVotePage">test</span></a>
-					</div> 
+							<input id="onReset" type="button" class="myGButton" value="重置" /> 
 					</div>
 				</div>
 			</div>
