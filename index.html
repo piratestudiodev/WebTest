@@ -32,6 +32,7 @@ var _htmlFontSize = (function(){
 <link rel="icon" href="favicon.ico">
 <link rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" id="pagestyle" type="text/css" href="css/PirateStudio_bg.css">
+<link rel="stylesheet" id="pagestyle" type="text/css" href="css/opentip.css">
 
 </head>
 
@@ -105,19 +106,18 @@ var _htmlFontSize = (function(){
 							  	<font style="line-height:1.8rem;width:0.8rem;float:right;" color="red">*</font>
 							 	</div>
 							</div>
-							<p class='TimeTextWithIcon partyTimeAddItem'></p>
-							<p class='TimeTextWithIcon partyTimeAddItem'></p>
-							<p class='TimeTextWithIcon partyTimeAddItem'></p>
-							<p class='TimeTextWithIcon partyTimeAddItem'></p>
-					   	</div> 
-
-					   	<div style="height:1.45rem;" class="siteFormItem"> 
-							<div class="siteFormItemTd" width="100%" style="padding:0;">
-						 	<div style="padding-left:30px;" class="siteFormItemShowName">
-						  		<input id="onAddPartyTime" value="添加更多活动时间" class="smallButton" type="button">
-						 	</div>
+							<div style="height:1.45rem;" class="siteFormItem"> 
+								<div class="siteFormItemTd" width="100%" style="padding:0;">
+								 	<div style="padding-left:30px;" class="siteFormItemShowName">
+								  		<input id="onAddPartyTime" value="添加活动时间" class="smallButton" type="button">
+								 	</div>
+								</div> 
 							</div> 
-						</div> 
+							<p class='TimeTextWithIcon partyTimeAddItem'></p>
+							<p class='TimeTextWithIcon partyTimeAddItem'></p>
+							<p class='TimeTextWithIcon partyTimeAddItem'></p>
+							<p class='TimeTextWithIcon partyTimeAddItem'></p>
+					   	</div>
 
 					   	<div style="padding-top:10px;visibility:hidden;" class="myDashed separatorLine"></div>
 
@@ -137,20 +137,19 @@ var _htmlFontSize = (function(){
 							  	<input id="partyPlaceText" type="text" class="g_itext" placeholder="填写活动地点" maxlength="100" /> 
 							  	<font style="line-height:1.8rem;width:0.8rem;float:right;" color="red">*</font>
 							 	</div>
+							</div>
+							<div style="height:1.45rem;" class="siteFormItem"> 
+								<div class="siteFormItemTd" width="100%" style="padding:0;">
+								 	<div style="padding-left:30px;" class="siteFormItemShowName siteFormItemShowNameUp">
+								  		<input id="onAddPartyPlace" value="添加活动地点" class="smallButton" type="button">
+								 	</div>
+								</div> 
 							</div> 
 							<p class='placeTextWithIcon partyPlaceAddItem'></p>
 							<p class='placeTextWithIcon partyPlaceAddItem'></p>
 							<p class='placeTextWithIcon partyPlaceAddItem'></p>
 							<p class='placeTextWithIcon partyPlaceAddItem'></p>
 					   	</div>
-
-					   	<div style="height:1.45rem;" class="siteFormItem"> 
-							<div class="siteFormItemTd" width="100%" style="padding:0;">
-							 	<div style="padding-left:30px;" class="siteFormItemShowName siteFormItemShowNameUp">
-							  		<input id="onAddPartyPlace" value="添加更多活动地点" class="smallButton" type="button">
-							 	</div>
-							</div> 
-						</div> 
 
 					   	<div style="padding-top:10px;visibility:hidden;" class="myDashed separatorLine"></div> 
 					   	<!-- <div style="padding-top:10px;" class="myDashed separatorLine"></div>  -->
@@ -211,6 +210,7 @@ var _htmlFontSize = (function(){
 
 <!-- js -->
 <script src="js/jquery-3.0.0.min.js"></script>
+<script src="js/opentip-jquery.min.js"></script>
 <script src="js/createVote.js"></script>
 </body>
 

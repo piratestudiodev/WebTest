@@ -21,18 +21,31 @@ function checkInvalidChar(strInput)
 	console.log("checkInvalidChar:end");
 }
 
+function myActiveElement(pElement)
+{
+	pElement.focus();
+	pElement.click();
+}
+
+function rollToElement(pElement)
+{
+	window.scrollTo(pElement.offset().left, pElement.offset().top - 120);
+}
+
 function onAddPartyTime()
 {
 	console.log("onAddPartyTime:start");
 	var varPartyTimeText = $('#partyTimeText').val() ;
 	if ('' == varPartyTimeText) 
 	{
-		notifyMsg("活动时间未填写！");
+		notifyMsg("活动时间未填写！");	
+		myActiveElement($('#partyTimeText'));
 		return false ;
 	}
 
 	if (false == checkInvalidChar(varPartyTimeText)) 
 	{
+		myActiveElement($('#partyTimeText'));
 		return false ;
 	}
 	var isHaveEmptyItem = 0 ;
@@ -48,7 +61,7 @@ function onAddPartyTime()
 
 	if (0 == isHaveEmptyItem) 
 	{
-		notifyMsg("无法添加4个以上的活动时间选项", 1500);
+		notifyMsgLong("无法添加4个以上的活动时间选项");
 	}
 	console.log("onAddPartyTime:end");
 }
@@ -59,11 +72,13 @@ function onAddPartyPlace()
 	var varPartyTimeText = $('#partyPlaceText').val() ;
 	if ('' == varPartyTimeText) 
 	{
-		notifyMsg("活动地点未填写！");
+		notifyMsg("活动地点未填写！");	
+		myActiveElement($('#partyPlaceText'));
 		return false ;
 	}
 	if (false == checkInvalidChar(varPartyTimeText)) 
 	{
+		myActiveElement($('#partyPlaceText'));
 		return false ;
 	}
 	var isHaveEmptyItem = 0 ;
@@ -79,7 +94,7 @@ function onAddPartyPlace()
 
 	if (0 == isHaveEmptyItem) 
 	{
-		notifyMsg("无法添加4个以上的活动地点选项", 1500);
+		notifyMsgLong("无法添加4个以上的活动地点选项");
 	}
 	console.log("onAddPartyPlace:end");
 }
@@ -101,11 +116,15 @@ function onSubmit()
 	var strPartyName = $('#partyName').val();
 	if ('' == strPartyName) 
 	{
-		notifyMsg("请填写活动名称", 1500);
+		rollToElement($('#partyName'));
+		notifyMsgLong("请填写活动名称");
+		myActiveElement($('#partyName'));
 		return false ;
 	}
 	if (false == checkInvalidChar(strPartyName)) 
 	{
+		rollToElement($('#partyName'));
+		myActiveElement($('#partyName'));
 		return false ;
 	}
 
@@ -121,7 +140,9 @@ function onSubmit()
 	});
 	if (0 == isHavePartyTime) 
 	{
-		notifyMsg("请至少增加一个活动时间选项", 1500);
+		rollToElement($('#partyTimeText'));
+		notifyMsgLong("请至少增加一个活动时间选项");
+		myActiveElement($('#partyTimeText'));
 		return false ;
 	}
 	var strPartyTimeJoin = arrayPartyTime.join('\&');
@@ -138,7 +159,9 @@ function onSubmit()
 	});
 	if (0 == isHavePartyPlace) 
 	{
-		notifyMsg("请至少增加一个活动地点选项", 1500);
+		rollToElement($('#partyPlaceText'));
+		notifyMsgLong("请至少增加一个活动地点选项");
+		myActiveElement($('#partyPlaceText'));
 		return false ;
 	}
 	var strPartyPlaceJoin = arrayPartyPlace.join('\&');
@@ -197,21 +220,24 @@ function onSubmitTest()
 	console.log("onSubmitTest:end");
 }
 
-function notifyMsg(showMsg, showTime)
+function notifyMsg(showMsg)
 {
-	if (!arguments[1]) {
-		showTime = 1200;
-	}
-	if (null == showMsg || '' == showMsg) {
-		return false ;
-	}
-
 	var pMsg = $('#notifyMsg');
 	pMsg.show();
 	pMsg.find('p').text(showMsg);
 	window.setTimeout(function() {
 		pMsg.hide('fast');
-	}, showTime)
+	}, 1200)
+}
+
+function notifyMsgLong(showMsg)
+{
+	var pMsg = $('#notifyMsg');
+	pMsg.show();
+	pMsg.find('p').text(showMsg);
+	window.setTimeout(function() {
+		pMsg.hide('fast');
+	}, 1500)
 }
 
 function changeStyle()
@@ -228,11 +254,77 @@ function changeStyle()
 	}
 }
 
+function AddInputToolTips(pElement, strContent)
+{
+	console.log("AddInputToolTips:start");
+	console.log("pElement:", pElement);
+	console.log("strContent:", strContent);
+	var inputOpentip = new Opentip(pElement, 
+		{ 
+		style: 'alert',
+		showOn: 'click',
+		target: true,
+		group: 'input',
+		targetJoint: 'top left',
+		tipJoint: 'bottom left',
+		offset: [60,0] 
+		});
+	inputOpentip.setContent(strContent);
+	console.log("AddInputToolTips:end");
+}
+
+function AddButtonToolTips(pElementSrc, pElementTar, strContent)
+{
+	console.log("AddButtonToolTips:start");
+	console.log("pElementSrc:", pElementSrc);
+	console.log("pElementTar:", pElementTar);
+	console.log("strContent:", strContent);
+	var inputOpentip = new Opentip(pElementSrc, 
+		{ 
+		// style: 'alert',
+		showOn: 'click',
+		target: pElementTar,
+		group: 'button',
+		targetJoint: 'right',
+		tipJoint: 'left' 
+		});
+	inputOpentip.setContent(strContent);
+	console.log("AddButtonToolTips:end");
+}
+
+function InitToolTips()
+{
+	console.log("InitToolTips:start");
+	AddInputToolTips($("#partyName"), '请在此填写活动名称');
+	AddInputToolTips($("#partyTimeText"), '请在此填写活动时间,可添加多个时间');
+	AddInputToolTips($("#partyPlaceText"), '请在此填写活动地点，可添加多个地点');
+
+	AddButtonToolTips($("#partyTimeText"), $("#onAddPartyTime"), '填写完后点此按钮以添加该时间');
+	AddButtonToolTips($("#partyPlaceText"), $("#onAddPartyPlace"), '填写完后点此按钮以添加该地点');
+	console.log("InitToolTips:end");
+}
+
+function HideAllToolTips()
+{
+	for(var i = 0; i < Opentip.tips.length; i ++) { Opentip.tips[i].hide();}
+}
+
+function onInputPartyName()
+{
+	console.log("onInputPartyName:start");
+	HideAllToolTips();
+	console.log("onInputPartyName:end");
+}
+
 $(document).ready(function() 
 {
 	$('#onAddPartyTime').on('click', onAddPartyTime);
 	$('#onAddPartyPlace').on('click', onAddPartyPlace);
 	$('#onReset').on('click', onReset);
 	$('#onSubmit').on('click', onSubmit);
+
+	$('#partyName').on('click', onInputPartyName);
 	$('#changeStyle').on('click', changeStyle);
+	InitToolTips() ;
+	myActiveElement($('#partyName'));
 });
