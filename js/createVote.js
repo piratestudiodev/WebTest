@@ -270,6 +270,7 @@ function AddInputToolTips(pElement, strContent)
 		offset: [60,0] 
 		});
 	inputOpentip.setContent(strContent);
+	return inputOpentip ;
 	console.log("AddInputToolTips:end");
 }
 
@@ -289,18 +290,32 @@ function AddButtonToolTips(pElementSrc, pElementTar, strContent)
 		tipJoint: 'left' 
 		});
 	inputOpentip.setContent(strContent);
+	return inputOpentip ;
 	console.log("AddButtonToolTips:end");
 }
 
 function InitToolTips()
 {
 	console.log("InitToolTips:start");
-	AddInputToolTips($("#partyName"), '请在此填写活动名称');
-	AddInputToolTips($("#partyTimeText"), '请在此填写活动时间,可添加多个时间');
-	AddInputToolTips($("#partyPlaceText"), '请在此填写活动地点，可添加多个地点');
+	var varFirstShow = AddInputToolTips($("#partyName"), '请在此填写活动名称');
+	AddInputToolTips($("#partyTimeText"), '一次添加多个时间，请以；隔开');
+	AddInputToolTips($("#partyPlaceText"), '一次添加多个地点，请以；隔开');
 
 	AddButtonToolTips($("#partyTimeText"), $("#onAddPartyTime"), '填写完后点此按钮以添加该时间');
 	AddButtonToolTips($("#partyPlaceText"), $("#onAddPartyPlace"), '填写完后点此按钮以添加该地点');
+
+	$("#partyName").focus();
+	varFirstShow.show();
+
+
+	// var inputOpentip = new Opentip($("#onAddPartyTime"), 
+	// { 
+	// 	style: 'glass',
+	// 	showOn: 'click',
+	// });
+	// inputOpentip.setContent("hahhahahh");
+	// inputOpentip.show();
+
 	console.log("InitToolTips:end");
 }
 
@@ -326,5 +341,12 @@ $(document).ready(function()
 	$('#partyName').on('click', onInputPartyName);
 	$('#changeStyle').on('click', changeStyle);
 	InitToolTips() ;
-	myActiveElement($('#partyName'));
+
+	// 解决ios系列不支持fix的问题
+	//stick the footer at the bottom of the page if we're on an iPad/iPhone due to viewport/page bugs in mobile webkit 
+	// if(navigator.platform == 'iPad' || navigator.platform == 'iPhone' || navigator.platform == 'iPod') 
+	// { 
+	//      $("#notifyMsg").css("position", "static"); 
+	// };
+
 });
