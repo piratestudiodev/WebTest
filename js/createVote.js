@@ -242,7 +242,7 @@ function AddInputToolTips(pElement, strContent)
 		group: 'input',
 		targetJoint: 'top left',
 		tipJoint: 'bottom left',
-		offset: [60,0] 
+		offset: [80,0] 
 		});
 	inputOpentip.setContent(strContent);
 	return inputOpentip ;
@@ -273,7 +273,7 @@ function InitToolTips()
 {
 	console.log("InitToolTips:start");
 	var varFirstShow = AddInputToolTips($("#partyName"), '请在此填写活动名称');
-	AddInputToolTips($("#partyTimeText"), '一次添加多个时间，请以；隔开');
+	// AddInputToolTips($("#partyTimeText"), '请点击此处选择活动时间');
 	AddInputToolTips($("#partyPlaceText"), '一次添加多个地点，请以；隔开');
 
 	AddButtonToolTips($("#partyTimeText"), $("#onAddPartyTime"), '填写完后点此按钮以添加');
@@ -352,5 +352,4 @@ $(document).ready(function()
 	$('#partyName').on('click', onInputPartyName);
 	$('#changeStyle').on('click', changeStyle);
 	InitToolTips() ;
-	WdatePicker();
 });

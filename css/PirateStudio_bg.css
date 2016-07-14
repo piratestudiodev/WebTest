@@ -470,7 +470,7 @@ th {
 	width: 100%;
 	height: 1.25rem;
 	table-layout: fixed;
-	display: table
+	display: table;
 }
 
 .siteFormItem {
@@ -525,11 +525,33 @@ th {
 	height: 1.6rem;
 	width: 85%;
 	font-size: .6rem;
-	font-family: 微软雅黑;
+	font-family: Helvetica,"微软雅黑",Arial,Tahoma;
 	text-indent: 8px
 }
 
+.siteFormItem .g_itext[type=datetime-local] {
+	height: 1.6rem;
+	width: 85%;
+	font-size: .6rem;
+	font-family: Helvetica,"微软雅黑",Arial,Tahoma;
+	text-indent: 8px
+}
+
+.siteFormItem .g_itext[type=datetime] {
+	height: 1.6rem;
+	width: 85%;
+	font-size: .6rem;
+	font-family: Helvetica,"微软雅黑",Arial,Tahoma;
+	text-indent: 8px
+}
+
+.siteFormItemTd{
+	margin-top: 0.5rem ;
+}
+
 .siteFormItemShowName {
+	height: 100%;
+	line-height: 100%;
 	padding-right: .25rem;
 	text-align: left
 }
