@@ -555,12 +555,14 @@ th {
 }
 
 .placeTextWithIcon{
-	background: url(../images/location-white.png) no-repeat;
+	background: url(../images/location-black.png) no-repeat;
+	background-position:center left;
 	display: inline-block;
 	white-space: nowrap;
 	background-size: 0.6rem 0.6rem;
 	width: 90%;
 	height: 1rem;
+	line-height: 1rem ;
 	margin-left: 1.4rem;
 	padding-left: 1rem;
 	font-size: 0.6rem;
@@ -568,12 +570,14 @@ th {
 }
 
 .TimeTextWithIcon{
-	background: url(../images/clock-white.png) no-repeat;
+	background: url(../images/clock-black.png) no-repeat;
+	background-position:center left;
 	display: inline-block;
 	white-space: nowrap;
 	background-size: 0.6rem 0.6rem;
 	width: 90%;
 	height: 1rem;
+	line-height: 1rem ;
 	margin-left: 1.4rem;
 	padding-left: 1rem;
 	font-size: 0.6rem;
@@ -592,7 +596,7 @@ th {
 	text-align: center;
 	margin: .5rem auto;
 	padding: 0;
-	width: 6rem;
+	width: 4.5rem;
 	display: block;
 	border-radius: 2px;
 	-webkit-border-radius: 2px;

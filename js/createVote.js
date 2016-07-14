@@ -183,9 +183,6 @@ function onSubmit()
 			notifyMsg('成功创建投票页面');
 
 			window.location.href = response;
-			//$('#srcVotePage').closest('a').attr("href", response);
-			//$('#srcVotePage').click();
-			//window.open(response);
 		},
 		error: function(request, errorType, errorMessage) {
 			console.log("onSubmit:ajax:success");
@@ -209,8 +206,6 @@ function onSubmitTest()
 			console.log("response:", response); 
 
 			window.location.href = response;
-			//$('#srcVotePage').closest('a').attr("href", response);
-			//$('#srcVotePage').click();
 		},
 		error: function(request, errorType, errorMessage) {
 			console.log("onSubmitTest:ajax:error");
@@ -218,26 +213,6 @@ function onSubmitTest()
 		}
 	})
 	console.log("onSubmitTest:end");
-}
-
-function notifyMsg(showMsg)
-{
-	var pMsg = $('#notifyMsg');
-	pMsg.show();
-	pMsg.find('p').text(showMsg);
-	window.setTimeout(function() {
-		pMsg.hide('fast');
-	}, 1200)
-}
-
-function notifyMsgLong(showMsg)
-{
-	var pMsg = $('#notifyMsg');
-	pMsg.show();
-	pMsg.find('p').text(showMsg);
-	window.setTimeout(function() {
-		pMsg.hide('fast');
-	}, 1500)
 }
 
 function changeStyle()
@@ -282,7 +257,7 @@ function AddButtonToolTips(pElementSrc, pElementTar, strContent)
 	console.log("strContent:", strContent);
 	var inputOpentip = new Opentip(pElementSrc, 
 		{ 
-		// style: 'alert',
+		style: 'dark',
 		showOn: 'click',
 		target: pElementTar,
 		group: 'button',
@@ -301,20 +276,11 @@ function InitToolTips()
 	AddInputToolTips($("#partyTimeText"), '一次添加多个时间，请以；隔开');
 	AddInputToolTips($("#partyPlaceText"), '一次添加多个地点，请以；隔开');
 
-	AddButtonToolTips($("#partyTimeText"), $("#onAddPartyTime"), '填写完后点此按钮以添加该时间');
-	AddButtonToolTips($("#partyPlaceText"), $("#onAddPartyPlace"), '填写完后点此按钮以添加该地点');
+	AddButtonToolTips($("#partyTimeText"), $("#onAddPartyTime"), '填写完后点此按钮以添加');
+	AddButtonToolTips($("#partyPlaceText"), $("#onAddPartyPlace"), '填写完后点此按钮以添加');
 
 	$("#partyName").focus();
 	varFirstShow.show();
-
-
-	// var inputOpentip = new Opentip($("#onAddPartyTime"), 
-	// { 
-	// 	style: 'glass',
-	// 	showOn: 'click',
-	// });
-	// inputOpentip.setContent("hahhahahh");
-	// inputOpentip.show();
 
 	console.log("InitToolTips:end");
 }
@@ -331,6 +297,51 @@ function onInputPartyName()
 	console.log("onInputPartyName:end");
 }
 
+function notifyMsg(showMsg)
+{
+	adjustNotifyMsgPositon();
+	var pMsg = $('#notifyMsg');
+	pMsg.show();
+	pMsg.find('p').text(showMsg);
+	window.setTimeout(function() {
+		pMsg.hide('fast');
+	}, 1500)
+}
+
+function notifyMsgLong(showMsg)
+{
+	adjustNotifyMsgPositon();
+	var pMsg = $('#notifyMsg');
+	pMsg.show();
+	pMsg.find('p').text(showMsg);
+	window.setTimeout(function() {
+		pMsg.hide('fast');
+	}, 2000)
+}
+
+function adjustNotifyMsgPositon()
+{
+	var nTop = document.body.scrollTop + (document.body.clientHeight * 0.25) ;
+	console.log("nTop :", nTop );
+	$('#notifyMsg').css('top', nTop);
+}
+
+function Info()
+{
+	console.log("document.body.clientWidth :", document.body.clientWidth );
+	// 网页的工作区高度，弹出小键盘后会变压缩小
+	console.log("document.body.clientHeight :", document.body.clientHeight );
+	console.log("document.body.scrollWidth :", document.body.scrollWidth  );
+	console.log("document.body.scrollHeight :", document.body.scrollHeight );
+	// 被滚掉的距离
+	console.log("document.body.scrollTop :", document.body.scrollTop );
+	console.log("document.body.scrollLeft :", document.body.scrollLeft );
+	console.log("window.screenTop:", window.screenTop );
+	console.log("window.screen.height:", window.screen.height );
+	// 恒定，不会因为小键盘弹出而变小
+	console.log("window.screen.availHeight:", window.screen.availHeight );
+}
+
 $(document).ready(function() 
 {
 	$('#onAddPartyTime').on('click', onAddPartyTime);
@@ -341,12 +352,5 @@ $(document).ready(function()
 	$('#partyName').on('click', onInputPartyName);
 	$('#changeStyle').on('click', changeStyle);
 	InitToolTips() ;
-
-	// 解决ios系列不支持fix的问题
-	//stick the footer at the bottom of the page if we're on an iPad/iPhone due to viewport/page bugs in mobile webkit 
-	// if(navigator.platform == 'iPad' || navigator.platform == 'iPhone' || navigator.platform == 'iPod') 
-	// { 
-	//      $("#notifyMsg").css("position", "static"); 
-	// };
-
+	WdatePicker();
 });
