@@ -36,6 +36,17 @@ function onAddPartyTime()
 {
 	console.log("onAddPartyTime:start");
 	var varPartyTimeText = $('#partyTimeText').val() ;
+
+	// 截断分钟以后的数值
+	console.log("varPartyTimeText:", varPartyTimeText);
+	var nTPos = varPartyTimeText.indexOf("T") ;
+	console.log("nTPos:", nTPos);
+	if (nTPos > 0) 
+	{
+		varPartyTimeText = varPartyTimeText.substring(0, nTPos + 6) ;
+	}
+	console.log("varPartyTimeText:", varPartyTimeText);
+
 	if ('' == varPartyTimeText) 
 	{
 		notifyMsg("活动时间未填写！");	
@@ -69,33 +80,54 @@ function onAddPartyTime()
 function onAddPartyPlace()
 {
 	console.log("onAddPartyPlace:start");
-	var varPartyTimeText = $('#partyPlaceText').val() ;
-	if ('' == varPartyTimeText) 
+	var varPartyPlaceText = $('#partyPlaceText').val() ;
+	if ('' == varPartyPlaceText) 
 	{
 		notifyMsg("活动地点未填写！");	
 		myActiveElement($('#partyPlaceText'));
 		return false ;
 	}
-	if (false == checkInvalidChar(varPartyTimeText)) 
+	if (false == checkInvalidChar(varPartyPlaceText)) 
 	{
 		myActiveElement($('#partyPlaceText'));
 		return false ;
 	}
-	var isHaveEmptyItem = 0 ;
-	$('.partyPlaceAddItem').each(function() {
-		if($(this).is(':hidden'))
-		{
-			isHaveEmptyItem = 1;
-			$(this).text(varPartyTimeText);
-			$(this).slideDown("slow");
-			return false ;
-		}
-	});
 
-	if (0 == isHaveEmptyItem) 
-	{
-		notifyMsgLong("无法添加4个以上的活动地点选项");
-	}
+	var arrayTemp = varPartyPlaceText.split(';') ;
+	var strTemp = arrayTemp.join('；');
+	var arrayPartyPlaceText = strTemp.split('；');
+
+	console.log("varPartyPlaceText:", varPartyPlaceText);
+	console.log("arrayTemp:", arrayTemp);
+	console.log("strTemp:", strTemp);
+	console.log("arrayPartyPlaceText:", arrayPartyPlaceText);
+
+	$.each(arrayPartyPlaceText, function(index, el) {
+		if('' != el)
+		{
+			var bUsedItemNum = 0 ;
+			$('.partyPlaceAddItem').each(function() {
+				if($(this).is(':hidden'))
+				{
+					isHaveEmptyItem = 1;
+					$(this).text(el);
+					$(this).slideDown();
+					return false ;
+				}
+				else
+				{
+					bUsedItemNum ++ ;
+				}
+			});
+
+			if (bUsedItemNum >=4 ) 
+			{
+				notifyMsgLong("无法添加4个以上的活动地点选项");
+				return false;
+			}
+		}	
+	});
+	
 	console.log("onAddPartyPlace:end");
 }
 
@@ -166,9 +198,13 @@ function onSubmit()
 	}
 	var strPartyPlaceJoin = arrayPartyPlace.join('\&');
 
+	// 活动备注
+	var strPartyComment = $('#partyComment').val();
+
 	console.log("strPartyName:", strPartyName);
 	console.log("strPartyTimeJoin:", strPartyTimeJoin);
 	console.log("strPartyPlaceJoin:", strPartyPlaceJoin);
+	console.log("strPartyComment:", strPartyComment);
 
 	// 调用服务器创建vote用的php，展示创建的vote页面
 	$.ajax({
@@ -176,7 +212,8 @@ function onSubmit()
 		type: 'get',
 		data: {	"partyName" : strPartyName,
 				"partyTimeJoin" : strPartyTimeJoin,
-				"PartyPlaceJoin" : strPartyPlaceJoin},
+				"PartyPlaceJoin" : strPartyPlaceJoin,
+				"strPartyComment" : strPartyComment},
 		success: function(response) { 
 			console.log("onSubmit:ajax:success");
 			console.log("response:", response);
@@ -200,7 +237,8 @@ function onSubmitTest()
 		type: 'get',
 		data: {	"partyName" : "testName",
 				"partyTimeJoin" : "time1&time2&time3&",
-				"PartyPlaceJoin" : "place1&place2&place3&place4"},
+				"PartyPlaceJoin" : "place1&place2&place3&place4",
+				"strPartyComment" : "testComment"},
 		success: function(response) { 
 			console.log("onSubmitTest:ajax:success");
 			console.log("response:", response); 
@@ -229,71 +267,71 @@ function changeStyle()
 	}
 }
 
-function AddInputToolTips(pElement, strContent)
-{
-	console.log("AddInputToolTips:start");
-	console.log("pElement:", pElement);
-	console.log("strContent:", strContent);
-	var inputOpentip = new Opentip(pElement, 
-		{ 
-		style: 'alert',
-		showOn: 'click',
-		target: true,
-		group: 'input',
-		targetJoint: 'top left',
-		tipJoint: 'bottom left',
-		offset: [80,0] 
-		});
-	inputOpentip.setContent(strContent);
-	return inputOpentip ;
-	console.log("AddInputToolTips:end");
-}
+// function AddInputToolTips(pElement, strContent)
+// {
+// 	console.log("AddInputToolTips:start");
+// 	console.log("pElement:", pElement);
+// 	console.log("strContent:", strContent);
+// 	var inputOpentip = new Opentip(pElement, 
+// 		{ 
+// 		style: 'alert',
+// 		showOn: 'click',
+// 		target: true,
+// 		group: 'input',
+// 		targetJoint: 'top left',
+// 		tipJoint: 'bottom left',
+// 		offset: [80,0] 
+// 		});
+// 	inputOpentip.setContent(strContent);
+// 	return inputOpentip ;
+// 	console.log("AddInputToolTips:end");
+// }
 
-function AddButtonToolTips(pElementSrc, pElementTar, strContent)
-{
-	console.log("AddButtonToolTips:start");
-	console.log("pElementSrc:", pElementSrc);
-	console.log("pElementTar:", pElementTar);
-	console.log("strContent:", strContent);
-	var inputOpentip = new Opentip(pElementSrc, 
-		{ 
-		style: 'dark',
-		showOn: 'click',
-		target: pElementTar,
-		group: 'button',
-		targetJoint: 'right',
-		tipJoint: 'left' 
-		});
-	inputOpentip.setContent(strContent);
-	return inputOpentip ;
-	console.log("AddButtonToolTips:end");
-}
+// function AddButtonToolTips(pElementSrc, pElementTar, strContent)
+// {
+// 	console.log("AddButtonToolTips:start");
+// 	console.log("pElementSrc:", pElementSrc);
+// 	console.log("pElementTar:", pElementTar);
+// 	console.log("strContent:", strContent);
+// 	var inputOpentip = new Opentip(pElementSrc, 
+// 		{ 
+// 		style: 'dark',
+// 		showOn: 'click',
+// 		target: pElementTar,
+// 		group: 'button',
+// 		targetJoint: 'right',
+// 		tipJoint: 'left' 
+// 		});
+// 	inputOpentip.setContent(strContent);
+// 	return inputOpentip ;
+// 	console.log("AddButtonToolTips:end");
+// }
 
-function InitToolTips()
-{
-	console.log("InitToolTips:start");
-	var varFirstShow = AddInputToolTips($("#partyName"), '请在此填写活动名称');
-	// AddInputToolTips($("#partyTimeText"), '请点击此处选择活动时间');
-	AddInputToolTips($("#partyPlaceText"), '一次添加多个地点，请以；隔开');
+// function InitToolTips()
+// {
+// 	console.log("InitToolTips:start");
+// 	var varFirstShow = AddInputToolTips($("#partyName"), '请在此填写活动名称');
+// 	// AddInputToolTips($("#partyTimeText"), '请点击此处选择活动时间');
+// 	AddInputToolTips($("#partyPlaceText"), '若添加多个地点，请以；隔开');
 
-	AddButtonToolTips($("#partyTimeText"), $("#onAddPartyTime"), '填写完后点此按钮以添加');
-	AddButtonToolTips($("#partyPlaceText"), $("#onAddPartyPlace"), '填写完后点此按钮以添加');
+// 	AddButtonToolTips($("#partyTimeText"), $("#onAddPartyTime"), '填写完后点此按钮以添加');
+// 	AddButtonToolTips($("#partyPlaceText"), $("#onAddPartyPlace"), '填写完后点此按钮以添加');
 
-	$("#partyName").focus();
-	varFirstShow.show();
+// 	$("#partyName").focus();
+// 	//varFirstShow.show();
 
-	console.log("InitToolTips:end");
-}
+// 	console.log("InitToolTips:end");
+// }
 
-function HideAllToolTips()
-{
-	for(var i = 0; i < Opentip.tips.length; i ++) { Opentip.tips[i].hide();}
-}
+// function HideAllToolTips()
+// {
+// 	for(var i = 0; i < Opentip.tips.length; i ++) { Opentip.tips[i].hide();}
+// }
 
 function onInputPartyName()
 {
 	console.log("onInputPartyName:start");
-	HideAllToolTips();
+	// HideAllToolTips();
 	console.log("onInputPartyName:end");
 }
 
@@ -349,7 +387,7 @@ $(document).ready(function()
 	$('#onReset').on('click', onReset);
 	$('#onSubmit').on('click', onSubmit);
 
-	$('#partyName').on('click', onInputPartyName);
-	$('#changeStyle').on('click', changeStyle);
-	InitToolTips() ;
+	// $('#partyName').on('click', onInputPartyName);
+	// $('#changeStyle').on('click', changeStyle);
+	// InitToolTips() ;
 });

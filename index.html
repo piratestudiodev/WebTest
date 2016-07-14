@@ -32,7 +32,7 @@ var _htmlFontSize = (function(){
 <link rel="icon" href="favicon.ico">
 <link rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" id="pagestyle" type="text/css" href="css/PirateStudio_bg.css">
-<link rel="stylesheet" id="pagestyle" type="text/css" href="css/opentip.css">
+<!-- <link rel="stylesheet" id="pagestyle" type="text/css" href="css/opentip.css"> -->
 
 </head>
 
@@ -73,7 +73,7 @@ var _htmlFontSize = (function(){
 					<div class="siteFormItemTable"> 
 						<!-- 输入框子项1 -->
 						<div class="siteFormItem"> 
-							<div class="siteFormItemTd" width="100%" style="padding:0;">
+							<div class="siteFormItemTd">
 						 	<div style="padding-left:30px;" class="siteFormItemShowName">
 						  		活动名称
 						 	</div>
@@ -81,7 +81,7 @@ var _htmlFontSize = (function(){
 						</div> 
 
 						<div class="siteFormItem"> 
-							<div class="siteFormItemTd" width="100%" style="padding:0 0 0.45rem 0;">
+							<div class="siteFormItemTd">
 							 	<div class="F2siteFormItemShowVal" style="padding-left:30px;">
 							  	<input id="partyName" type="text" class="g_itext" placeholder="填写活动名称" maxlength="100" /> 
 							  	<font style="line-height:1.8rem;width:0.8rem;float:right;" color="red">*</font>
@@ -94,22 +94,22 @@ var _htmlFontSize = (function(){
 
 					   	<!-- 输入框子项2 -->
 						<div class="siteFormItem"> 
-							<div class="siteFormItemTd" width="100%" style="padding:0;">
+							<div class="siteFormItemTd">
 						 	<div style="padding-left:30px;" class="siteFormItemShowName">
-						  		活动时间
+						  		活动时间（可添加多个）
 						 	</div>
 							</div> 
 						</div> 
 
 						<div class="siteFormItem partyTimeItem"> 
-							<div class="siteFormItemTd" width="100%" style="padding:0 0 0.45rem 0;">
+							<div class="siteFormItemTd">
 							 	<div class="F2siteFormItemShowVal" style="padding-left:30px;">
 							  	<input id="partyTimeText" type="datetime-local" class="g_itext" placeholder="请在此填写活动时间" maxlength="100" /> 
 							  	<font style="line-height:1.8rem;width:0.8rem;float:right;" color="red">*</font>
 							 	</div>
 							</div>
 							<div style="height:1.45rem;" class="siteFormItem"> 
-								<div class="siteFormItemTd" width="100%" style="padding:0;">
+								<div class="siteFormItemTd">
 								 	<div style="padding-left:30px;" class="siteFormItemShowName">
 								  		<input id="onAddPartyTime" value="点击添加时间" class="smallButton" type="button">
 								 	</div>
@@ -128,22 +128,22 @@ var _htmlFontSize = (function(){
 					   	<!-- 输入框子项3 -->
 
 					   	<div class="siteFormItem"> 
-							<div class="siteFormItemTd" width="100%" style="padding:0;">
+							<div class="siteFormItemTd">
 						 	<div style="padding-left:30px;" class="siteFormItemShowName">
-						  		活动地点
+						  		活动地点（若添加多个地点，请以；隔开）
 						 	</div>
 							</div> 
 						</div> 
 
 						<div class="siteFormItem partyPlaceItem"> 
-							<div class="siteFormItemTd" width="100%" style="padding:0 0 0.45rem 0;">
+							<div class="siteFormItemTd">
 							 	<div class="F2siteFormItemShowVal" style="padding-left:30px;">
 							  	<input id="partyPlaceText" type="text" class="g_itext" placeholder="请在此填写活动地点" maxlength="100" /> 
 							  	<font style="line-height:1.8rem;width:0.8rem;float:right;" color="red">*</font>
 							 	</div>
 							</div>
 							<div style="height:1.45rem;" class="siteFormItem"> 
-								<div class="siteFormItemTd" width="100%" style="padding:0;">
+								<div class="siteFormItemTd">
 								 	<div style="padding-left:30px;" class="siteFormItemShowName siteFormItemShowNameUp">
 								  		<input id="onAddPartyPlace" value="点击添加地点" class="smallButton" type="button">
 								 	</div>
@@ -158,7 +158,28 @@ var _htmlFontSize = (function(){
 					   	<div style="padding-top:10px;visibility:hidden;" class="myDashed separatorLine"></div> 
 					   	<!-- <div style="padding-top:10px;" class="myDashed separatorLine"></div>  -->
 					   	<hr></hr>
+					   	<div style="padding-top:10px;visibility:hidden;" class="myDashed separatorLine"></div>
+
+					   	<!-- 输入框子项4 -->
+						<div class="siteFormItem"> 
+							<div class="siteFormItemTd">
+						 	<div style="padding-left:30px;" class="siteFormItemShowName">
+						  		活动备注(可不填)
+						 	</div>
+							</div> 
+						</div> 
+
+						<div class="siteFormItem"> 
+							<div class="siteFormItemTd">
+							 	<div class="F2siteFormItemShowVal" style="padding-left:30px;">
+							  	<input id="partyComment" type="text" class="g_itext" placeholder="请填写活动备注" maxlength="100" /> 
+							 	</div>
+							</div> 
+					   	</div>
+					   	<div style="padding-top:10px;visibility:hidden;" class="myDashed separatorLine"></div>
+					   	<hr></hr>
 					</div>
+
 					<!-- 提交按钮 -->
 					<div class="siteFormAddButton myWekitBox"> 
 						<div class="myFlex1">
@@ -214,7 +235,7 @@ var _htmlFontSize = (function(){
 
 <!-- js -->
 <script src="js/jquery-3.0.0.min.js"></script>
-<script src="js/opentip-jquery.min.js"></script>
+<!-- <script src="js/opentip-jquery.min.js"></script> -->
 <script src="js/createVote.js"></script>
 </body>
 

@@ -32,13 +32,15 @@ diskLog("strRandChar:".$strRandChar) ;
 // 主流程
 $strPartyName = $_GET["partyName"];  
 $strPartyTimeJoin = $_GET["partyTimeJoin"];  
-$strPartyPlaceJoin = $_GET["PartyPlaceJoin"];  
+$strPartyPlaceJoin = $_GET["PartyPlaceJoin"];
+$strPartyComment = $_GET["strPartyComment"];
 $arrayPartyTime = explode("&", $strPartyTimeJoin);
 $arrayPartyPlace = explode("&", $strPartyPlaceJoin);
 
 diskLog("strPartyName:".$strPartyName) ;
 diskLog("strPartyTimeJoin:".$strPartyTimeJoin) ;
 diskLog("strPartyPlaceJoin:".$strPartyPlaceJoin) ;
+diskLog("strPartyComment:".$strPartyComment) ;
 
 // 导入模板
 $strTempletFileName = 'templateVote.html' ;
