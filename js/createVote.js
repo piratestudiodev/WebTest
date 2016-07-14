@@ -352,5 +352,9 @@ $(document).ready(function()
 	$('#partyName').on('click', onInputPartyName);
 	$('#changeStyle').on('click', changeStyle);
 	InitToolTips() ;
-	WdatePicker();
+	$('#partyName').datetimepicker({
+	controlType: 'select',
+	oneLine: true,
+	timeInput: true,
+	timeFormat: 'HH:mm'});
 });
