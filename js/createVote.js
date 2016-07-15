@@ -45,6 +45,7 @@ function onAddPartyTime()
 	{
 		varPartyTimeText = varPartyTimeText.substring(0, nTPos + 6) ;
 	}
+	varPartyTimeText = varPartyTimeText.replace(/T/, " ") ;
 	console.log("varPartyTimeText:", varPartyTimeText);
 
 	if ('' == varPartyTimeText) 
@@ -102,13 +103,10 @@ function onAddPartyPlace()
 		return false ;
 	}
 
-	var arrayTemp = varPartyPlaceText.split(';') ;
-	var strTemp = arrayTemp.join('；');
-	var arrayPartyPlaceText = strTemp.split('；');
-
 	console.log("varPartyPlaceText:", varPartyPlaceText);
-	console.log("arrayTemp:", arrayTemp);
-	console.log("strTemp:", strTemp);
+	varPartyPlaceText = varPartyPlaceText.replace(/;/g, "；");
+	var arrayPartyPlaceText = varPartyPlaceText.split('；');
+	console.log("varPartyPlaceText:", varPartyPlaceText);
 	console.log("arrayPartyPlaceText:", arrayPartyPlaceText);
 
 	var bTips = true ;
@@ -250,12 +248,12 @@ function onSubmit()
 	console.log("strPartyComment:", strPartyComment);
 
 	// 调用服务器创建vote用的php，展示创建的vote页面
-	notifyMsg('正在生成活动邀请函...');
+	notifyMsgLoading('正在生成活动邀请函...');
 	$.ajax({
 		url: 'createVote.php',
 		type: 'get',
 		data: {	"strSponsorName" 	: strSponsorName,
-				"partyName" 		: strPartyName,
+				"strPartyName" 		: strPartyName,
 				"partyTimeJoin" 	: strPartyTimeJoin,
 				"PartyPlaceJoin" 	: strPartyPlaceJoin,
 				"strPartyComment" 	: strPartyComment},
@@ -277,14 +275,15 @@ function onSubmit()
 function onSubmitTest()
 {
 	console.log("onSubmitTest:start");
+	notifyMsgLoading('正在生成活动邀请函...');
 	$.ajax({
 		url: 'createVote.php',
 		type: 'get',
-		data: {	"strSponsorName" 	: "testSponsorName",
-				"partyName" 		: "testName",
-				"partyTimeJoin" 	: "time1&time2&time3&",
-				"PartyPlaceJoin" 	: "place1&place2&place3&place4",
-				"strPartyComment" 	: "testComment"},
+		data: {	"strSponsorName" 	: "程杰",
+				"strPartyName" 		: "周末聚会",
+				"partyTimeJoin" 	: "2016-07-13 03:03&2016-08-13 04:03&2016-07-23 09:03&",
+				"PartyPlaceJoin" 	: "公主坟海底捞&中关村家乐福汉拿山&西直门外大街烤鱼&必胜客",
+				"strPartyComment" 	: "欢迎带家属"},
 		success: function(response) { 
 			console.log("onSubmitTest:ajax:success");
 			console.log("response:", response); 
@@ -401,6 +400,17 @@ function notifyMsgLong(showMsg)
 	window.setTimeout(function() {
 		pMsg.hide('fast');
 	}, 2000)
+}
+
+function notifyMsgLoading(showMsg)
+{
+	adjustNotifyMsgPositon();
+	var pMsg = $('#notifyMsg');
+	pMsg.show();
+	pMsg.find('p').text(showMsg);
+	window.setTimeout(function() {
+		pMsg.hide('fast');
+	}, 10000)
 }
 
 function adjustNotifyMsgPositon()

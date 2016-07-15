@@ -6,6 +6,11 @@ function diskLog($strLog)
 	error_log(date("[Y-m-d H:i:s]").$strLog."\r\n", 3, "diskLog.log");
 }
 
+function diskHTMLLog($strLog)
+{
+	error_log(date("[Y-m-d H:i:s]").$strLog."\r\n", 3, "diskHTMLLog.log");
+}
+
 class RandChar
 {
 	function getRandChar($length)
@@ -30,13 +35,15 @@ $strRandChar = date("YmdHis").$strRandChar;
 diskLog("strRandChar:".$strRandChar) ;
 
 // 主流程
-$strPartyName = $_GET["partyName"];  
+$strSponsorName = $_GET["strSponsorName"];
+$strPartyName = $_GET["strPartyName"];
 $strPartyTimeJoin = $_GET["partyTimeJoin"];  
 $strPartyPlaceJoin = $_GET["PartyPlaceJoin"];
 $strPartyComment = $_GET["strPartyComment"];
 $arrayPartyTime = explode("&", $strPartyTimeJoin);
 $arrayPartyPlace = explode("&", $strPartyPlaceJoin);
 
+diskLog("strSponsorName:".$strSponsorName) ;
 diskLog("strPartyName:".$strPartyName) ;
 diskLog("strPartyTimeJoin:".$strPartyTimeJoin) ;
 diskLog("strPartyPlaceJoin:".$strPartyPlaceJoin) ;
@@ -46,8 +53,12 @@ diskLog("strPartyComment:".$strPartyComment) ;
 $strTempletFileName = 'templateVote.html' ;
 $strContent = file_get_contents($strTempletFileName);
 
+// 替换发起人名称
+$strContent = str_replace("!replaceSponsorName!", $strSponsorName, $strContent) ;
 // 替换活动名字
 $strContent = str_replace("!replacePartyName!", $strPartyName, $strContent) ;
+// 替换活动备注
+$strContent = str_replace("!replacePartyComment!", $strPartyComment, $strContent) ;
 // 替换活动时间
 foreach ($arrayPartyTime as $strPratyTime)
 { 
@@ -60,7 +71,7 @@ foreach ($arrayPartyPlace as $strPartyPlace)
     $strContent = preg_replace("/!replacePartyPlace!/", $strPartyPlace, $strContent, 1) ;
     $strContent = preg_replace("/!replacePartyPlaceTable!/", $strPartyPlace, $strContent, 1) ;
 } 
-diskLog("Templet:\r\n".$strContent);
+diskHTMLLog("Templet:\r\n".$strContent);
 
 // 创建html
 $strNewHTLMName = "vote".$strRandChar.".html" ;

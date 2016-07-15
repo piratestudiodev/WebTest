@@ -474,7 +474,7 @@ th {
 }
 
 .siteFormItem {
-	height: 1.5rem;
+	height: 1.6rem;
 	display: table-row
 }
 
@@ -546,12 +546,13 @@ th {
 }
 
 .siteFormItemTd{
-	margin-top: 0.5rem ;
+	/*margin-top: 0.5rem ;*/
 	width: 100%;
 	display: table-cell;
 }
 
 .siteFormItemShowName {
+	margin-top: 0.45rem ;
 	height: 100%;
 	line-height: 100%;
 	padding-right: .25rem;
@@ -688,4 +689,8 @@ th {
 	font-size: .9rem;
 	line-height: 1.2rem;
 	margin-bottom: .2rem
+}
+
+.pointText {
+	color: #bb140d
 }

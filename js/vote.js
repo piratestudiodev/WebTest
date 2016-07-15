@@ -23,6 +23,17 @@ function checkInvalidChar(strInput)
 	console.log("checkInvalidChar:end");
 }
 
+function myActiveElement(pElement)
+{
+	pElement.focus();
+	pElement.click();
+}
+
+function rollToElement(pElement)
+{
+	window.scrollTo(pElement.offset().left, pElement.offset().top - 120);
+}
+
 function onVote(){
 
 	console.log("onVote:start");
@@ -31,12 +42,16 @@ function onVote(){
 	console.log("strVoteUserName:", strVoteUserName);
 	if ('' == strVoteUserName) 
 	{
-		notifyMsg("请填写投票人昵称");
+		rollToElement($('#strVoteUserName'));
+		notifyMsg("请填写您的姓名");
+		myActiveElement($('#strVoteUserName'));
 		return false;
 	}
 
 	if (false == checkInvalidChar(strVoteUserName)) 
 	{
+		rollToElement($('#strVoteUserName'));
+		myActiveElement($('#strVoteUserName'));
 		return false ;
 	}
 
@@ -65,7 +80,8 @@ function onVote(){
 		
 	});
 	if(0 == bHaveTimeCheck){
-		notifyMsg("请选择活动时间");
+		rollToElement($('#partyTimeItems'));
+		notifyMsg("请至少选择一个活动时间");
 		return;
 	}
 
@@ -90,7 +106,8 @@ function onVote(){
 		
 	});
 	if(0 == bHavePlaceCheck){
-		notifyMsg("请选择活动地点");
+		rollToElement($('#partyPlaceItems'));
+		notifyMsg("请至少选择一个活动地点");
 		return;
 	}
 
@@ -104,6 +121,7 @@ function onVote(){
 	//console.log("strPartyPlaceNameJoin:", strPartyPlaceNameJoin);
 	console.log("strPartyPlaceCheckJoin:", strPartyPlaceCheckJoin);
 
+	notifyMsgLoading('正在提交接受信息...'); 
 	$.ajax({
 		url: 'vote.php',
 		type: 'post',
@@ -115,7 +133,7 @@ function onVote(){
 				"strPartyPlaceCheckJoin" : strPartyPlaceCheckJoin},
 		success: function(response) { 
 			console.log("onVote:ajax:success");
-			notifyMsg('投票成功'); 
+			notifyMsgLong('成功接受该活动'); 
 		},
 		error: function(request, errorType, errorMessage) {
 			console.log("onVote:ajax:error");
@@ -130,6 +148,8 @@ function dealResult(response)
 	console.log("onResult:ajax:success");
 	console.log("dealResult:start");
 	console.log("response:", response);
+
+	notifyMsgClose();
 
 	// 将每条结果转化成数组存放，数组最后一个元素为空，使用时要过滤掉
 	var szRecord = response.split('\n');
@@ -182,6 +202,7 @@ function onResult()
 	// 获取html名称
 	var StrRandChar = $('#StrRandChar').attr('name') ;
 	console.log("StrRandChar:", StrRandChar);
+	notifyMsgLoading('正在查询活动详情...'); 
 	$.ajax({
 		url: 'result.php',
 		type: 'get',
@@ -218,21 +239,50 @@ function onInit()
 	console.log("onInit:end");
 }
 
-function notifyMsg(showMsg, showTime)
+function notifyMsg(showMsg)
 {
-	if (!arguments[1]) {
-		showTime = 1200;
-	}
-	if (null == showMsg || '' == showMsg) {
-		return false ;
-	}
-
+	adjustNotifyMsgPositon();
 	var pMsg = $('#notifyMsg');
 	pMsg.show();
 	pMsg.find('p').text(showMsg);
 	window.setTimeout(function() {
 		pMsg.hide('fast');
-	}, showTime)
+	}, 1500)
+}
+
+function notifyMsgLong(showMsg)
+{
+	adjustNotifyMsgPositon();
+	var pMsg = $('#notifyMsg');
+	pMsg.show();
+	pMsg.find('p').text(showMsg);
+	window.setTimeout(function() {
+		pMsg.hide('fast');
+	}, 2000)
+}
+
+function notifyMsgLoading(showMsg)
+{
+	adjustNotifyMsgPositon();
+	var pMsg = $('#notifyMsg');
+	pMsg.show();
+	pMsg.find('p').text(showMsg);
+	window.setTimeout(function() {
+		pMsg.hide('fast');
+	}, 10000)
+}
+
+function notifyMsgClose()
+{
+	var pMsg = $('#notifyMsg');
+	pMsg.hide();
+}
+
+function adjustNotifyMsgPositon()
+{
+	var nTop = document.body.scrollTop + (document.body.clientHeight * 0.25) ;
+	console.log("nTop :", nTop );
+	$('#notifyMsg').css('top', nTop);
 }
 
 $(document).ready(function() 

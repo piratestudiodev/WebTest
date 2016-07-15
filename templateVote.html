@@ -56,7 +56,7 @@ var _htmlFontSize = (function(){
 						&nbsp;
 					</div>
 					<div class="textContent">
-						!replacePartyName!
+						活动邀请函
 					</div>
 				</div>
 				<div class="formBannerMore">
@@ -72,31 +72,40 @@ var _htmlFontSize = (function(){
 					<article id="voteArticle">
 					<div class="siteForm">
 					<!-- 输入框 -->
+					<div class="siteFormItem">
+						<div class="siteFormItemTd">
+						<div style="padding-left:0.7rem; height: 100%; margin:0.3rem">
+							<p style="height: 100%;"><span class= "pointText">!replaceSponsorName!</span>邀请你参加活动：<span class= "pointText">!replacePartyName!</span></p>
+						</div>
+						</div>					
+					</div>
+
+					<div style="padding-top:10px;visibility:hidden;" class="myDashed separatorLine"></div>
+					<hr></hr>
+					<div style="padding-top:10px;visibility:hidden;" class="myDashed separatorLine"></div>
+
 					<div class="siteFormItemTable"> 
 						<!-- 输入框子项1 -->
-						<div style="height:1.45rem;" class="siteFormItem"> 
-							<div class="siteFormItemTd" width="100%" style="padding:0;">
-						 	<div style="padding-left:30px;" class="siteFormItemShowName">
-						  		投票参与人昵称
-						 	</div>
-							</div> 
-						</div> 
-
 						<div class="siteFormItem"> 
-							<div class="siteFormItemTd" width="100%" style="padding:0 0 0.45rem 0;">
-							 	<div class="F2siteFormItemShowVal" style="padding-left:30px;">
-							  	<input id="strVoteUserName" type="text" class="g_itext" placeholder="请输入投票参与人昵称" maxlength="100" /> 
+							<div style="width: 4.5rem;" class="siteFormItemTd">
+						 	<div style="padding-left:1rem;" class="siteFormItemShowName">
+						  		您的姓名
+						 	</div>
+							</div>
+							<div class="siteFormItemTd">
+							  	<input id="strVoteUserName" type="text" class="g_itext" placeholder="请填写您的姓名" maxlength="100" /> 
 							  	<font style="line-height:1.8rem;width:0.8rem;float:right;" color="red">*</font>
-							 	</div>
-							</div> 
-					   	</div> 
+							</div>  
+						</div>
 					</div>
 					</div>
+
+					<hr></hr>
 
 					<div class="myVote" id="vote001">
 						<div class="voteSubject">
 							<div class="voteSubjectText">
-								时间（可复选）
+								<span class= "pointText">选择您有空的时间</span>（可复选）
 							</div>
 						</div>
 						<div class="myDashed">
@@ -120,9 +129,11 @@ var _htmlFontSize = (function(){
 							</div>
 						</div>
 						<div id="voteMsg1" class="voteMsg g_tip"></div>
+						<div style="padding-top:10px;visibility:hidden;" class="myDashed separatorLine"></div>
+
 						<div class="voteSubject">
 							<div class="voteSubjectText">
-								地点（可复选）
+								<span class= "pointText">请选您喜欢的地点</span>（可复选）
 							</div>
 						</div>
 						<div class="myDashed">
@@ -146,16 +157,34 @@ var _htmlFontSize = (function(){
 							</div>
 						</div>
 						<div id="voteMsg1" class="voteMsg g_tip"></div>
-						
-						<div class="voteOperate myWekitBox">
-							<div class="myFlex1">
-								<input value="投票" id="OnVote" class="myGButton myVoteBtn" type="button">
-							</div>
-							<div class="myFlex1">
-								<input value="查看结果" id="OnResult" class="myGButton myResultBtn" type="button">
-							</div>
+					</div>
+					
+					<hr></hr>
+					<div class="siteFormItem">
+						<div class="siteFormItemTd">
+						<div style="padding-left:0.7rem; height: 100%; margin:0.3rem">
+							<p style="height: 100%;">活动备注：<span>!replacePartyComment!</span></p>
+						</div>
+						</div>					
+					</div>
+					<hr></hr>
+
+					<div class="siteFormAddButton myWekitBox">
+						<div class="myFlex1">
+							<input value="接受邀请" id="OnVote" class="myGButton" type="button">
 						</div>
 					</div>
+					<div class="siteFormAddButton myWekitBox">
+						<div class="myFlex1">
+							<input value="查看大家的意见" id="OnResult" class="myGButton" type="button">
+						</div>
+					</div>
+					<div class="siteFormAddButton myWekitBox">
+						<div class="myFlex1">
+							<input value="拒绝邀请" id="OnRefuse" class="myGButton" type="button">
+						</div>
+					</div>
+					
 					</article>
 
 					<article id="resultArticle" style="display:none;">
