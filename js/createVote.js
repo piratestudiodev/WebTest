@@ -260,9 +260,15 @@ function onSubmit()
 		success: function(response) { 
 			console.log("onSubmit:ajax:success");
 			console.log("response:", response);
-			notifyMsg('成功创建投票页面');
-
-			window.location.href = response;
+			if (response.length > 100) 
+			{
+				notifyMsgLong('服务器异常错误');
+			}
+			else
+			{
+				notifyMsg('成功创建投票页面');
+				window.location.href = response;
+			}
 		},
 		error: function(request, errorType, errorMessage) {
 			console.log("onSubmit:ajax:success");
@@ -415,6 +421,7 @@ function notifyMsgLoading(showMsg)
 
 function adjustNotifyMsgPositon()
 {
+	Info();
 	var nTop = document.body.scrollTop + (document.body.clientHeight * 0.25) ;
 	console.log("nTop :", nTop );
 	$('#notifyMsg').css('top', nTop);
