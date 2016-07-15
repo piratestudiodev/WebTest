@@ -52,7 +52,7 @@ a {
 	padding: 0;
 	text-decoration: none;
 	cursor: pointer;
-	font-family: Helvetica,"黑体",Arial,Tahoma
+	font-family: "Helvetica Neue", Helvetica,"黑体",Arial,Tahoma
 }
 
 video {
@@ -70,7 +70,7 @@ input[type=radio],input[type=checkbox] {
 }
 
 table {
-	font-family: Helvetica,"黑体",Arial,Tahoma;
+	font-family: "Helvetica Neue", Helvetica,"黑体",Arial,Tahoma;
 	border:solid #add9c0;
 	border-width:1px 0px 0px 1px;
 	table-layout:fixed;
@@ -97,7 +97,7 @@ th {
 	overflow-y: auto;
 	color: #000;
 	font-size: .7rem;
-	font-family: Helvetica,"黑体",Arial,Tahoma;
+	font-family: H"Helvetica Neue", elvetica,"黑体",Arial,Tahoma;
 	height: 100%
 }
 
@@ -173,7 +173,7 @@ th {
 	/*color: #fff;*/
 	padding: 0;
 	cursor: pointer;
-	font-family: Helvetica,"黑体",Arial,Tahoma
+	font-family: "Helvetica Neue", Helvetica,"黑体",Arial,Tahoma
 }
 
 .myForm a:link {
@@ -391,7 +391,7 @@ th {
 	height: 2rem;
 	line-height: 2rem;
 	font-size: .8rem;
-	font-family: Helvetica,"黑体",Arial,Tahoma;
+	font-family: "Helvetica Neue", Helvetica,"黑体",Arial,Tahoma;
 	text-align: center;
 	margin: .3rem auto;
 	padding: 0;
@@ -518,14 +518,14 @@ th {
 	-webkit-appearance: none;
 	border-radius: 4px;
 	font-size: .7rem;
-	font-family: Helvetica,"黑体",Arial,Tahoma
+	font-family: "Helvetica Neue", Helvetica,"黑体",Arial,Tahoma
 }
 
 .siteFormItem .g_itext[type=text] {
 	height: 1.6rem;
 	width: 85%;
 	font-size: .6rem;
-	font-family: Helvetica,"微软雅黑",Arial,Tahoma;
+	font-family: "Helvetica Neue", Helvetica,"微软雅黑",Arial,Tahoma;
 	text-indent: 8px
 }
 
@@ -533,7 +533,7 @@ th {
 	height: 1.6rem;
 	width: 85%;
 	font-size: .6rem;
-	font-family: Helvetica,"微软雅黑",Arial,Tahoma;
+	font-family: "Helvetica Neue", Helvetica,"微软雅黑",Arial,Tahoma;
 	text-indent: 8px
 }
 
@@ -541,7 +541,7 @@ th {
 	height: 1.6rem;
 	width: 85%;
 	font-size: .6rem;
-	font-family: Helvetica,"微软雅黑",Arial,Tahoma;
+	font-family: "Helvetica Neue", Helvetica,"微软雅黑",Arial,Tahoma;
 	text-indent: 8px
 }
 
@@ -618,7 +618,7 @@ th {
 	height: 1.6rem;
 	line-height: 1.2rem;
 	font-size: .6rem;
-	font-family: Helvetica,"黑体",Arial,Tahoma;
+	font-family: "Helvetica Neue", Helvetica,"黑体",Arial,Tahoma;
 	text-align: center;
 	/*margin: .5rem auto;*/
 	padding: 0;
@@ -643,7 +643,7 @@ th {
 }
 
 .mobiIng,.mobiIngTigs {
-	position: fixed;
+	position: absolute;
 	top: 25%;
 	margin: 0 auto;
 	height: auto;

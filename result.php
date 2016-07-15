@@ -16,6 +16,11 @@ diskLog("strFileName:".$strFileName) ;
 
 // 读出所有记录并拼接成串
 $handle = fopen($strFileName, 'r');
+if (FALSE == $handle) 
+{
+	echo $strRecord;
+	exit();
+}
 while(!feof($handle))
 {
     //$strRecord=$strRecord."%".fgets($handle, 1024);

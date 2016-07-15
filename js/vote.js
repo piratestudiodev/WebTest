@@ -125,6 +125,7 @@ function onVote(){
 	$.ajax({
 		url: 'vote.php',
 		type: 'post',
+		timeout: 10000,
 		data: {	"strVoteUserName" : strVoteUserName,
 				"StrRandChar" : StrRandChar,
 				//"strPartyTimeNameJoin" : strPartyTimeNameJoin,
@@ -136,8 +137,10 @@ function onVote(){
 			notifyMsgLong('成功接受该活动'); 
 		},
 		error: function(request, errorType, errorMessage) {
+			var strErrorMsg = 'Error: ' + errorType + ' with message: ' + errorMessage;
 			console.log("onVote:ajax:error");
-			notifyMsg('Error: ' + errorType + ' with message: ' + errorMessage);
+			console.log("strErrorMsg:", strErrorMsg);
+			notifyMsgLong('提交失败。Error: ' + errorType + ' with message: ' + errorMessage);
 		}
 	})
 	console.log("onVote:end");
@@ -148,6 +151,12 @@ function dealResult(response)
 	console.log("onResult:ajax:success");
 	console.log("dealResult:start");
 	console.log("response:", response);
+
+	if ('' == response) 
+	{
+		notifyMsgLong('暂无人反馈');
+		return; 
+	}
 
 	notifyMsgClose();
 
@@ -190,6 +199,11 @@ function dealResult(response)
 	});
 	})
 
+	// 修改标题
+	$('#pageTitle').text('已参与人选择意见');
+
+	// 全部被选中的cell点亮 TODO
+
 	$('#voteArticle').slideUp();
 	$('#resultArticle').slideDown();
 	scroll(0,0);
@@ -207,10 +221,13 @@ function onResult()
 		url: 'result.php',
 		type: 'get',
 		data: {"StrRandChar" : StrRandChar},
+		timeout: 10000,
 		success: dealResult,
 		error: function(request, errorType, errorMessage) {
+			var strErrorMsg = 'Error: ' + errorType + ' with message: ' + errorMessage;
 			console.log("onResult:ajax:error");
-			notifyMsg('Error: ' + errorType + ' with message: ' + errorMessage);
+			console.log("strErrorMsg:", strErrorMsg);
+			notifyMsgLong('查询失败。Error: ' + errorType + ' with message: ' + errorMessage);
 		}
 	})
 	console.log("onResult:end");
@@ -223,8 +240,98 @@ function onShowVotePage()
 	$('#tBodyTime').empty();
 	$('#tBodyPlace').empty();
 	$('#voteArticle').slideDown();
+	// 修改标题
+	$('#pageTitle').text('活动邀请函');
 	scroll(0,0);
 	console.log("onShowVotePage:end");
+}
+
+function OnRefuse()
+{
+	console.log("OnRefuse:start");
+	// 获取投票人昵称
+	var strVoteUserName = $('#strVoteUserName').val() ;
+	console.log("strVoteUserName:", strVoteUserName);
+	if ('' == strVoteUserName) 
+	{
+		rollToElement($('#strVoteUserName'));
+		notifyMsg("请填写您的姓名");
+		myActiveElement($('#strVoteUserName'));
+		return false;
+	}
+
+	if (false == checkInvalidChar(strVoteUserName)) 
+	{
+		rollToElement($('#strVoteUserName'));
+		myActiveElement($('#strVoteUserName'));
+		return false ;
+	}
+	DoRefuse(strVoteUserName);
+	console.log("OnRefuse:end");
+}
+
+function OnRefuseNoName()
+{
+	console.log("OnRefuseNoName:start");
+	DoRefuse("匿名");
+	console.log("OnRefuseNoName:end");
+}
+
+function DoRefuse(strVoteUserName)
+{
+	console.log("DoRefuse:start");
+	// 获取html名称
+	var StrRandChar = $('#StrRandChar').attr('name') ;
+
+	// 获取活动时间选项
+	var arrayPartyTimeCheck = new Array() ;
+	$('#partyTimeItems').find('.voteLab').each(function() {
+		if ('' != $(this).text()) 
+		{
+			arrayPartyTimeCheck.push(0) ;
+		}
+		
+	});
+
+	// 获取活动地点选项
+	var arrayPartyPlaceCheck = new Array() ;
+	$('#partyPlaceItems').find('.voteLab').each(function() {
+		if ('' != $(this).text()) 
+		{
+			arrayPartyPlaceCheck.push(0) ;
+		}
+		
+	});
+
+	// 数组转成字符串
+	var strPartyTimeCheckJoin = arrayPartyTimeCheck.join('\&');
+	var strPartyPlaceCheckJoin = arrayPartyPlaceCheck.join('\&');
+	console.log("strPartyTimeCheckJoin:", strPartyTimeCheckJoin);
+	console.log("strPartyPlaceCheckJoin:", strPartyPlaceCheckJoin);
+
+	notifyMsgLoading('正在提交接受信息...'); 
+	$.ajax({
+		url: 'vote.php',
+		type: 'post',
+		timeout: 10000,
+		data: {	"strVoteUserName" : strVoteUserName,
+				"StrRandChar" : StrRandChar,
+				"strPartyTimeCheckJoin" : strPartyTimeCheckJoin,
+				"strPartyPlaceCheckJoin" : strPartyPlaceCheckJoin},
+		success: function(response) { 
+			console.log("onVote:ajax:success");
+			notifyMsgLong('成功拒绝该活动'); 
+		},
+		error: function(request, errorType, errorMessage) {
+			var strErrorMsg = 'Error: ' + errorType + ' with message: ' + errorMessage;
+			console.log("onVote:ajax:error");
+			console.log("strErrorMsg:", strErrorMsg);
+			notifyMsgLong('提交失败。Error: ' + errorType + ' with message: ' + errorMessage);
+		}
+	})
+
+	console.log("StrRandChar:", StrRandChar);
+	console.log("DoRefuse:end");
 }
 
 function onInit()
@@ -289,6 +396,8 @@ $(document).ready(function()
 {
 	$('#OnVote').on('click', onVote);
 	$('#OnResult').on('click', onResult);
-	$('#onShowVotePage').on('click', onShowVotePage);
+	$('#OnShowVotePage').on('click', onShowVotePage);
+	$('#OnRefuse').on('click', OnRefuse);
+	$('#OnRefuseNoName').on('click', OnRefuseNoName);
 	onInit();
 });

@@ -55,7 +55,7 @@ var _htmlFontSize = (function(){
 					<div class="titleTextIcon icon-titleText">
 						&nbsp;
 					</div>
-					<div class="textContent">
+					<div id='pageTitle' class="textContent">
 						活动邀请函
 					</div>
 				</div>
@@ -176,12 +176,17 @@ var _htmlFontSize = (function(){
 					</div>
 					<div class="siteFormAddButton myWekitBox">
 						<div class="myFlex1">
-							<input value="查看大家的意见" id="OnResult" class="myGButton" type="button">
+							<input value="查看已参与人选择意见" id="OnResult" class="myGButton" type="button">
 						</div>
 					</div>
 					<div class="siteFormAddButton myWekitBox">
 						<div class="myFlex1">
 							<input value="拒绝邀请" id="OnRefuse" class="myGButton" type="button">
+						</div>
+					</div>
+					<div class="siteFormAddButton myWekitBox">
+						<div class="myFlex1">
+							<input value="匿名拒绝" id="OnRefuseNoName" class="myGButton" type="button">
 						</div>
 					</div>
 					
@@ -194,7 +199,7 @@ var _htmlFontSize = (function(){
 							<!-- 输入框子项1 -->
 							<div class="siteFormItem"> 
 							 	<div style="padding-left:30px; height: 100%;" class="siteFormItemShowName">
-							  		投票结果:
+							  		已参与人时间、地点选择:
 							 	</div>
 							</div> 
 						</div>
@@ -234,7 +239,7 @@ var _htmlFontSize = (function(){
 					<!-- 输入框 -->
 						<div class="siteFormAddButton myWekitBox"> 
 							<div class="myFlex1">
-								<input id="onShowVotePage" type="button" class="myGButton" value="显示投票界面" /> 
+								<input id="OnShowVotePage" type="button" class="myGButton" value="返回活动邀请函" /> 
 							</div>
 						</div>
 					</div>

@@ -252,6 +252,7 @@ function onSubmit()
 	$.ajax({
 		url: 'createVote.php',
 		type: 'get',
+		timeout: 10000,
 		data: {	"strSponsorName" 	: strSponsorName,
 				"strPartyName" 		: strPartyName,
 				"partyTimeJoin" 	: strPartyTimeJoin,
@@ -271,8 +272,10 @@ function onSubmit()
 			}
 		},
 		error: function(request, errorType, errorMessage) {
-			console.log("onSubmit:ajax:success");
-			notifyMsg('Error: ' + errorType + ' with message: ' + errorMessage);
+			var strErrorMsg = 'Error: ' + errorType + ' with message: ' + errorMessage;
+			console.log("onSubmitTest:ajax:error");
+			console.log("strErrorMsg:", strErrorMsg);
+			notifyMsgLong('生成失败。Error: ' + errorType + ' with message: ' + errorMessage);
 		}
 	})
 	console.log("onSubmit:end");
@@ -285,6 +288,7 @@ function onSubmitTest()
 	$.ajax({
 		url: 'createVote.php',
 		type: 'get',
+		timeout: 10000,
 		data: {	"strSponsorName" 	: "程杰",
 				"strPartyName" 		: "周末聚会",
 				"partyTimeJoin" 	: "2016-07-13 03:03&2016-08-13 04:03&2016-07-23 09:03&",
@@ -294,11 +298,21 @@ function onSubmitTest()
 			console.log("onSubmitTest:ajax:success");
 			console.log("response:", response); 
 
-			window.location.href = response;
+			if (response.length > 100) 
+			{
+				notifyMsgLong('服务器异常错误');
+			}
+			else
+			{
+				notifyMsg('成功创建投票页面');
+				window.location.href = response;
+			}
 		},
 		error: function(request, errorType, errorMessage) {
+			var strErrorMsg = 'Error: ' + errorType + ' with message: ' + errorMessage;
 			console.log("onSubmitTest:ajax:error");
-			notifyMsg('Error: ' + errorType + ' with message: ' + errorMessage);
+			console.log("strErrorMsg:", strErrorMsg);
+			notifyMsg('生成失败。Error: ' + errorType + ' with message: ' + errorMessage);
 		}
 	})
 	console.log("onSubmitTest:end");
@@ -423,6 +437,7 @@ function adjustNotifyMsgPositon()
 {
 	Info();
 	var nTop = document.body.scrollTop + (document.body.clientHeight * 0.25) ;
+	// var nTop = document.body.scrollTop  ;
 	console.log("nTop :", nTop );
 	$('#notifyMsg').css('top', nTop);
 }
@@ -441,6 +456,9 @@ function Info()
 	console.log("window.screen.height:", window.screen.height );
 	// 恒定，不会因为小键盘弹出而变小
 	console.log("window.screen.availHeight:", window.screen.availHeight );
+	console.log("window.scrollTop():", $(window).scrollTop() );
+
+
 }
 
 $(document).ready(function() 
@@ -448,7 +466,7 @@ $(document).ready(function()
 	$('#onAddPartyTime').on('click', onAddPartyTime);
 	$('#onAddPartyPlace').on('click', onAddPartyPlace);
 	$('#onReset').on('click', onReset);
-	$('#onSubmit').on('click', onSubmit);
+	$('#onSubmit').on('click', onSubmitTest);
 
 	// $('#partyName').on('click', onInputPartyName);
 	// $('#changeStyle').on('click', changeStyle);
