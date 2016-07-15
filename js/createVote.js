@@ -68,6 +68,15 @@ function onAddPartyTime()
 			$(this).slideDown("slow");
 			return false ;
 		}
+		else
+		{
+			if (varPartyTimeText == $(this).text()) 
+			{
+				isHaveEmptyItem = 1;
+				notifyMsg("请不要添加重复时间");
+				return false ;
+			}
+		}
 	});
 
 	if (0 == isHaveEmptyItem) 
@@ -102,6 +111,7 @@ function onAddPartyPlace()
 	console.log("strTemp:", strTemp);
 	console.log("arrayPartyPlaceText:", arrayPartyPlaceText);
 
+	var bTips = true ;
 	$.each(arrayPartyPlaceText, function(index, el) {
 		if('' != el)
 		{
@@ -115,7 +125,16 @@ function onAddPartyPlace()
 					return false ;
 				}
 				else
-				{
+				{					
+					if (el == $(this).text())  
+					{
+						if (true == bTips) 
+						{
+							notifyMsg("请不要添加重复地点");
+							bTips = false ;
+						}
+						return false ;
+					}
 					bUsedItemNum ++ ;
 				}
 			});
@@ -144,6 +163,22 @@ function onReset()
 function onSubmit()
 {
 	console.log("onSubmit:start");
+	// 发起人名称
+	var strSponsorName = $('#sponsorName').val();
+	if ('' == strSponsorName) 
+	{
+		rollToElement($('#sponsorName'));
+		notifyMsgLong("请填写发起人名称");
+		myActiveElement($('#sponsorName'));
+		return false ;
+	}
+	if (false == checkInvalidChar(strSponsorName)) 
+	{
+		rollToElement($('#sponsorName'));
+		myActiveElement($('#sponsorName'));
+		return false ;
+	}
+
 	// 活动名称
 	var strPartyName = $('#partyName').val();
 	if ('' == strPartyName) 
@@ -157,6 +192,15 @@ function onSubmit()
 	{
 		rollToElement($('#partyName'));
 		myActiveElement($('#partyName'));
+		return false ;
+	}
+
+	// 活动备注
+	var strPartyComment = $('#partyComment').val();
+	if (false == checkInvalidChar(strPartyComment)) 
+	{
+		rollToElement($('#partyComment'));
+		myActiveElement($('#partyComment'));
 		return false ;
 	}
 
@@ -198,22 +242,23 @@ function onSubmit()
 	}
 	var strPartyPlaceJoin = arrayPartyPlace.join('\&');
 
-	// 活动备注
-	var strPartyComment = $('#partyComment').val();
 
+	console.log("strSponsorName:", strSponsorName);
 	console.log("strPartyName:", strPartyName);
 	console.log("strPartyTimeJoin:", strPartyTimeJoin);
 	console.log("strPartyPlaceJoin:", strPartyPlaceJoin);
 	console.log("strPartyComment:", strPartyComment);
 
 	// 调用服务器创建vote用的php，展示创建的vote页面
+	notifyMsg('正在生成活动邀请函...');
 	$.ajax({
 		url: 'createVote.php',
 		type: 'get',
-		data: {	"partyName" : strPartyName,
-				"partyTimeJoin" : strPartyTimeJoin,
-				"PartyPlaceJoin" : strPartyPlaceJoin,
-				"strPartyComment" : strPartyComment},
+		data: {	"strSponsorName" 	: strSponsorName,
+				"partyName" 		: strPartyName,
+				"partyTimeJoin" 	: strPartyTimeJoin,
+				"PartyPlaceJoin" 	: strPartyPlaceJoin,
+				"strPartyComment" 	: strPartyComment},
 		success: function(response) { 
 			console.log("onSubmit:ajax:success");
 			console.log("response:", response);
@@ -235,10 +280,11 @@ function onSubmitTest()
 	$.ajax({
 		url: 'createVote.php',
 		type: 'get',
-		data: {	"partyName" : "testName",
-				"partyTimeJoin" : "time1&time2&time3&",
-				"PartyPlaceJoin" : "place1&place2&place3&place4",
-				"strPartyComment" : "testComment"},
+		data: {	"strSponsorName" 	: "testSponsorName",
+				"partyName" 		: "testName",
+				"partyTimeJoin" 	: "time1&time2&time3&",
+				"PartyPlaceJoin" 	: "place1&place2&place3&place4",
+				"strPartyComment" 	: "testComment"},
 		success: function(response) { 
 			console.log("onSubmitTest:ajax:success");
 			console.log("response:", response); 

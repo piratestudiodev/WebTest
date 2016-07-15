@@ -71,27 +71,39 @@ var _htmlFontSize = (function(){
 					<div class="siteForm">
 					<!-- 输入框 -->
 					<div class="siteFormItemTable"> 
-						<!-- 输入框子项1 -->
+						<!-- 输入框子项1.1 -->
 						<div class="siteFormItem"> 
+							<div style="width: 5rem;" class="siteFormItemTd">
+						 	<div style="padding-left:30px;" class="siteFormItemShowName">
+						  		发起人名称
+						 	</div>
+							</div>
 							<div class="siteFormItemTd">
+							  	<input id="sponsorName" type="text" class="g_itext" placeholder="请填写发起人名称" maxlength="100" /> 
+							  	<font style="line-height:1.8rem;width:0.8rem;float:right;" color="red">*</font>
+							</div>  
+						</div>
+
+						<!-- 输入框子项1.2 -->
+						<div class="siteFormItem"> 
+							<div style="width: 5rem;" class="siteFormItemTd">
 						 	<div style="padding-left:30px;" class="siteFormItemShowName">
 						  		活动名称
 						 	</div>
-							</div> 
-						</div> 
-
-						<div class="siteFormItem"> 
+							</div>
 							<div class="siteFormItemTd">
-							 	<div class="F2siteFormItemShowVal" style="padding-left:30px;">
-							  	<input id="partyName" type="text" class="g_itext" placeholder="填写活动名称" maxlength="100" /> 
+							  	<input id="partyName" type="text" class="g_itext" placeholder="请填写活动名称" maxlength="100" /> 
 							  	<font style="line-height:1.8rem;width:0.8rem;float:right;" color="red">*</font>
-							 	</div>
-							</div> 
-					   	</div>
-					   	<div style="padding-top:10px;visibility:hidden;" class="myDashed separatorLine"></div>
-					   	<hr></hr>
-					   	<div style="padding-top:10px;visibility:hidden;" class="myDashed separatorLine"></div>
+							</div>  
+						</div>
+					</div>
 
+					<div style="padding-top:10px;visibility:hidden;" class="myDashed separatorLine"></div>
+					<hr></hr>
+					<div style="padding-top:10px;visibility:hidden;" class="myDashed separatorLine"></div>
+
+					<!-- 第二个table -->
+					<div class="siteFormItemTable"> 
 					   	<!-- 输入框子项2 -->
 						<div class="siteFormItem"> 
 							<div class="siteFormItemTd">
@@ -108,18 +120,19 @@ var _htmlFontSize = (function(){
 							  	<font style="line-height:1.8rem;width:0.8rem;float:right;" color="red">*</font>
 							 	</div>
 							</div>
-							<div style="height:1.45rem;" class="siteFormItem"> 
-								<div class="siteFormItemTd">
-								 	<div style="padding-left:30px;" class="siteFormItemShowName">
-								  		<input id="onAddPartyTime" value="点击添加时间" class="smallButton" type="button">
-								 	</div>
-								</div> 
-							</div> 
-							<p class='TimeTextWithIcon partyTimeAddItem'></p>
-							<p class='TimeTextWithIcon partyTimeAddItem'></p>
-							<p class='TimeTextWithIcon partyTimeAddItem'></p>
-							<p class='TimeTextWithIcon partyTimeAddItem'></p>
 					   	</div>
+
+					   	<div style="height:1.45rem;" class="siteFormItem"> 
+							<div class="siteFormItemTd">
+								 <div style="padding-left:30px;" class="siteFormItemShowName">
+								  	<input id="onAddPartyTime" value="点击添加时间" class="smallButton" type="button">
+								 </div>
+							</div> 
+						</div> 
+						<p class='TimeTextWithIcon partyTimeAddItem'></p>
+						<p class='TimeTextWithIcon partyTimeAddItem'></p>
+						<p class='TimeTextWithIcon partyTimeAddItem'></p>
+						<p class='TimeTextWithIcon partyTimeAddItem'></p>
 						
 						<div style="padding-top:10px;visibility:hidden;" class="myDashed separatorLine"></div>
 						<hr></hr>
@@ -142,18 +155,20 @@ var _htmlFontSize = (function(){
 							  	<font style="line-height:1.8rem;width:0.8rem;float:right;" color="red">*</font>
 							 	</div>
 							</div>
-							<div style="height:1.45rem;" class="siteFormItem"> 
-								<div class="siteFormItemTd">
-								 	<div style="padding-left:30px;" class="siteFormItemShowName siteFormItemShowNameUp">
-								  		<input id="onAddPartyPlace" value="点击添加地点" class="smallButton" type="button">
-								 	</div>
-								</div> 
-							</div> 
-							<p class='placeTextWithIcon partyPlaceAddItem'></p>
-							<p class='placeTextWithIcon partyPlaceAddItem'></p>
-							<p class='placeTextWithIcon partyPlaceAddItem'></p>
-							<p class='placeTextWithIcon partyPlaceAddItem'></p>
+
 					   	</div>
+
+					   	<div style="height:1.45rem;" class="siteFormItem"> 
+							<div class="siteFormItemTd">
+								 <div style="padding-left:30px;" class="siteFormItemShowName siteFormItemShowNameUp">
+								  	<input id="onAddPartyPlace" value="点击添加地点" class="smallButton" type="button">
+								 </div>
+							</div> 
+						</div> 
+						<p class='placeTextWithIcon partyPlaceAddItem'></p>
+						<p class='placeTextWithIcon partyPlaceAddItem'></p>
+						<p class='placeTextWithIcon partyPlaceAddItem'></p>
+						<p class='placeTextWithIcon partyPlaceAddItem'></p>
 
 					   	<div style="padding-top:10px;visibility:hidden;" class="myDashed separatorLine"></div> 
 					   	<!-- <div style="padding-top:10px;" class="myDashed separatorLine"></div>  -->

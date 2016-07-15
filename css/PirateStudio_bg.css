@@ -548,6 +548,7 @@ th {
 .siteFormItemTd{
 	margin-top: 0.5rem ;
 	width: 100%;
+	display: table-cell;
 }
 
 .siteFormItemShowName {
