@@ -55,6 +55,17 @@ function onVote(){
 		return false ;
 	}
 
+	// 获取投票人留言
+	var strLeaveMessage = $('#strLeaveMessage').val() ;
+	console.log("strLeaveMessage:", strLeaveMessage);
+
+	if (false == checkInvalidChar(strLeaveMessage)) 
+	{
+		rollToElement($('#strLeaveMessage'));
+		myActiveElement($('#strLeaveMessage'));
+		return false ;
+	}
+
 	// 获取html名称
 	var StrRandChar = $('#StrRandChar').attr('name') ;
 	console.log("StrRandChar:", StrRandChar);
@@ -112,13 +123,9 @@ function onVote(){
 	}
 
 	// 数组转成字符串
-	//var strPartyTimeNameJoin = arrayPartyTimeName.join('\&');
-	var strPartyTimeCheckJoin = arrayPartyTimeCheck.join('\&');
-	//var strPartyPlaceNameJoin = arrayPartyPlaceName.join('\&');
-	var strPartyPlaceCheckJoin = arrayPartyPlaceCheck.join('\&');
-	//console.log("strPartyTimeNameJoin:", strPartyTimeNameJoin);
+	var strPartyTimeCheckJoin = arrayPartyTimeCheck.join('');
+	var strPartyPlaceCheckJoin = arrayPartyPlaceCheck.join('');
 	console.log("strPartyTimeCheckJoin:", strPartyTimeCheckJoin);
-	//console.log("strPartyPlaceNameJoin:", strPartyPlaceNameJoin);
 	console.log("strPartyPlaceCheckJoin:", strPartyPlaceCheckJoin);
 
 	notifyMsgLoading('正在提交接受信息...'); 
@@ -128,10 +135,9 @@ function onVote(){
 		timeout: 10000,
 		data: {	"strVoteUserName" : strVoteUserName,
 				"StrRandChar" : StrRandChar,
-				//"strPartyTimeNameJoin" : strPartyTimeNameJoin,
 				"strPartyTimeCheckJoin" : strPartyTimeCheckJoin,
-				//"strPartyPlaceNameJoin" : strPartyPlaceNameJoin,
-				"strPartyPlaceCheckJoin" : strPartyPlaceCheckJoin},
+				"strPartyPlaceCheckJoin" : strPartyPlaceCheckJoin,
+				"strLeaveMessage" : strLeaveMessage},
 		success: function(response) { 
 			console.log("onVote:ajax:success");
 			notifyMsgLong('成功接受该活动'); 
@@ -161,8 +167,12 @@ function dealResult(response)
 	notifyMsgClose();
 
 	// 将每条结果转化成数组存放，数组最后一个元素为空，使用时要过滤掉
-	var szRecord = response.split('\n');
+	var szRecord = response.split('%');
 	console.log("szRecord:", szRecord);
+
+	var bHavaLeveaMessage = false ;
+	var arrayHeadTimeElement = new Array($('#headTime1'), $('#headTime2'), $('#headTime3'), $('#headTime4'));
+	var arrayHeadPlaceElement = new Array($('#headPlace1'), $('#headPlace2'), $('#headPlace3'), $('#headPlace4'));
 
 	// 填充tr、td
 	$.each(szRecord,function(n,value)
@@ -171,41 +181,78 @@ function dealResult(response)
 		{
 			return false;
 		}
-		// 拆分一条记录为姓名、时间结果、地点结果
+		// 拆分一条记录为姓名、时间结果、地点结果、留言
 		var szParams = value.split('@') ;
 
 		// 拼接并append表格内容到表格body里
-		var strTimeChoice = szParams[1].replace(/&/g, '</td><td>');
-		strTimeChoice = strTimeChoice.replace(/0/g, '×');
-		strTimeChoice = strTimeChoice.replace(/1/g, '√');
-		var strPlaceChoice = szParams[2].replace(/&/g, '</td><td>');
-		strPlaceChoice = strPlaceChoice.replace(/0/g, '×');
-		strPlaceChoice = strPlaceChoice.replace(/1/g, '√');
+		var strTimeChoice = szParams[1];
+		strTimeChoice = strTimeChoice.replace(/0/g, '<td class = "tabelCellNo">×</td>');
+		strTimeChoice = strTimeChoice.replace(/1/g, '<td class = "tabelCellYes">√</td>');
+		var strPlaceChoice = szParams[2];
+		strPlaceChoice = strPlaceChoice.replace(/0/g, '<td class = "tabelCellNo">×</td>');
+		strPlaceChoice = strPlaceChoice.replace(/1/g, '<td class = "tabelCellYes">√</td>');
 
-		var strTimeTabItem = '<tr><td>'+ szParams[0] + '</td><td>' + strTimeChoice + '</td></tr>';
-		var strPlaceTabItem = '<tr><td>'+ szParams[0] + '</td><td>' + strPlaceChoice+ '</td></tr>';
+		var strTimeTabItem = '<tr><td>'+ szParams[0] + '</td>' + strTimeChoice + '</tr>';
+		var strPlaceTabItem = '<tr><td>'+ szParams[0] + '</td>' + strPlaceChoice+ '</tr>';
 		console.log("strTimeTabItem:", strTimeTabItem);
 		console.log("strPlaceTabItem:", strPlaceTabItem);
 
 		$('#tBodyTime').append($.parseHTML(strTimeTabItem));
 		$('#tBodyPlace').append($.parseHTML(strPlaceTabItem));
 
-		// 隐藏没有内容的表头
-		$('th').each(function(index, el) {
-		if ('' == $(this).text()) 
+		// 填充head颜色
+		var arrayTimeChoice = szParams[1].split('');
+		var arrayPlaceChoice = szParams[2].split('');
+		$.each(arrayTimeChoice, function(index, el) {
+			if (0 == el) 
+			{
+				arrayHeadTimeElement[index].removeClass('tabelCellYes');
+				arrayHeadTimeElement[index].addClass('tabelCellNo');
+			}
+		});
+
+		$.each(arrayPlaceChoice, function(index, el) {
+			if (0 == el) 
+			{
+				arrayHeadPlaceElement[index].removeClass('tabelCellYes');
+				arrayHeadPlaceElement[index].addClass('tabelCellNo');
+			}
+		});
+
+		// 提取并添加备注
+		var strLeaveMessage = szParams[3] ;
+		console.log("strLeaveMessage:", strLeaveMessage);
+
+		if ('' != strLeaveMessage) 
 		{
-			$(this).hide();
+			var strPartyCommentTabItem = '<tr><td>'+ szParams[0] + '</td><td>' + strLeaveMessage + '</td></tr>';
+			$('#tBodyLevelMessage').append($.parseHTML(strPartyCommentTabItem));
+			bHavaLeveaMessage = true ;			
 		}
-	});
 	})
+
+	// 隐藏没有内容的表头
+	$('th').each(function(index, el) {
+	if ('' == $(this).text()) 
+	{
+		$(this).hide();
+	}
+	});
 
 	// 修改标题
 	$('#pageTitle').text('已参与人选择意见');
 
 	// 全部被选中的cell点亮 TODO
 
+	//页面切换
 	$('#voteArticle').slideUp();
 	$('#resultArticle').slideDown();
+	if (true == bHavaLeveaMessage) 
+	{
+		// 有留言才显示留言魔抗
+		$('#articleLevelMsg').slideDown();
+	}
+	$('#resultArticle_button').slideDown();
 	scroll(0,0);
 	console.log("dealResult:end");
 }
@@ -237,6 +284,8 @@ function onShowVotePage()
 {
 	console.log("onShowVotePage:start");
 	$('#resultArticle').slideUp();
+	$('#articleLevelMsg').slideUp();
+	$('#resultArticle_button').slideUp();
 	$('#tBodyTime').empty();
 	$('#tBodyPlace').empty();
 	$('#voteArticle').slideDown();
@@ -283,6 +332,17 @@ function DoRefuse(strVoteUserName)
 	// 获取html名称
 	var StrRandChar = $('#StrRandChar').attr('name') ;
 
+	// 获取投票人留言
+	var strLeaveMessage = $('#strLeaveMessage').val() ;
+	console.log("strLeaveMessage:", strLeaveMessage);
+
+	if (false == checkInvalidChar(strLeaveMessage)) 
+	{
+		rollToElement($('#strLeaveMessage'));
+		myActiveElement($('#strLeaveMessage'));
+		return false ;
+	}
+
 	// 获取活动时间选项
 	var arrayPartyTimeCheck = new Array() ;
 	$('#partyTimeItems').find('.voteLab').each(function() {
@@ -304,8 +364,8 @@ function DoRefuse(strVoteUserName)
 	});
 
 	// 数组转成字符串
-	var strPartyTimeCheckJoin = arrayPartyTimeCheck.join('\&');
-	var strPartyPlaceCheckJoin = arrayPartyPlaceCheck.join('\&');
+	var strPartyTimeCheckJoin = arrayPartyTimeCheck.join('');
+	var strPartyPlaceCheckJoin = arrayPartyPlaceCheck.join('');
 	console.log("strPartyTimeCheckJoin:", strPartyTimeCheckJoin);
 	console.log("strPartyPlaceCheckJoin:", strPartyPlaceCheckJoin);
 
@@ -317,7 +377,8 @@ function DoRefuse(strVoteUserName)
 		data: {	"strVoteUserName" : strVoteUserName,
 				"StrRandChar" : StrRandChar,
 				"strPartyTimeCheckJoin" : strPartyTimeCheckJoin,
-				"strPartyPlaceCheckJoin" : strPartyPlaceCheckJoin},
+				"strPartyPlaceCheckJoin" : strPartyPlaceCheckJoin,
+				"strLeaveMessage" : strLeaveMessage},
 		success: function(response) { 
 			console.log("onVote:ajax:success");
 			notifyMsgLong('成功拒绝该活动'); 
@@ -343,6 +404,13 @@ function onInit()
 			$(this).closest('.myWekitBox').show('fast');
 		}
 	});
+
+	if ('' != $('#strPartyComment').text()) 
+	{
+		$('#strPartyComment').closest('.siteFormItem').show('fast');
+	}
+
+	$("#strVoteUserName").focus();
 	console.log("onInit:end");
 }
 

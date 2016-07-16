@@ -694,3 +694,11 @@ th {
 .pointText {
 	color: #bb140d
 }
+
+.tabelCellYes {
+ 	background-color: #CCFF99;
+}
+
+.tabelCellNo {
+	background-color: #FF6666;
+}

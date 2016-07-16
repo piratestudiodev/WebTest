@@ -160,13 +160,29 @@ var _htmlFontSize = (function(){
 					</div>
 					
 					<hr></hr>
-					<div class="siteFormItem">
+					<div class="siteFormItem"  style="display: none">
 						<div class="siteFormItemTd">
 						<div style="padding-left:0.7rem; height: 100%; margin:0.3rem">
-							<p style="height: 100%;">活动备注：<span>!replacePartyComment!</span></p>
+							<p style="height: 100%;">活动备注：<span id='strPartyComment'>!replacePartyComment!</span></p>
 						</div>
 						</div>					
 					</div>
+
+					<div class="siteFormItemTable"> 
+						<!-- 留言框 -->
+						<div class="siteFormItem"> 
+							<div style="width: 4.5rem;" class="siteFormItemTd">
+						 	<div style="padding-left:1rem;" class="siteFormItemShowName">
+						  		您的留言
+						 	</div>
+							</div>
+							<div class="siteFormItemTd">
+							  	<input id="strLeaveMessage" type="text" class="g_itext" placeholder="如有留言或意见可在此填写" maxlength="100" /> 
+							</div>  
+						</div>
+					</div>
+					<div style="padding-top:10px;visibility:hidden;" class="myDashed separatorLine"></div>
+
 					<hr></hr>
 
 					<div class="siteFormAddButton myWekitBox">
@@ -209,10 +225,10 @@ var _htmlFontSize = (function(){
 						<thead>
 						<tr>
 							<th style="width: 3rem;">姓名</th>
-							<th>!replacePartyTimeTable!</th>
-							<th>!replacePartyTimeTable!</th>
-							<th>!replacePartyTimeTable!</th>
-							<th>!replacePartyTimeTable!</th>
+							<th id='headTime1' class='tabelCellYes'>!replacePartyTimeTable!</th>
+							<th id='headTime2' class='tabelCellYes'>!replacePartyTimeTable!</th>
+							<th id='headTime3' class='tabelCellYes'>!replacePartyTimeTable!</th>
+							<th id='headTime4' class='tabelCellYes'>!replacePartyTimeTable!</th>
 						</tr>
 						</thead>
 
@@ -224,17 +240,47 @@ var _htmlFontSize = (function(){
 						<thead>
 						<tr>
 							<th style="width: 3rem;">姓名</th>
-							<th>!replacePartyPlaceTable!</th>
-							<th>!replacePartyPlaceTable!</th>
-							<th>!replacePartyPlaceTable!</th>
-							<th>!replacePartyPlaceTable!</th>
+							<th id='headPlace1' class='tabelCellYes'>!replacePartyPlaceTable!</th>
+							<th id='headPlace2' class='tabelCellYes'>!replacePartyPlaceTable!</th>
+							<th id='headPlace3' class='tabelCellYes'>!replacePartyPlaceTable!</th>
+							<th id='headPlace4' class='tabelCellYes'>!replacePartyPlaceTable!</th>
 						</tr>
 						</thead>
 
 						<tbody id="tBodyPlace">
 						</tbody>
 					</table>
+					</article>
 
+					<!-- 留言板块 -->
+					<article id='articleLevelMsg' style="display: none">
+					<hr></hr>
+					<div class="siteForm" style="height: 1rem; padding-bottom:0;">
+						<!-- 输入框 -->
+						<div class="siteFormItemTable"> 
+							<!-- 输入框子项1 -->
+							<div class="siteFormItem"> 
+							 	<div style="padding-left:30px; height: 100%;" class="siteFormItemShowName">
+							  		已参与人留言或意见:
+							 	</div>
+							</div> 
+						</div>
+					</div>
+
+					<table>
+						<thead>
+						<tr>
+							<th style="width: 3rem;">姓名</th>
+							<th>留言或意见</th>
+						</tr>
+						</thead>
+
+						<tbody id="tBodyLevelMessage">
+						</tbody>
+					</table>
+					</article>
+
+					<article id='resultArticle_button' style="display: none">
 					<div class="siteForm">
 					<!-- 输入框 -->
 						<div class="siteFormAddButton myWekitBox"> 

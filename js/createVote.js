@@ -467,6 +467,8 @@ $(document).ready(function()
 	$('#onAddPartyPlace').on('click', onAddPartyPlace);
 	$('#onReset').on('click', onReset);
 	$('#onSubmit').on('click', onSubmitTest);
+	
+	$("#partyName").focus();
 
 	// $('#partyName').on('click', onInputPartyName);
 	// $('#changeStyle').on('click', changeStyle);
