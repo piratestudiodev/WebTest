@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html style="font-size: 40px;">
+<head>
+<title>投票</title>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="layoutmode" content="standard">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="renderer" content="webkit">
+<!-- 禁止字体放大 -->
+<meta name="wap-font-scale" content="no">
+<!-- 禁止数字自动转电话号码、邮件 -->
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<!-- 导入数据参数 -->
+<output id='StrRandChar' name="!replaceStrRandChar!"></output>
+<!-- 计算字体大小 -->
+<script type="text/javascript">
+var _htmlFontSize = (function(){
+    var clientWidth = document.documentElement ? document.documentElement.clientWidth : document.body.clientWidth;
+    if(clientWidth > 640) clientWidth = 640;
+    document.documentElement.style.fontSize = clientWidth * 1/16+"px";
+  	return clientWidth * 1/16;
+})();
+</script>
+
+<link rel="icon" href="favicon.ico">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="stylesheet" id="mobiStyleTemplateCss" type="text/css" href="css/PirateStudio_bg.css">
+
+</head>
+
+<!-- 布局body -->
+<body id="myWebBody">
+<!-- 1级 左侧留白 -->
+<section class = "myWebLeft"></section>
+<!-- 1级 中间区域 -->
+<section id="myGWeb" class="myGWeb">
+	<!-- 2级 webContainerBox -->
+	<section id="myWebContainerBox" class="myWebContainerBox">
+	<section style="overflow: hidden;" id="myWebModuleContainer" class="myWebModuleContainer">
+	<section id="module001" class="myForm" _autoheight="1" _height="0">
+		<section class="myFormBannerTitle" style="height: 2rem;" >
+			<div class="titleLeft"></div>
+			<div class="titleCenter">
+				<div class="titleText">
+					<!-- 微信分享缩略图 -->
+					<div style="display:none"><img src="favicon.ico"></div>
+					<div class="titleTextIcon icon-titleText">
+						&nbsp;
+					</div>
+					<div id='pageTitle' class="textContent">
+						投票
+					</div>
+				</div>
+				<div class="formBannerMore">
+				</div>
+			</div>
+			<div class="titleRight"></div>
+		</section>
+		<section class="myFormMiddle">
+			<div class="middleLeft">
+			</div>
+			<div class="middleCenter">
+				<div class="moduleContent">
+					<article id="voteArticle">
+					<div class="siteForm">
+					<!-- 输入框 -->
+					<div class="siteFormItem">
+						<div class="siteFormItemTd">
+						<div style="padding-left:0.7rem; height: 100%; margin:0.3rem">
+							<p style="height: 100%;"><span class= "pointText">!replaceSponsorName!</span>邀请你参加投票：<span class= "pointText">!replacePartyName!</span></p>
+						</div>
+						</div>					
+					</div>
+
+					<div style="padding-top:10px;visibility:hidden;" class="myDashed separatorLine"></div>
+					<hr></hr>
+					<div style="padding-top:10px;visibility:hidden;" class="myDashed separatorLine"></div>
+
+					<div class="siteFormItemTable"> 
+						<!-- 输入框子项1 -->
+						<div class="siteFormItem"> 
+							<div style="width: 4.5rem;" class="siteFormItemTd">
+						 	<div style="padding-left:1rem;" class="siteFormItemShowName">
+						  		您的姓名
+						 	</div>
+							</div>
+							<div class="siteFormItemTd">
+							  	<input id="strVoteUserName" type="text" class="g_itext" placeholder="请填写您的姓名" maxlength="100" /> 
+							  	<font style="line-height:1.8rem;width:0.8rem;float:right;" color="red">*</font>
+							</div>  
+						</div>
+					</div>
+					</div>
+
+					<hr></hr>
+
+					<div class="myVote" id="vote001">
+						<div class="voteSubject">
+							<div class="voteSubjectText">
+								<span class= "pointText">请选则投票选项</span>（可复选）
+							</div>
+						</div>
+						<div class="myDashed">
+						</div>
+						<div id="partyPlaceItems">
+							<div class="voteItems myWekitBox">
+								<input type="checkbox" class="myCheckBox" checked>
+								<label class="myFlex1 voteLab">!replacePartyPlace!</label>
+							</div>
+							<div class="voteItems myWekitBox">
+								<input type="checkbox" class="myCheckBox">
+								<label class="myFlex1 voteLab">!replacePartyPlace!</label>
+							</div>
+							<div class="voteItems myWekitBox">
+								<input type="checkbox" class="myCheckBox">
+								<label class="myFlex1 voteLab">!replacePartyPlace!</label>
+							</div>
+							<div class="voteItems myWekitBox">
+								<input type="checkbox" class="myCheckBox">
+								<label class="myFlex1 voteLab">!replacePartyPlace!</label>
+							</div>
+						</div>
+						<div id="voteMsg1" class="voteMsg g_tip"></div>
+					</div>
+					
+					<hr></hr>
+					<div class="siteFormItem"  style="display: none">
+						<div class="siteFormItemTd">
+						<div style="padding-left:0.7rem; height: 100%; margin:0.3rem">
+							<p style="height: 100%;">投票备注：<span id='strPartyComment'>!replacePartyComment!</span></p>
+						</div>
+						</div>					
+					</div>
+
+					<div class="siteFormItemTable"> 
+						<!-- 留言框 -->
+						<div class="siteFormItem"> 
+							<div style="width: 4.5rem;" class="siteFormItemTd">
+						 	<div style="padding-left:1rem;" class="siteFormItemShowName">
+						  		您的留言
+						 	</div>
+							</div>
+							<div class="siteFormItemTd">
+							  	<input id="strLeaveMessage" type="text" class="g_itext" placeholder="如有留言或意见可在此填写" maxlength="100" /> 
+							</div>  
+						</div>
+					</div>
+					<div style="padding-top:10px;visibility:hidden;" class="myDashed separatorLine"></div>
+
+					<hr></hr>
+
+					<div class="siteFormAddButton myWekitBox">
+						<div class="myFlex1">
+							<input value="提交投票" id="OnVote" class="myGButton" type="button">
+						</div>
+					</div>
+					<div class="siteFormAddButton myWekitBox">
+						<div class="myFlex1">
+							<input value="查看已投票人的选择" id="OnResult" class="myGButton" type="button">
+						</div>
+					</div>
+					
+					</article>
+
+					<article id="resultArticle" style="display:none;">
+					<div class="siteForm" style="height: 1rem; padding-bottom:0;">
+						<!-- 输入框 -->
+						<div class="siteFormItemTable"> 
+							<!-- 输入框子项1 -->
+							<div class="siteFormItem"> 
+							 	<div style="padding-left:30px; height: 100%;" class="siteFormItemShowName">
+							  		已投票人的投票结果:
+							 	</div>
+							</div> 
+						</div>
+					</div>
+
+					<table>
+						<thead>
+						<tr>
+							<th style="width: 3rem;">姓名</th>
+							<th id='headPlace1' class='tabelCellYes'>!replacePartyPlaceTable!</th>
+							<th id='headPlace2' class='tabelCellYes'>!replacePartyPlaceTable!</th>
+							<th id='headPlace3' class='tabelCellYes'>!replacePartyPlaceTable!</th>
+							<th id='headPlace4' class='tabelCellYes'>!replacePartyPlaceTable!</th>
+						</tr>
+						</thead>
+
+						<tbody id="tBodyPlace">
+						</tbody>
+					</table>
+					</article>
+
+					<!-- 留言板块 -->
+					<article id='articleLevelMsg' style="display: none">
+					<hr></hr>
+					<div class="siteForm" style="height: 1rem; padding-bottom:0;">
+						<!-- 输入框 -->
+						<div class="siteFormItemTable"> 
+							<!-- 输入框子项1 -->
+							<div class="siteFormItem"> 
+							 	<div style="padding-left:30px; height: 100%;" class="siteFormItemShowName">
+							  		已投票人留言或意见:
+							 	</div>
+							</div> 
+						</div>
+					</div>
+
+					<table>
+						<thead>
+						<tr>
+							<th style="width: 3rem;">姓名</th>
+							<th>留言或意见</th>
+						</tr>
+						</thead>
+
+						<tbody id="tBodyLevelMessage">
+						</tbody>
+					</table>
+					</article>
+
+					<article id='resultArticle_button' style="display: none">
+					<div class="siteForm">
+					<!-- 输入框 -->
+						<div class="siteFormAddButton myWekitBox"> 
+							<div class="myFlex1">
+								<input id="OnShowVotePage" type="button" class="myGButton" value="返回投票界面" /> 
+							</div>
+						</div>
+					</div>
+					</article>
+				</div>
+			</div>
+			<div class="middleRight">
+			</div>
+		</section>
+	</section>
+	</section>
+	</section>
+	<!-- 2级 webFooterBox -->
+	<section id="myWebFooterBox" class="myWebFooterBox ">
+		<!--图片详情Div -->
+		<div id="myWebFooter" class="myWebFooter">
+			<div id="myFooter" class="myFooter">
+				<div class="myTechnical">
+					<div class="myTechnicalSupport">
+						<p>
+							<font face="Arial">©</font>2016 PirateStudio 版权所有
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--设置网站的背景颜色  start-->
+	<div class="webBackgroundBox ">
+		<div id="webBodyBackground" class="webBackground ">
+		</div>
+		<div id="navExistOffPanel" class="navExistOffPanel">
+		</div>
+	</div>
+	<!--设置网站的背景颜色  end-->
+</section>
+<!-- 1级 右侧留白 -->
+<section class = "myWebRight"></section>
+
+<div id="notifyMsg" class="mobiIngTigs">
+	<div class="mobiTips" style="width:10rem; ">
+		<div class="mobiMsg">
+			<p class="showMsg"></p>
+		</div>
+	</div>
+</div>
+
+<!-- js -->
+<script src="js/jquery-3.0.0.min.js"></script>
+<script src="js/vote.js"></script>
+</body>
+
+<script type="text/javascript" language="javascript">
+//管理态下的预览页面提前作处理 之前这里的g_viewMode先去掉
+if( !false && window.top !== window.self){
+    var g_className = document.getElementById("g_body").className;
+    document.getElementById("g_body").className = g_className + " ";
+} 
+//用于iframe显示手机样板的时候 给g_web加上width
+var g_webWidth = 0;
+if(g_webWidth == 0){
+	g_webWidth = window.localStorage? localStorage.getItem("g_webWidth"): Cookie.read("g_webWidth");
+	if(g_webWidth != null){
+		document.getElementById("myGWeb").style.width = g_webWidth + "px";
+	}
+} else{
+	document.getElementById("myGWeb").style.width = g_webWidth + "px";
+	if (window.localStorage) {
+		localStorage.setItem("g_webWidth", g_webWidth);	
+	} else {
+		Cookie.write("g_webWidth", g_webWidth);	
+	}
+}	
+</script>

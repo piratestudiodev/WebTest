@@ -610,6 +610,21 @@ th {
 	display: none
 }
 
+.VoteTextWithIcon{
+	background: url(../images/tag-black.png) no-repeat;
+	background-position:center left;
+	display: inline-block;
+	white-space: nowrap;
+	background-size: 0.6rem 0.6rem;
+	width: 90%;
+	height: 1rem;
+	line-height: 1rem ;
+	margin-left: 1.4rem;
+	padding-left: 1rem;
+	font-size: 0.6rem;
+	display: none
+}
+
 .smallButton {
 	float: left;
 	background-repeat: no-repeat;

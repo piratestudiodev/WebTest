@@ -1,3 +1,5 @@
+var g_nMaxVoteOptions = 6
+
 function checkInvalidChar(strInput)
 {
 	console.log("checkInvalidChar:start");
@@ -32,68 +34,13 @@ function rollToElement(pElement)
 	window.scrollTo(pElement.offset().left, pElement.offset().top - 120);
 }
 
-function onAddPartyTime()
-{
-	console.log("onAddPartyTime:start");
-	var varPartyTimeText = $('#partyTimeText').val() ;
-
-	// 截断分钟以后的数值
-	console.log("varPartyTimeText:", varPartyTimeText);
-	var nTPos = varPartyTimeText.indexOf("T") ;
-	console.log("nTPos:", nTPos);
-	if (nTPos > 0) 
-	{
-		varPartyTimeText = varPartyTimeText.substring(0, nTPos + 6) ;
-	}
-	varPartyTimeText = varPartyTimeText.replace(/T/, " ") ;
-	console.log("varPartyTimeText:", varPartyTimeText);
-
-	if ('' == varPartyTimeText) 
-	{
-		notifyMsg("活动时间未填写！");	
-		myActiveElement($('#partyTimeText'));
-		return false ;
-	}
-
-	if (false == checkInvalidChar(varPartyTimeText)) 
-	{
-		myActiveElement($('#partyTimeText'));
-		return false ;
-	}
-	var isHaveEmptyItem = 0 ;
-	$('.partyTimeAddItem').each(function() {
-		if($(this).is(':hidden'))
-		{
-			isHaveEmptyItem = 1;
-			$(this).text(varPartyTimeText);
-			$(this).slideDown("slow");
-			return false ;
-		}
-		else
-		{
-			if (varPartyTimeText == $(this).text()) 
-			{
-				isHaveEmptyItem = 1;
-				notifyMsg("请不要添加重复时间");
-				return false ;
-			}
-		}
-	});
-
-	if (0 == isHaveEmptyItem) 
-	{
-		notifyMsgLong("无法添加4个以上的活动时间选项");
-	}
-	console.log("onAddPartyTime:end");
-}
-
 function onAddPartyPlace()
 {
 	console.log("onAddPartyPlace:start");
 	var varPartyPlaceText = $('#partyPlaceText').val() ;
 	if ('' == varPartyPlaceText) 
 	{
-		notifyMsg("活动地点未填写！");	
+		notifyMsg("投票选项未填写！");	
 		myActiveElement($('#partyPlaceText'));
 		return false ;
 	}
@@ -128,7 +75,7 @@ function onAddPartyPlace()
 					{
 						if (true == bTips) 
 						{
-							notifyMsg("请不要添加重复地点");
+							notifyMsg("请不要添加重复选项");
 							bTips = false ;
 						}
 						return false ;
@@ -137,9 +84,9 @@ function onAddPartyPlace()
 				}
 			});
 
-			if (bUsedItemNum >=4 ) 
+			if (bUsedItemNum >= g_nMaxVoteOptions ) 
 			{
-				notifyMsgLong("无法添加4个以上的活动地点选项");
+				notifyMsgLong("无法添加6个以上的投票选项");
 				return false;
 			}
 		}	
@@ -151,8 +98,8 @@ function onAddPartyPlace()
 function onReset()
 {
 	console.log("onReset:start");
-	$('.partyTimeAddItem').slideUp();
-	$('.partyTimeAddItem').text('');
+	// $('.partyTimeAddItem').slideUp();
+	// $('.partyTimeAddItem').text('');
 	$('.partyPlaceAddItem').slideUp();
 	$('.partyPlaceAddItem').text('');
 	console.log("onReset:start");
@@ -166,7 +113,7 @@ function onSubmit()
 	if ('' == strSponsorName) 
 	{
 		rollToElement($('#sponsorName'));
-		notifyMsgLong("请填写发起人名称");
+		notifyMsgLong("请填写投票发起人名称");
 		myActiveElement($('#sponsorName'));
 		return false ;
 	}
@@ -182,7 +129,7 @@ function onSubmit()
 	if ('' == strPartyName) 
 	{
 		rollToElement($('#partyName'));
-		notifyMsgLong("请填写活动名称");
+		notifyMsgLong("请填写投票名称");
 		myActiveElement($('#partyName'));
 		return false ;
 	}
@@ -202,25 +149,6 @@ function onSubmit()
 		return false ;
 	}
 
-	// 活动时间
-	var isHavePartyTime = 0;
-	var arrayPartyTime = new Array('','','','') ;
-	$('.partyTimeAddItem').each(function(index, el) {
-		if(!$(this).is(':hidden'))
-		{
-			arrayPartyTime[index] = $(this).text();
-			isHavePartyTime = 1;
-		}
-	});
-	if (0 == isHavePartyTime) 
-	{
-		rollToElement($('#partyTimeText'));
-		notifyMsgLong("请至少增加一个活动时间选项");
-		myActiveElement($('#partyTimeText'));
-		return false ;
-	}
-	var strPartyTimeJoin = arrayPartyTime.join('\&');
-
 	// 活动地点
 	var isHavePartyPlace = 0;
 	var arrayPartyPlace = new Array('','','','') ;
@@ -234,7 +162,7 @@ function onSubmit()
 	if (0 == isHavePartyPlace) 
 	{
 		rollToElement($('#partyPlaceText'));
-		notifyMsgLong("请至少增加一个活动地点选项");
+		notifyMsgLong("请至少增加一个投票选项");
 		myActiveElement($('#partyPlaceText'));
 		return false ;
 	}
@@ -243,19 +171,17 @@ function onSubmit()
 
 	console.log("strSponsorName:", strSponsorName);
 	console.log("strPartyName:", strPartyName);
-	console.log("strPartyTimeJoin:", strPartyTimeJoin);
 	console.log("strPartyPlaceJoin:", strPartyPlaceJoin);
 	console.log("strPartyComment:", strPartyComment);
 
 	// 调用服务器创建vote用的php，展示创建的vote页面
 	notifyMsgLoading('正在生成活动邀请函...');
 	$.ajax({
-		url: 'createVote.php',
+		url: 'justVoteCreateVote.php',
 		type: 'get',
 		timeout: 10000,
 		data: {	"strSponsorName" 	: strSponsorName,
 				"strPartyName" 		: strPartyName,
-				"partyTimeJoin" 	: strPartyTimeJoin,
 				"PartyPlaceJoin" 	: strPartyPlaceJoin,
 				"strPartyComment" 	: strPartyComment},
 		success: function(response) { 
@@ -286,12 +212,11 @@ function onSubmitTest()
 	console.log("onSubmitTest:start");
 	notifyMsgLoading('正在生成活动邀请函...');
 	$.ajax({
-		url: 'createVote.php',
+		url: 'justVoteCreateVote.php',
 		type: 'get',
 		timeout: 10000,
-		data: {	"strSponsorName" 	: "程杰",
-				"strPartyName" 		: "周末聚会",
-				"partyTimeJoin" 	: "2016-07-13 03:03&2016-08-13 04:03&2016-07-23 09:03&",
+		data: {	"strSponsorName" 	: "张永琥",
+				"strPartyName" 		: "投票测试",
 				"PartyPlaceJoin" 	: "公主坟海底捞&中关村家乐福汉拿山&西直门外大街烤鱼&必胜客",
 				"strPartyComment" 	: "欢迎带家属"},
 		success: function(response) { 
@@ -331,67 +256,6 @@ function changeStyle()
 		return;
 	}
 }
-
-// function AddInputToolTips(pElement, strContent)
-// {
-// 	console.log("AddInputToolTips:start");
-// 	console.log("pElement:", pElement);
-// 	console.log("strContent:", strContent);
-// 	var inputOpentip = new Opentip(pElement, 
-// 		{ 
-// 		style: 'alert',
-// 		showOn: 'click',
-// 		target: true,
-// 		group: 'input',
-// 		targetJoint: 'top left',
-// 		tipJoint: 'bottom left',
-// 		offset: [80,0] 
-// 		});
-// 	inputOpentip.setContent(strContent);
-// 	return inputOpentip ;
-// 	console.log("AddInputToolTips:end");
-// }
-
-// function AddButtonToolTips(pElementSrc, pElementTar, strContent)
-// {
-// 	console.log("AddButtonToolTips:start");
-// 	console.log("pElementSrc:", pElementSrc);
-// 	console.log("pElementTar:", pElementTar);
-// 	console.log("strContent:", strContent);
-// 	var inputOpentip = new Opentip(pElementSrc, 
-// 		{ 
-// 		style: 'dark',
-// 		showOn: 'click',
-// 		target: pElementTar,
-// 		group: 'button',
-// 		targetJoint: 'right',
-// 		tipJoint: 'left' 
-// 		});
-// 	inputOpentip.setContent(strContent);
-// 	return inputOpentip ;
-// 	console.log("AddButtonToolTips:end");
-// }
-
-// function InitToolTips()
-// {
-// 	console.log("InitToolTips:start");
-// 	var varFirstShow = AddInputToolTips($("#partyName"), '请在此填写活动名称');
-// 	// AddInputToolTips($("#partyTimeText"), '请点击此处选择活动时间');
-// 	AddInputToolTips($("#partyPlaceText"), '若添加多个地点，请以；隔开');
-
-// 	AddButtonToolTips($("#partyTimeText"), $("#onAddPartyTime"), '填写完后点此按钮以添加');
-// 	AddButtonToolTips($("#partyPlaceText"), $("#onAddPartyPlace"), '填写完后点此按钮以添加');
-
-// 	$("#partyName").focus();
-// 	//varFirstShow.show();
-
-// 	console.log("InitToolTips:end");
-// }
-
-// function HideAllToolTips()
-// {
-// 	for(var i = 0; i < Opentip.tips.length; i ++) { Opentip.tips[i].hide();}
-// }
 
 function onInputPartyName()
 {
@@ -435,42 +299,17 @@ function notifyMsgLoading(showMsg)
 
 function adjustNotifyMsgPositon()
 {
-	// Info();
 	var nTop = document.body.scrollTop + (document.body.clientHeight * 0.25) ;
 	// var nTop = document.body.scrollTop  ;
 	console.log("nTop :", nTop );
 	$('#notifyMsg').css('top', nTop);
 }
 
-function Info()
-{
-	console.log("document.body.clientWidth :", document.body.clientWidth );
-	// 网页的工作区高度，弹出小键盘后会变压缩小
-	console.log("document.body.clientHeight :", document.body.clientHeight );
-	console.log("document.body.scrollWidth :", document.body.scrollWidth  );
-	console.log("document.body.scrollHeight :", document.body.scrollHeight );
-	// 被滚掉的距离
-	console.log("document.body.scrollTop :", document.body.scrollTop );
-	console.log("document.body.scrollLeft :", document.body.scrollLeft );
-	console.log("window.screenTop:", window.screenTop );
-	console.log("window.screen.height:", window.screen.height );
-	// 恒定，不会因为小键盘弹出而变小
-	console.log("window.screen.availHeight:", window.screen.availHeight );
-	console.log("window.scrollTop():", $(window).scrollTop() );
-
-
-}
-
 $(document).ready(function() 
 {
-	$('#onAddPartyTime').on('click', onAddPartyTime);
 	$('#onAddPartyPlace').on('click', onAddPartyPlace);
 	$('#onReset').on('click', onReset);
 	$('#onSubmit').on('click', onSubmit);
 
 	$("#partyName").focus();
-
-	// $('#partyName').on('click', onInputPartyName);
-	// $('#changeStyle').on('click', changeStyle);
-	// InitToolTips() ;
 });
