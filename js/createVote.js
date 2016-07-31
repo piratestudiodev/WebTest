@@ -117,7 +117,6 @@ function onAddPartyPlace()
 			$('.partyPlaceAddItem').each(function() {
 				if($(this).is(':hidden'))
 				{
-					isHaveEmptyItem = 1;
 					$(this).text(el);
 					$(this).slideDown();
 					return false ;
