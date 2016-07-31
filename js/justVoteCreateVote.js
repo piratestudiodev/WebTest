@@ -175,7 +175,7 @@ function onSubmit()
 	console.log("strPartyComment:", strPartyComment);
 
 	// 调用服务器创建vote用的php，展示创建的vote页面
-	notifyMsgLoading('正在生成活动邀请函...');
+	notifyMsgLoading('正在生成投票页面...');
 	$.ajax({
 		url: 'justVoteCreateVote.php',
 		type: 'get',
@@ -210,7 +210,7 @@ function onSubmit()
 function onSubmitTest()
 {
 	console.log("onSubmitTest:start");
-	notifyMsgLoading('正在生成活动邀请函...');
+	notifyMsgLoading('正在生成投票页面...');
 	$.ajax({
 		url: 'justVoteCreateVote.php',
 		type: 'get',

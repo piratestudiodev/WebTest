@@ -111,7 +111,7 @@ function onVote(){
 				"strLeaveMessage" : strLeaveMessage},
 		success: function(response) { 
 			console.log("onVote:ajax:success");
-			notifyMsgLong('成功接受该活动'); 
+			notifyMsgLong('成功提交投票信息'); 
 		},
 		error: function(request, errorType, errorMessage) {
 			var strErrorMsg = 'Error: ' + errorType + ' with message: ' + errorMessage;
@@ -142,7 +142,7 @@ function dealResult(response)
 	console.log("szRecord:", szRecord);
 
 	var bHavaLeveaMessage = false ;
-	var arrayHeadPlaceElement = new Array($('#headPlace1'), $('#headPlace2'), $('#headPlace3'), $('#headPlace4'));
+	var arrayHeadPlaceElement = new Array($('#headPlace1'), $('#headPlace2'), $('#headPlace3'), $('#headPlace4'), $('#headPlace5'), $('#headPlace6'));
 
 	// 填充tr、td
 	$.each(szRecord,function(n,value)
@@ -159,12 +159,9 @@ function dealResult(response)
 		strPlaceChoice = strPlaceChoice.replace(/0/g, '<td class = "tabelCellNo">×</td>');
 		strPlaceChoice = strPlaceChoice.replace(/1/g, '<td class = "tabelCellYes">√</td>');
 
-		var strTimeTabItem = '<tr><td>'+ szParams[0] + '</td>' + strTimeChoice + '</tr>';
 		var strPlaceTabItem = '<tr><td>'+ szParams[0] + '</td>' + strPlaceChoice+ '</tr>';
-		console.log("strTimeTabItem:", strTimeTabItem);
 		console.log("strPlaceTabItem:", strPlaceTabItem);
 
-		$('#tBodyTime').append($.parseHTML(strTimeTabItem));
 		$('#tBodyPlace').append($.parseHTML(strPlaceTabItem));
 
 		// 填充head颜色
@@ -221,7 +218,7 @@ function onResult()
 	// 获取html名称
 	var StrRandChar = $('#StrRandChar').attr('name') ;
 	console.log("StrRandChar:", StrRandChar);
-	notifyMsgLoading('正在查询活动详情...'); 
+	notifyMsgLoading('正在查询投票结果...'); 
 	$.ajax({
 		url: 'justVoteResult.php',
 		type: 'get',
