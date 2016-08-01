@@ -92,7 +92,7 @@ function onVote(){
 	});
 	if(0 == bHavePlaceCheck){
 		rollToElement($('#partyPlaceItems'));
-		notifyMsg("请至少选择一个活动地点");
+		notifyMsg("请至少选择一个投票选项");
 		return;
 	}
 

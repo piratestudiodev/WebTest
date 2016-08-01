@@ -150,7 +150,7 @@ function onSubmit()
 
 	// 活动地点
 	var isHavePartyPlace = 0;
-	var arrayPartyPlace = new Array('','','','') ;
+	var arrayPartyPlace = new Array('','','','','','') ;
 	$('.partyPlaceAddItem').each(function(index, el) {
 		if(!$(this).is(':hidden'))
 		{
@@ -216,7 +216,7 @@ function onSubmitTest()
 		timeout: 10000,
 		data: {	"strSponsorName" 	: "张永琥",
 				"strPartyName" 		: "投票测试",
-				"PartyPlaceJoin" 	: "公主坟海底捞&中关村家乐福汉拿山&西直门外大街烤鱼&必胜客",
+				"PartyPlaceJoin" 	: "公主坟海底捞&中关村家乐福汉拿山&西直门外大街烤鱼&必胜客&必胜客2&必胜客3",
 				"strPartyComment" 	: "欢迎带家属"},
 		success: function(response) { 
 			console.log("onSubmitTest:ajax:success");
